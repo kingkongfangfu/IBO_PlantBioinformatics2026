@@ -1,0 +1,2212 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<title>IBO Plant Computational Biology — Student Training Modules</title>
+				<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+					<style>
+						:root {
+						--bg:       #faf8f4;
+						--bg2:      #f2ede4;
+						--bg3:      #ece6da;
+						--white:    #ffffff;
+						--border:   #e0d9ce;
+						--border2:  #cfc8bc;
+						--text:     #1e1a14;
+						--text2:    #5a5245;
+						--text3:    #9e9485;
+						--green:    #1a7a4a;
+						--green-bg: #eaf5ef;
+						--green-bd: #b3ddc5;
+						--blue:     #1a5fa0;
+						--blue-bg:  #e8f2fb;
+						--blue-bd:  #aacbec;
+						--amber:    #8a5c00;
+						--amber-bg: #fef7e6;
+						--amber-bd: #f0d080;
+						--rose:     #a02040;
+						--rose-bg:  #fdeef2;
+						--rose-bd:  #f0a8b8;
+						--purple:   #5e3a9e;
+						--purple-bg:#f2eeff;
+						--purple-bd:#c9b0f0;
+						--teal:     #0e6b6b;
+						--teal-bg:  #e6f6f6;
+						--teal-bd:  #9ed8d8;
+						--day1:     #1a7a4a;
+						--day2:     #1a5fa0;
+						--day3:     #7a1a60;
+						--radius:   10px;
+						--radius-lg:16px;
+						--shadow:   0 1px 4px rgba(30,26,20,0.07), 0 4px 16px rgba(30,26,20,0.05);
+						--shadow-sm:0 1px 3px rgba(30,26,20,0.08);
+						}
+						*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+						html { scroll-behavior: smooth; }
+						body {
+						background: var(--bg);
+						color: var(--text);
+						font-family: 'Nunito', sans-serif;
+						font-size: 15px;
+						line-height: 1.7;
+						}
+
+						/* ── Sidebar ─────────────────────────────── */
+						.sidebar {
+						position: fixed; left:0; top:0; bottom:0; width:252px;
+						background: var(--white);
+						border-right: 1px solid var(--border);
+						overflow-y: auto; z-index:100;
+						padding-bottom: 2rem;
+						}
+						.sidebar::-webkit-scrollbar { width:4px; }
+						.sidebar::-webkit-scrollbar-thumb { background:var(--border2); border-radius:4px; }
+						.sidebar-brand {
+						padding: 1.25rem 1.25rem 1rem;
+						border-bottom: 1px solid var(--border);
+						display: flex; align-items: center; gap: 10px;
+						}
+						.brand-leaf {
+						width:36px; height:36px; background:var(--green-bg);
+						border-radius:50%; display:flex; align-items:center; justify-content:center;
+						font-size:1.1rem; flex-shrink:0;
+						}
+						.brand-text { line-height:1.2; }
+						.brand-title { font-size:0.82rem; font-weight:800; color:var(--text); }
+						.brand-sub   { font-size:0.68rem; color:var(--text3); font-weight:600; }
+						.nav-group { padding: 0.75rem 0 0; }
+						.nav-group-label {
+						font-size:0.62rem; font-weight:800; text-transform:uppercase;
+						letter-spacing:0.1em; color:var(--text3);
+						padding: 0 1.25rem 0.35rem;
+						}
+						.nav-item {
+						display:flex; align-items:center; gap:8px;
+						padding: 0.38rem 1.25rem;
+						font-size:0.78rem; font-weight:600;
+						color:var(--text2); text-decoration:none;
+						border-left:3px solid transparent;
+						transition: all 0.14s; cursor:pointer;
+						background:none; border-top:none; border-right:none; border-bottom:none;
+						width:100%; text-align:left;
+						}
+						.nav-item:hover { color:var(--text); background:var(--bg); }
+						.nav-item.active { color:var(--green); border-left-color:var(--green); background:var(--green-bg); }
+						.nav-dot {
+						width:7px; height:7px; border-radius:50%; flex-shrink:0;
+						}
+
+						/* ── Progress bar ─────────────────────────── */
+						#progress-bar { position:fixed; top:0; left:252px; right:0; height:3px; background:var(--border); z-index:200; }
+						#progress-fill { height:100%; background:var(--green); width:0%; transition:width .1s; }
+
+						/* ── Main ─────────────────────────────────── */
+						.main { margin-left:252px; max-width:980px; padding:0 2.5rem 6rem; }
+
+						/* ── Hero ─────────────────────────────────── */
+						.hero {
+						padding: 3rem 0 2.5rem;
+						border-bottom: 1px solid var(--border);
+						margin-bottom: 2.5rem;
+						}
+						.hero-eyebrow {
+						display:inline-flex; align-items:center; gap:6px;
+						background:var(--green-bg); border:1px solid var(--green-bd);
+						color:var(--green); font-size:0.72rem; font-weight:800;
+						letter-spacing:0.07em; text-transform:uppercase;
+						padding:0.3rem 0.8rem; border-radius:100px; margin-bottom:1.25rem;
+						}
+						.hero h1 {
+						font-family:'Source Serif 4', serif;
+						font-size:2.4rem; font-weight:600; line-height:1.15;
+						color:var(--text); margin-bottom:0.75rem; letter-spacing:-0.01em;
+						}
+						.hero h1 em { color:var(--green); font-style:italic; }
+						.hero-desc { color:var(--text2); font-size:0.95rem; max-width:600px; margin-bottom:1.75rem; }
+						.hero-stats { display:flex; gap:2.5rem; flex-wrap:wrap; }
+						.stat-item { }
+						.stat-n { font-size:2rem; font-weight:900; color:var(--green); line-height:1; }
+						.stat-l { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--text3); margin-top:1px; }
+
+						/* ── Section titles ───────────────────────── */
+						.sec-title {
+						font-family:'Source Serif 4', serif;
+						font-size:1.4rem; font-weight:600; color:var(--text);
+						margin-bottom:0.35rem; display:flex; align-items:center; gap:10px;
+						}
+						.sec-badge {
+						font-family:'Nunito',sans-serif;
+						font-size:0.62rem; font-weight:800; text-transform:uppercase;
+						letter-spacing:0.09em; border:1px solid var(--border2); color:var(--text3);
+						padding:2px 8px; border-radius:4px; margin-top:3px;
+						}
+						.sec-desc { color:var(--text2); font-size:0.92rem; margin-bottom:1.25rem; }
+
+						/* ── TOC ──────────────────────────────────── */
+						#toc {
+						background:var(--white); border:1px solid var(--border);
+						border-radius:var(--radius-lg); padding:1.75rem;
+						margin-bottom:2.5rem; box-shadow:var(--shadow-sm);
+						}
+						.toc-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.25rem; margin-top:1.25rem; }
+						.toc-col {
+						background:var(--bg); border-radius:var(--radius);
+						padding:1rem 1.1rem; border-top:3px solid;
+						}
+						.toc-col.d1 { border-color:var(--day1); }
+						.toc-col.d2 { border-color:var(--day2); }
+						.toc-col.d3 { border-color:var(--day3); }
+						.toc-col-title {
+						font-size:0.72rem; font-weight:800; text-transform:uppercase;
+						letter-spacing:0.07em; margin-bottom:0.6rem;
+						}
+						.toc-col.d1 .toc-col-title { color:var(--day1); }
+						.toc-col.d2 .toc-col-title { color:var(--day2); }
+						.toc-col.d3 .toc-col-title { color:var(--day3); }
+						.toc-link {
+						display:block; font-size:0.78rem; font-weight:600; color:var(--text2);
+						text-decoration:none; padding:0.18rem 0;
+						border-left:2px solid transparent; padding-left:6px;
+						transition:all .14s;
+						}
+						.toc-link:hover { color:var(--text); border-left-color:var(--border2); }
+
+						/* ── Day Header ───────────────────────────── */
+						.day-banner {
+						display:flex; align-items:center; gap:1.25rem;
+						background:var(--white); border:1px solid var(--border);
+						border-radius:var(--radius-lg); padding:1.25rem 1.5rem;
+						margin:2.5rem 0 1.5rem; box-shadow:var(--shadow-sm);
+						border-left:5px solid;
+						}
+						.day-banner.d1 { border-left-color:var(--day1); }
+						.day-banner.d2 { border-left-color:var(--day2); }
+						.day-banner.d3 { border-left-color:var(--day3); }
+						.day-num-big { font-size:2.8rem; font-weight:900; line-height:1; opacity:0.12; }
+						.day-banner.d1 .day-num-big { color:var(--day1); opacity:1; }
+						.day-banner.d2 .day-num-big { color:var(--day2); opacity:1; }
+						.day-banner.d3 .day-num-big { color:var(--day3); opacity:1; }
+						.day-info-label { font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; }
+						.day-banner.d1 .day-info-label { color:var(--day1); }
+						.day-banner.d2 .day-info-label { color:var(--day2); }
+						.day-banner.d3 .day-info-label { color:var(--day3); }
+						.day-info-title { font-family:'Source Serif 4',serif; font-size:1.15rem; font-weight:600; color:var(--text); }
+						.day-obj-pills { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.6rem; }
+						.obj-pill {
+						font-size:0.7rem; font-weight:700;
+						padding:2px 10px; border-radius:100px;
+						border:1px solid;
+						}
+						.d1 .obj-pill { background:var(--green-bg); color:var(--green); border-color:var(--green-bd); }
+						.d2 .obj-pill { background:var(--blue-bg);  color:var(--blue);  border-color:var(--blue-bd); }
+						.d3 .obj-pill { background:var(--rose-bg);  color:var(--rose);  border-color:var(--rose-bd); }
+
+						/* ── Module Card ──────────────────────────── */
+						.module-card {
+						background:var(--white); border:1px solid var(--border);
+						border-radius:var(--radius-lg); margin-bottom:1.5rem;
+						box-shadow:var(--shadow-sm); overflow:hidden;
+						}
+						.module-header {
+						display:flex; align-items:center; gap:0.9rem;
+						padding:1.1rem 1.4rem; cursor:pointer;
+						user-select:none; border-bottom:1px solid transparent;
+						transition:background .15s;
+						}
+						.module-header:hover { background:var(--bg); }
+						.module-card.open .module-header { border-bottom-color:var(--border); }
+						.mod-num {
+						font-family:'JetBrains Mono',monospace;
+						font-size:0.65rem; font-weight:500;
+						background:var(--bg2); color:var(--text3);
+						padding:2px 8px; border-radius:5px; white-space:nowrap;
+						border:1px solid var(--border);
+						}
+						.mod-title { font-size:1rem; font-weight:800; color:var(--text); flex:1; }
+						.mod-pills { display:flex; gap:0.5rem; }
+						.mpill {
+						font-size:0.65rem; font-weight:700; padding:2px 9px;
+						border-radius:100px; border:1px solid; white-space:nowrap;
+						}
+						.mpill-lec { background:var(--blue-bg); color:var(--blue); border-color:var(--blue-bd); }
+						.mpill-ws  { background:var(--green-bg); color:var(--green); border-color:var(--green-bd); }
+						.caret { font-size:0.72rem; color:var(--text3); transition:transform .25s; }
+						.module-card.open .caret { transform:rotate(180deg); }
+						.module-body { display:none; }
+						.module-card.open .module-body { display:block; }
+						.module-body-inner { padding:1.5rem; }
+
+						/* ── Content Grid ─────────────────────────── */
+						.cg { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.25rem; }
+						.cb {
+						background:var(--bg); border-radius:var(--radius);
+						padding:1rem 1.1rem; border-left:3px solid;
+						}
+						.cb.topics  { border-color:var(--blue); }
+						.cb.skills  { border-color:var(--green); }
+						.cb.context { border-color:var(--amber); }
+						.cb.workshop{ border-color:var(--rose); }
+						.cb.emphasis{ border-color:var(--purple); }
+						.cb-head {
+						font-size:0.64rem; font-weight:800; text-transform:uppercase;
+						letter-spacing:0.09em; margin-bottom:0.6rem;
+						}
+						.cb.topics .cb-head  { color:var(--blue); }
+						.cb.skills .cb-head  { color:var(--green); }
+						.cb.context .cb-head { color:var(--amber); }
+						.cb.workshop .cb-head{ color:var(--rose); }
+						.cb.emphasis .cb-head{ color:var(--purple); }
+						.cb-list { list-style:none; font-size:0.85rem; color:var(--text2); line-height:1.65; }
+						.cb-list li { display:flex; gap:6px; padding:0.1rem 0; }
+						.cb-list li::before { content:'›'; color:var(--text3); flex-shrink:0; }
+
+						/* ── Example Tabs ─────────────────────────── */
+						.ex-section { margin-top:1.25rem; }
+						.ex-label-row {
+						font-size:0.68rem; font-weight:800; text-transform:uppercase;
+						letter-spacing:0.09em; color:var(--text3); margin-bottom:0.6rem;
+						display:flex; align-items:center; gap:8px;
+						}
+						.ex-label-row::before { content:''; display:block; width:20px; height:1.5px; background:var(--border2); }
+						.ex-tabs { display:flex; gap:0; border-bottom:1.5px solid var(--border); margin-bottom:0; }
+						.ex-tab {
+						font-size:0.75rem; font-weight:700; padding:0.45rem 1rem;
+						cursor:pointer; color:var(--text3);
+						border-bottom:2px solid transparent; margin-bottom:-1.5px;
+						background:none; border-top:none; border-left:none; border-right:none;
+						transition:all .14s;
+						}
+						.ex-tab:hover { color:var(--text2); }
+						.ex-tab.active { color:var(--green); border-bottom-color:var(--green); }
+						.ex-panel { display:none; padding:1rem 0; }
+						.ex-panel.active { display:block; }
+						.ex-card {
+						background:var(--bg); border:1px solid var(--border);
+						border-radius:var(--radius); padding:1rem 1.1rem; margin-bottom:0.75rem;
+						}
+						.ex-card-label { font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:var(--text3); margin-bottom:0.5rem; }
+						.ex-card p { font-size:0.88rem; color:var(--text2); line-height:1.65; }
+						.ex-card strong { color:var(--text); }
+						.data-table {
+						width:100%; border-collapse:collapse;
+						font-family:'JetBrains Mono',monospace; font-size:0.72rem;
+						}
+						.data-table th {
+						background:var(--bg2); color:var(--text3); text-align:left;
+						padding:5px 10px; font-weight:500; border-bottom:1.5px solid var(--border);
+						}
+						.data-table td { color:var(--text2); padding:5px 10px; border-bottom:1px solid var(--border); }
+						.data-table tr:last-child td { border-bottom:none; }
+						.tag-g { color:var(--green); font-weight:700; }
+						.tag-a { color:var(--amber); font-weight:700; }
+						.tag-r { color:var(--rose);  font-weight:700; }
+						.code-snip {
+						background:#f8f6f0; border:1px solid var(--border);
+						border-radius:8px; padding:0.9rem 1rem;
+						font-family:'JetBrains Mono',monospace; font-size:0.76rem;
+						color:#3a3328; line-height:1.75; overflow-x:auto; margin:0.6rem 0;
+						}
+						.code-snip .kw { color:#7a3a9e; font-weight:500; }
+						.code-snip .cm { color:#9e9485; font-style:italic; }
+						.code-snip .hi { color:#1a7a4a; font-weight:500; }
+
+						/* ── EVALUATION ───────────────────────────── */
+						.eval-section {
+						margin-top:1.5rem;
+						border-top:2px dashed var(--border2);
+						padding-top:1.25rem;
+						}
+						.eval-header {
+						display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;
+						}
+						.eval-badge {
+						font-size:0.65rem; font-weight:800; text-transform:uppercase;
+						letter-spacing:0.08em; padding:3px 10px; border-radius:100px;
+						border:1.5px solid;
+						}
+						.eval-badge.pre  { background:var(--blue-bg); color:var(--blue); border-color:var(--blue-bd); }
+						.eval-badge.post { background:var(--purple-bg); color:var(--purple); border-color:var(--purple-bd); }
+						.eval-title { font-size:0.88rem; font-weight:800; color:var(--text); }
+						.eval-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+						.eval-col-label {
+						font-size:0.65rem; font-weight:800; text-transform:uppercase;
+						letter-spacing:0.09em; margin-bottom:0.65rem;
+						}
+						.eval-col-label.pre  { color:var(--blue); }
+						.eval-col-label.post { color:var(--purple); }
+						/* Question */
+						.q-item { margin-bottom:1rem; }
+						.q-stem {
+						font-size:0.85rem; font-weight:700; color:var(--text);
+						margin-bottom:0.4rem; line-height:1.5;
+						}
+						.q-options { list-style:none; }
+						.q-opt {
+						display:flex; align-items:flex-start; gap:8px;
+						font-size:0.82rem; color:var(--text2);
+						padding:0.3rem 0.5rem; border-radius:6px; margin-bottom:2px;
+						cursor:pointer; transition:background .12s;
+						border:1px solid transparent;
+						line-height:1.5;
+						}
+						.q-opt:hover { background:var(--bg2); border-color:var(--border); }
+						.q-opt.selected { background:var(--bg2); border-color:var(--border2); }
+						.q-opt.correct  { background:var(--green-bg)!important; border-color:var(--green-bd)!important; color:var(--green)!important; }
+						.q-opt.wrong    { background:var(--rose-bg)!important; border-color:var(--rose-bd)!important; color:var(--rose)!important; }
+						.opt-letter {
+						width:20px; height:20px; border-radius:50%; border:1.5px solid var(--border2);
+						display:flex; align-items:center; justify-content:center;
+						font-size:0.68rem; font-weight:800; flex-shrink:0; margin-top:1px;
+						font-family:'JetBrains Mono',monospace;
+						}
+						.q-opt.correct .opt-letter { background:var(--green); color:#fff; border-color:var(--green); }
+						.q-opt.wrong   .opt-letter { background:var(--rose);  color:#fff; border-color:var(--rose); }
+						/* Submit + score */
+						.eval-actions { display:flex; align-items:center; gap:1rem; margin-top:0.75rem; }
+						.eval-btn {
+						font-family:'Nunito',sans-serif; font-size:0.8rem; font-weight:800;
+						padding:0.45rem 1.25rem; border-radius:8px; cursor:pointer;
+						border:1.5px solid; transition:all .15s;
+						}
+						.eval-btn.check {
+						background:var(--green); color:#fff; border-color:var(--green);
+						}
+						.eval-btn.check:hover { opacity:0.88; }
+						.eval-btn.reset {
+						background:transparent; color:var(--text3); border-color:var(--border2);
+						}
+						.eval-btn.reset:hover { color:var(--text); border-color:var(--border2); background:var(--bg2); }
+						.score-badge {
+						font-size:0.78rem; font-weight:800;
+						padding:3px 12px; border-radius:100px;
+						display:none;
+						}
+						.score-badge.show { display:inline-block; }
+						/* Answer Key */
+						.key-section {
+						margin-top:1rem; background:var(--amber-bg);
+						border:1px solid var(--amber-bd); border-radius:var(--radius);
+						overflow:hidden;
+						}
+						.key-toggle {
+						display:flex; align-items:center; justify-content:space-between;
+						padding:0.65rem 1rem; cursor:pointer;
+						font-size:0.78rem; font-weight:800; color:var(--amber);
+						background:none; border:none; width:100%; text-align:left;
+						}
+						.key-toggle:hover { background:rgba(0,0,0,0.02); }
+						.key-body { display:none; padding:0.75rem 1rem 1rem; border-top:1px solid var(--amber-bd); }
+						.key-body.open { display:block; }
+						.key-item {
+						display:flex; align-items:flex-start; gap:8px;
+						font-size:0.82rem; color:var(--text2); margin-bottom:0.6rem;
+						line-height:1.55;
+						}
+						.key-num {
+						background:var(--amber); color:#fff;
+						font-size:0.62rem; font-weight:800; font-family:'JetBrains Mono',monospace;
+						padding:1px 6px; border-radius:4px; flex-shrink:0; margin-top:2px;
+						}
+						.key-ans { color:var(--amber); font-weight:800; }
+						.key-exp { color:var(--text2); }
+
+						/* ── Gantt ────────────────────────────────── */
+						.gantt-wrap {
+						background:var(--white); border:1px solid var(--border);
+						border-radius:var(--radius-lg); padding:1.5rem 1.75rem;
+						box-shadow:var(--shadow-sm); overflow-x:auto; margin-bottom:2.5rem;
+						}
+						.gantt-table { width:100%; border-collapse:collapse; min-width:660px; }
+						.gantt-table th {
+						font-size:0.64rem; font-weight:800; text-transform:uppercase;
+						letter-spacing:0.09em; color:var(--text3); text-align:left;
+						padding:0 0 0.65rem; font-family:'Nunito',sans-serif;
+						}
+						.gantt-row { border-top:1px solid var(--border); }
+						.gantt-row td { padding:0.55rem 0; vertical-align:middle; }
+						.g-mod { font-size:0.78rem; font-weight:700; color:var(--text); padding-right:1rem; width:190px; }
+						.g-mod span { display:block; font-size:0.68rem; font-weight:600; color:var(--text3); }
+						.g-time { font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:var(--text3); padding-right:1rem; width:70px; }
+						.g-bar { display:flex; height:24px; border-radius:5px; overflow:hidden; gap:2px; }
+						.g-seg {
+						height:100%; display:flex; align-items:center; padding:0 8px;
+						font-size:0.62rem; font-weight:700; white-space:nowrap; border-radius:4px;
+						}
+						.g-lec { background:var(--blue-bg); color:var(--blue); }
+						.g-ws  { background:var(--green-bg); color:var(--green); }
+						.g-brk { background:var(--amber-bg); color:var(--amber); border-radius:4px; }
+						.g-cs  { background:var(--purple-bg); color:var(--purple); }
+						.gantt-legend { display:flex; gap:1.25rem; margin-top:0.9rem; flex-wrap:wrap; }
+						.gl-item { display:flex; align-items:center; gap:5px; font-size:0.7rem; font-weight:700; color:var(--text3); }
+						.gl-dot { width:10px; height:10px; border-radius:3px; }
+
+						/* ── Philosophy ───────────────────────────── */
+						#philosophy {
+						background:var(--white); border:1px solid var(--border);
+						border-radius:var(--radius-lg); padding:2rem;
+						box-shadow:var(--shadow-sm); margin:2.5rem 0;
+						}
+						.phil-quote {
+						font-family:'Source Serif 4',serif; font-style:italic;
+						font-size:1.15rem; color:var(--text);
+						border-left:4px solid var(--green); padding-left:1.25rem;
+						margin-bottom:1.25rem; line-height:1.65;
+						}
+						.pillar-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.9rem; }
+						.pillar-card { background:var(--bg); border-radius:var(--radius); padding:1rem 1.1rem; border-left:3px solid var(--border); }
+						.pillar-title { font-size:0.85rem; font-weight:800; margin-bottom:0.35rem; }
+						.pillar-card p { font-size:0.83rem; color:var(--text2); line-height:1.6; }
+
+						/* ── Software ─────────────────────────────── */
+						.sw-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:0.75rem; margin-top:0.75rem; }
+						.sw-card {
+						background:var(--white); border:1px solid var(--border);
+						border-radius:var(--radius); padding:1rem 1rem 0.8rem;
+						text-align:center; box-shadow:var(--shadow-sm);
+						}
+						.sw-icon { font-size:1.4rem; margin-bottom:5px; }
+						.sw-name { font-size:0.78rem; font-weight:800; color:var(--text); }
+						.sw-cat  { font-size:0.68rem; color:var(--text3); font-weight:600; }
+
+						/* ── Case Study ───────────────────────────── */
+						#case-study {
+						background:var(--white); border:2px solid var(--green-bd);
+						border-radius:var(--radius-lg); padding:1.75rem;
+						box-shadow:var(--shadow); margin:2.5rem 0;
+						}
+						.cs-title { font-family:'Source Serif 4',serif; font-size:1.35rem; font-weight:600; color:var(--green); margin-bottom:0.3rem; }
+						.cs-sub { color:var(--text3); font-size:0.85rem; font-weight:700; margin-bottom:1.25rem; }
+						.cs-ds-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:0.6rem; margin-bottom:1.25rem; }
+						.cs-ds-item { background:var(--bg); border-radius:var(--radius); padding:0.65rem; text-align:center; border:1px solid var(--border); }
+						.cs-ds-icon { font-size:1.25rem; }
+						.cs-ds-label { font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; color:var(--text3); margin-top:3px; }
+						.cs-q-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; }
+						.cs-q-item { display:flex; align-items:flex-start; gap:7px; font-size:0.83rem; color:var(--text2); }
+						.cs-q-num { background:var(--green); color:#fff; font-size:0.62rem; font-weight:800; padding:1px 6px; border-radius:4px; flex-shrink:0; margin-top:2px; font-family:'JetBrains Mono',monospace; }
+
+						@media(max-width:860px){
+						.sidebar { display:none; } .main { margin-left:0; padding:0 1.25rem 4rem; }
+						.toc-grid,.eval-grid,.cg,.pillar-grid,.cs-q-grid { grid-template-columns:1fr; }
+						}
+						section,div[id^="mod"],div[id="case-study"],div[id="philosophy"] { scroll-margin-top:1rem; }
+					</style>
+				</head>
+	<body>
+
+		<!-- Sidebar -->
+		<nav class="sidebar">
+			<div class="sidebar-brand">
+				<div class="brand-leaf">🌿</div>
+				<div class="brand-text">
+					<div class="brand-title">IBO Training 2026</div>
+					<div class="brand-sub">Plant Computational Bio</div>
+				</div>
+			</div>
+			<div class="nav-group">
+				<div class="nav-group-label" onclick="goToId('toc')" style="cursor:pointer">Overview</div>
+				<button class="nav-item" onclick="goToId('toc')">
+					<span class="nav-dot" style="background:var(--text3)"></span>Table of Contents
+				</button>
+				<button class="nav-item" onclick="goToId('gantt')">
+					<span class="nav-dot" style="background:var(--text3)"></span>Schedule & Gantt
+				</button>
+				<button class="nav-item" onclick="goToId('philosophy')">
+					<span class="nav-dot" style="background:var(--text3)"></span>Core Philosophy
+				</button>
+			</div>
+			<div class="nav-group">
+				<div class="nav-group-label" onclick="goToId('day1')" style="cursor:pointer">Day 1 · Sequences</div>
+				<button class="nav-item" onclick="goToId('mod1')">
+					<span class="nav-dot" style="background:var(--day1)"></span>M1 · Genome Fundamentals
+				</button>
+				<button class="nav-item" onclick="goToId('mod2')">
+					<span class="nav-dot" style="background:var(--day1)"></span>M2 · ORFs & Annotation
+				</button>
+				<button class="nav-item" onclick="goToId('mod3')">
+					<span class="nav-dot" style="background:var(--day1)"></span>M3 · BLAST & Inference
+				</button>
+				<button class="nav-item" onclick="goToId('mod4')">
+					<span class="nav-dot" style="background:var(--day1)"></span>M4 · Genome Browser
+				</button>
+			</div>
+			<div class="nav-group">
+				<div class="nav-group-label" onclick="goToId('day2')" style="cursor:pointer">Day 2 · Evolution</div>
+				<button class="nav-item" onclick="goToId('mod5')">
+					<span class="nav-dot" style="background:var(--day2)"></span>M5 · MSA
+				</button>
+				<button class="nav-item" onclick="goToId('mod6')">
+					<span class="nav-dot" style="background:var(--day2)"></span>M6 · Phylogenetics
+				</button>
+				<button class="nav-item" onclick="goToId('mod7')">
+					<span class="nav-dot" style="background:var(--day2)"></span>M7 · Transcriptomics
+				</button>
+			</div>
+			<div class="nav-group">
+				<div class="nav-group-label" onclick="goToId('day3')" style="cursor:pointer">Day 3 · Expression</div>
+				<button class="nav-item" onclick="goToId('mod8')">
+					<span class="nav-dot" style="background:var(--day3)"></span>M8 · ImageJ
+				</button>
+				<button class="nav-item" onclick="goToId('mod9')">
+					<span class="nav-dot" style="background:var(--day3)"></span>M9 · Pathways
+				</button>
+				<button class="nav-item" onclick="goToId('mod10')">
+					<span class="nav-dot" style="background:var(--day3)"></span>M10 · Validation
+				</button>
+				<button class="nav-item" onclick="goToId('case-study')">
+					<span class="nav-dot" style="background:var(--text3)"></span>Final Case Study
+				</button>
+			</div>
+		</nav>
+
+		<div id="progress-bar">
+			<div id="progress-fill"></div>
+		</div>
+
+		<main class="main">
+
+			<!-- Hero -->
+			<section id="hero" class="hero">
+				<div class="hero-eyebrow">🌱 IBO-Aligned · High School · 2026</div>
+				<h1>
+					3-Day Training in<br>
+						<em>Plant Computational Biology</em>
+						<br>& Bioinformatics
+				</h1>
+				<p class="hero-desc">An intensive program for high school students preparing for the International Biology Olympiad. Each module includes a pre-test, core content with worked examples, a workshop, and a post-test with full answer keys.</p>
+				<div class="hero-stats">
+					<div class="stat-item">
+						<div class="stat-n">3</div>
+						<div class="stat-l">Days</div>
+					</div>
+					<div class="stat-item">
+						<div class="stat-n">10</div>
+						<div class="stat-l">Modules</div>
+					</div>
+					<div class="stat-item">
+						<div class="stat-n">60</div>
+						<div class="stat-l">Practice Questions</div>
+					</div>
+					<div class="stat-item">
+						<div class="stat-n">90m</div>
+						<div class="stat-l">Case Study</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- TOC -->
+			<section id="toc">
+				<div class="sec-title">
+					Table of Contents <span class="sec-badge">Overview</span>
+				</div>
+				<div class="toc-grid">
+					<div class="toc-col d1">
+						<div class="toc-col-title">Day 1 · Sequences & Genomes</div>
+						<a class="toc-link" href="#mod1">Module 1 · Plant Genome Fundamentals</a>
+						<a class="toc-link" href="#mod2">Module 2 · ORFs & Gene Annotation</a>
+						<a class="toc-link" href="#mod3">Module 3 · BLAST & Functional Inference</a>
+						<a class="toc-link" href="#mod4">Module 4 · Genome Browser Basics</a>
+					</div>
+					<div class="toc-col d2">
+						<div class="toc-col-title">Day 2 · Alignment & Evolution</div>
+						<a class="toc-link" href="#mod5">Module 5 · Multiple Sequence Alignment</a>
+						<a class="toc-link" href="#mod6">Module 6 · Phylogenetics & Evolution</a>
+						<a class="toc-link" href="#mod7">Module 7 · Transcriptomics</a>
+					</div>
+					<div class="toc-col d3">
+						<div class="toc-col-title">Day 3 · Expression & Reasoning</div>
+						<a class="toc-link" href="#mod8">Module 8 · ImageJ & Image Analysis</a>
+						<a class="toc-link" href="#mod9">Module 9 · Metabolic Pathways</a>
+						<a class="toc-link" href="#mod10">Module 10 · Experimental Validation</a>
+						<a class="toc-link" href="#case-study">Final Integrated Case Study</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- Gantt -->
+			<section id="gantt">
+				<div class="sec-title">
+					3-Day Schedule <span class="sec-badge">Gantt</span>
+				</div>
+				<p class="sec-desc">Each module opens with a pre-evaluation, proceeds through lecture and workshop, and closes with a post-evaluation. Timings below reflect core instructional blocks.</p>
+				<div class="gantt-wrap">
+					<table class="gantt-table">
+						<thead>
+							<tr>
+								<th style="width:190px">Module</th>
+								<th style="width:65px">Start</th>
+								<th>Timeline (each unit ≈ 10 min)</th>
+							</tr>
+						</thead>
+						<tbody id="gantt-body"></tbody>
+					</table>
+					<div class="gantt-legend">
+						<div class="gl-item">
+							<div class="gl-dot" style="background:var(--blue-bg);border:1px solid var(--blue-bd)"></div>Lecture
+						</div>
+						<div class="gl-item">
+							<div class="gl-dot" style="background:var(--green-bg);border:1px solid var(--green-bd)"></div>Workshop
+						</div>
+						<div class="gl-item">
+							<div class="gl-dot" style="background:var(--amber-bg);border:1px solid var(--amber-bd)"></div>Break / Eval
+						</div>
+						<div class="gl-item">
+							<div class="gl-dot" style="background:var(--purple-bg);border:1px solid var(--purple-bd)"></div>Case Study
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ===== DAY 1 ===== -->
+			<div class="day-banner d1" id="day1">
+				<div class="day-num-big">01</div>
+				<div>
+					<div class="day-info-label">Day One</div>
+					<div class="day-info-title">Sequences, Genes & Genome Interpretation</div>
+					<div class="day-obj-pills">
+						<span class="obj-pill">Identify ORFs</span>
+						<span class="obj-pill">Interpret BLAST</span>
+						<span class="obj-pill">Ortholog vs. Paralog</span>
+						<span class="obj-pill">Chloroplast vs. Nuclear</span>
+						<span class="obj-pill">Genome Browser Navigation</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- ── MODULE 1 ── -->
+			<div class="module-card" id="mod1">
+				<div class="module-header" onclick="toggleMod(this)">
+					<span class="mod-num">M 01</span>
+					<span class="mod-title">Plant Genome Fundamentals</span>
+					<div class="mod-pills">
+						<span class="mpill mpill-lec">45 min lecture</span>
+						<span class="mpill mpill-ws">20 min workshop</span>
+					</div>
+					<span class="caret">▼</span>
+				</div>
+				<div class="module-body">
+					<div class="module-body-inner">
+
+						<!-- PRE-EVAL -->
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge pre">Pre-Evaluation</span>
+								<span class="eval-title">Check your prior knowledge before the lecture</span>
+							</div>
+							<div id="pre1-qs"></div>
+							<div class="eval-actions">
+								<button class="eval-btn check" onclick="checkEval('pre1')">Check Answers</button>
+								<button class="eval-btn reset" onclick="resetEval('pre1')">Reset</button>
+								<span class="score-badge" id="pre1-score"></span>
+							</div>
+							<div class="key-section">
+								<button class="key-toggle" onclick="toggleKey(this)">
+									📋 Answer Key <span>▾</span>
+								</button>
+								<div class="key-body" id="pre1-key"></div>
+							</div>
+						</div>
+
+						<!-- CONTENT -->
+						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+						<div class="cg">
+							<div class="cb topics">
+								<div class="cb-head">Topics</div>
+								<ul class="cb-list">
+									<li>Nuclear, chloroplast, and mitochondrial genome organization</li>
+									<li>Gene structure: exon, intron, UTR, promoter</li>
+									<li>Coding vs. non-coding DNA; C-value paradox</li>
+									<li>Endosymbiotic origin of chloroplasts (Margulis)</li>
+								</ul>
+							</div>
+							<div class="cb context">
+								<div class="cb-head">Plant Examples</div>
+								<ul class="cb-list">
+									<li>
+										<em>Arabidopsis</em>: ~135 Mb nuclear, 154 kb chloroplast
+									</li>
+									<li>Maize: ~2.4 Gb nuclear (85% transposable elements)</li>
+									<li>rbcL (cpDNA) vs. RBCS1A (nuclear, transit peptide)</li>
+									<li>~130 protein-coding genes in the chloroplast genome</li>
+								</ul>
+							</div>
+							<div class="cb skills">
+								<div class="cb-head">Key Skill</div>
+								<ul class="cb-list">
+									<li>Classify genes as chloroplast-origin vs. nuclear-origin</li>
+									<li>Lowercase gene name (e.g., rbcL) = plastid-encoded convention</li>
+									<li>Uppercase (e.g., RBCS) = nuclear-encoded convention</li>
+									<li>Detect transit peptides using ChloroP or TargetP</li>
+								</ul>
+							</div>
+							<div class="cb workshop">
+								<div class="cb-head">Workshop Task</div>
+								<ul class="cb-list">
+									<li>Classify 10 photosynthesis genes as nuclear or chloroplast</li>
+									<li>Justify one ambiguous case (e.g., FtsZ — nuclear but plastid function)</li>
+									<li>Sketch a simplified chloroplast genome map with LSC/SSC/IR regions</li>
+								</ul>
+							</div>
+						</div>
+						<div class="ex-section">
+							<div class="ex-label-row">Worked Example</div>
+							<div class="ex-card">
+								<div class="ex-card-label">Gene Classification</div>
+								<table class="data-table">
+									<tr>
+										<th>Gene</th>
+										<th>Encoded by</th>
+										<th>Protein localization</th>
+										<th>Key clue</th>
+									</tr>
+									<tr>
+										<td>rbcL</td>
+										<td class="tag-g">Chloroplast</td>
+										<td>Stroma</td>
+										<td>Lowercase; cpDNA accession</td>
+									</tr>
+									<tr>
+										<td>RBCS1A</td>
+										<td class="tag-a">Nuclear</td>
+										<td>Stroma (imported)</td>
+										<td>Uppercase; has transit peptide</td>
+									</tr>
+									<tr>
+										<td>psbA (D1)</td>
+										<td class="tag-g">Chloroplast</td>
+										<td>Thylakoid membrane</td>
+										<td>psb- prefix convention</td>
+									</tr>
+									<tr>
+										<td>LHCB1</td>
+										<td class="tag-a">Nuclear</td>
+										<td>Thylakoid membrane</td>
+										<td>LHC family = nuclear</td>
+									</tr>
+									<tr>
+										<td>FtsZ1</td>
+										<td class="tag-a">Nuclear</td>
+										<td>Chloroplast division ring</td>
+										<td>Gene transferred; protein re-imported</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+
+						<!-- POST-EVAL -->
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge post">Post-Evaluation</span>
+								<span class="eval-title">Test your understanding after the lecture</span>
+							</div>
+							<div id="post1-qs"></div>
+							<div class="eval-actions">
+								<button class="eval-btn check" onclick="checkEval('post1')">Check Answers</button>
+								<button class="eval-btn reset" onclick="resetEval('post1')">Reset</button>
+								<span class="score-badge" id="post1-score"></span>
+							</div>
+							<div class="key-section">
+								<button class="key-toggle" onclick="toggleKey(this)">
+									📋 Answer Key <span>▾</span>
+								</button>
+								<div class="key-body" id="post1-key"></div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<!-- ── MODULE 2 ── -->
+			<div class="module-card" id="mod2">
+				<div class="module-header" onclick="toggleMod(this)">
+					<span class="mod-num">M 02</span>
+					<span class="mod-title">ORFs & Gene Annotation</span>
+					<div class="mod-pills">
+						<span class="mpill mpill-lec">45 min lecture</span>
+						<span class="mpill mpill-ws">30 min workshop</span>
+					</div>
+					<span class="caret">▼</span>
+				</div>
+				<div class="module-body">
+					<div class="module-body-inner">
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge pre">Pre-Evaluation</span>
+								<span class="eval-title">What do you already know about reading frames?</span>
+							</div>
+							<div id="pre2-qs"></div>
+							<div class="eval-actions">
+								<button class="eval-btn check" onclick="checkEval('pre2')">Check Answers</button>
+								<button class="eval-btn reset" onclick="resetEval('pre2')">Reset</button>
+								<span class="score-badge" id="pre2-score"></span>
+							</div>
+							<div class="key-section">
+								<button class="key-toggle" onclick="toggleKey(this)">
+									📋 Answer Key <span>▾</span>
+								</button>
+								<div class="key-body" id="pre2-key"></div>
+							</div>
+						</div>
+						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+						<div class="cg">
+							<div class="cb topics">
+								<div class="cb-head">Topics</div>
+								<ul class="cb-list">
+									<li>Six reading frames (3 forward, 3 reverse complement)</li>
+									<li>Start codon ATG; stop codons TAA, TAG, TGA</li>
+									<li>ORF = longest uninterrupted run between ATG and stop</li>
+									<li>GT-AG rule for plant intron splice sites</li>
+									<li>Kozak context around ATG affects translation efficiency</li>
+								</ul>
+							</div>
+							<div class="cb skills">
+								<div class="cb-head">Skills</div>
+								<ul class="cb-list">
+									<li>Identify the longest ORF in all 6 frames</li>
+									<li>Predict effect of nonsense vs. frameshift mutation</li>
+									<li>Distinguish ORF / CDS / transcript / mRNA</li>
+									<li>Identify 5' UTR, CDS, and 3' UTR from a GenBank entry</li>
+								</ul>
+							</div>
+							<div class="cb emphasis">
+								<div class="cb-head">Common Traps</div>
+								<ul class="cb-list">
+									<li>Longest ORF ≠ always correct gene (context required)</li>
+									<li>ORF ≠ functional gene (may be non-translated)</li>
+									<li>A single base insertion shifts ALL downstream codons</li>
+									<li>Intron retention from mutated GT or AG splice sites</li>
+								</ul>
+							</div>
+							<div class="cb workshop">
+								<div class="cb-head">Workshop</div>
+								<ul class="cb-list">
+									<li>Given 200 bp sequence — locate ORF in all 6 frames</li>
+									<li>Introduce a +1 frameshift and predict new protein</li>
+									<li>Identify the splice sites in a 3-exon gene model</li>
+								</ul>
+							</div>
+						</div>
+						<div class="ex-section">
+							<div class="ex-label-row">Worked Example — Frameshift Effect</div>
+							<div class="ex-card">
+								<div class="code-snip">
+									<span class="cm">Original:</span>  ATG-GAC-TCA-TGG-AAC-<span class="kw">TAA</span>
+									M - D - S - W - N - *    (5 aa + stop)
+
+									<span class="cm">+1 insertion (G inserted after position 3):</span>
+									ATG-<span class="hi">GGA</span>-CTC-ATG-GAA-CTA-A...
+									M - G - L - M - E - L - ...  (frameshifted; no stop found in original window)
+								</div>
+								<p>A single insertion disrupts every codon downstream. The protein either runs on until a new stop codon is reached (often producing a longer, non-functional protein) or triggers nonsense-mediated decay if a premature stop appears upstream of an exon junction complex.</p>
+							</div>
+						</div>
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge post">Post-Evaluation</span>
+								<span class="eval-title">Test your ORF reasoning skills</span>
+							</div>
+							<div id="post2-qs"></div>
+							<div class="eval-actions">
+								<button class="eval-btn check" onclick="checkEval('post2')">Check Answers</button>
+								<button class="eval-btn reset" onclick="resetEval('post2')">Reset</button>
+								<span class="score-badge" id="post2-score"></span>
+							</div>
+							<div class="key-section">
+								<button class="key-toggle" onclick="toggleKey(this)">
+									📋 Answer Key <span>▾</span>
+								</button>
+								<div class="key-body" id="post2-key"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- ── MODULE 3 ── -->
+			<div class="module-card" id="mod3">
+				<div class="module-header" onclick="toggleMod(this)">
+					<span class="mod-num">M 03</span>
+					<span class="mod-title">BLAST & Functional Inference</span>
+					<div class="mod-pills">
+						<span class="mpill mpill-lec">60 min lecture</span>
+						<span class="mpill mpill-ws">45 min workshop</span>
+					</div>
+					<span class="caret">▼</span>
+				</div>
+				<div class="module-body">
+					<div class="module-body-inner">
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge pre">Pre-Evaluation</span>
+								<span class="eval-title">How much do you know about BLAST?</span>
+							</div>
+							<div id="pre3-qs"></div>
+							<div class="eval-actions">
+								<button class="eval-btn check" onclick="checkEval('pre3')">Check Answers</button>
+								<button class="eval-btn reset" onclick="resetEval('pre3')">Reset</button>
+								<span class="score-badge" id="pre3-score"></span>
+							</div>
+							<div class="key-section">
+								<button class="key-toggle" onclick="toggleKey(this)">
+									📋 Answer Key <span>▾</span>
+								</button>
+								<div class="key-body" id="pre3-key"></div>
+							</div>
+						</div>
+						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+						<div class="cg">
+							<div class="cb topics">
+								<div class="cb-head">Topics</div>
+								<ul class="cb-list">
+									<li>BLAST algorithm: word seeding → extension → scoring</li>
+									<li>E-value: expected hits by chance (lower = more significant)</li>
+									<li>Percent identity vs. percent similarity (conservative subs)</li>
+									<li>Query coverage: what fraction of your sequence is matched</li>
+									<li>Bit score: independent of database size; comparable across runs</li>
+								</ul>
+							</div>
+							<div class="cb emphasis">
+								<div class="cb-head">IBO Ambiguity Scenarios</div>
+								<ul class="cb-list">
+									<li>High identity + low coverage → domain hit only</li>
+									<li>Multiple top hits with similar E-values → gene family</li>
+									<li>Bacterial hit with weak E-value on a plant gene → likely noise</li>
+									<li>Paralog confusion: D1 vs D2 of PSII (32% identity, full coverage)</li>
+								</ul>
+							</div>
+							<div class="cb skills">
+								<div class="cb-head">Interpretation Rules</div>
+								<ul class="cb-list">
+									<li>E &lt; 1e-10: statistically significant</li>
+									<li>E &lt; 1e-30: likely functional homolog</li>
+									<li>E &gt; 0.01: discard — chance hit</li>
+									<li>Always combine E-value + identity + coverage + coverage</li>
+								</ul>
+							</div>
+							<div class="cb workshop">
+								<div class="cb-head">Workshop</div>
+								<ul class="cb-list">
+									<li>Analyze 3 BLAST result tables for an unknown plant protein</li>
+									<li>Determine ortholog vs. paralog from hit patterns</li>
+									<li>Write a 2-sentence functional annotation with confidence level</li>
+								</ul>
+							</div>
+						</div>
+						<div class="ex-section">
+							<div class="ex-label-row">Sample BLAST Table — Interpret Each Hit</div>
+							<div class="ex-card">
+								<table class="data-table">
+									<tr>
+										<th>#</th>
+										<th>Description</th>
+										<th>E-value</th>
+										<th>Identity</th>
+										<th>Coverage</th>
+										<th>Verdict</th>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>D1 protein (PsbA), Arabidopsis</td>
+										<td class="tag-g">2e-142</td>
+										<td class="tag-g">98%</td>
+										<td class="tag-g">99%</td>
+										<td class="tag-g">Strong ortholog ✓</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>D2 protein (PsbD), Arabidopsis</td>
+										<td class="tag-a">4e-38</td>
+										<td class="tag-a">32%</td>
+										<td class="tag-g">95%</td>
+										<td class="tag-a">Paralog (PSII family)</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>D1 protein, Chlamydomonas</td>
+										<td class="tag-g">1e-139</td>
+										<td>92%</td>
+										<td class="tag-g">99%</td>
+										<td>Ortholog (alga)</td>
+									</tr>
+									<tr>
+										<td>4</td>
+										<td>Hypothetical protein, Bacteria</td>
+										<td class="tag-r">0.7</td>
+										<td class="tag-r">18%</td>
+										<td class="tag-r">40%</td>
+										<td class="tag-r">Discard — chance hit</td>
+									</tr>
+								</table>
+								<p style="margin-top:8px">
+									<strong>Best annotation:</strong> "Probable photosystem II D1 reaction center protein, based on strong identity and full coverage to Arabidopsis PsbA (hit 1). Hit 2 represents a PSII paralog (D2), not an ortholog."
+								</p>
+							</div>
+						</div>
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge post">Post-Evaluation</span>
+								<span class="eval-title">Apply BLAST reasoning to new scenarios</span>
+							</div>
+							<div id="post3-qs"></div>
+							<div class="eval-actions">
+								<button class="eval-btn check" onclick="checkEval('post3')">Check Answers</button>
+								<button class="eval-btn reset" onclick="resetEval('post3')">Reset</button>
+								<span class="score-badge" id="post3-score"></span>
+							</div>
+							<div class="key-section">
+								<button class="key-toggle" onclick="toggleKey(this)">
+									📋 Answer Key <span>▾</span>
+								</button>
+								<div class="key-body" id="post3-key"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- ── MODULE 4 ── -->
+			<div class="module-card" id="mod4">
+				<div class="module-header" onclick="toggleMod(this)">
+					<span class="mod-num">M 04</span>
+					<span class="mod-title">Genome Browser Basics</span>
+					<div class="mod-pills">
+						<span class="mpill mpill-lec">45 min lecture</span>
+						<span class="mpill mpill-ws">45 min workshop</span>
+					</div>
+					<span class="caret">▼</span>
+				</div>
+				<div class="module-body">
+					<div class="module-body-inner">
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge pre">Pre-Evaluation</span>
+								<span class="eval-title">Genome browser foundations</span>
+							</div>
+							<div id="pre4-qs"></div>
+							<div class="eval-actions">
+								<button class="eval-btn check" onclick="checkEval('pre4')">Check Answers</button>
+								<button class="eval-btn reset" onclick="resetEval('pre4')">Reset</button>
+								<span class="score-badge" id="pre4-score"></span>
+							</div>
+							<div class="key-section">
+								<button class="key-toggle" onclick="toggleKey(this)">
+									📋 Answer Key <span>▾</span>
+								</button>
+								<div class="key-body" id="pre4-key"></div>
+							</div>
+						</div>
+						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+						<div class="cg">
+							<div class="cb topics">
+								<div class="cb-head">Tools</div>
+								<ul class="cb-list">
+									<li>IGV (Integrative Genomics Viewer) — local, BAM/VCF visualization</li>
+									<li>UCSC Genome Browser — web, extensive track database</li>
+									<li>Ensembl Plants — plant-specific annotation, synteny</li>
+									<li>Coordinate format: Chr1:12345-67890</li>
+								</ul>
+							</div>
+							<div class="cb skills">
+								<div class="cb-head">Track Reading</div>
+								<ul class="cb-list">
+									<li>Thick blocks = exons; thin connecting lines = introns</li>
+									<li>Arrowheads on intron lines = direction of transcription</li>
+									<li>RNA-seq coverage height = relative expression level</li>
+									<li>Gap in RNA-seq coverage within a gene = likely intron</li>
+								</ul>
+							</div>
+						</div>
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge post">Post-Evaluation</span>
+								<span class="eval-title">Genome browser track interpretation</span>
+							</div>
+							<div id="post4-qs"></div>
+							<div class="eval-actions">
+								<button class="eval-btn check" onclick="checkEval('post4')">Check Answers</button>
+								<button class="eval-btn reset" onclick="resetEval('post4')">Reset</button>
+								<span class="score-badge" id="post4-score"></span>
+							</div>
+							<div class="key-section">
+								<button class="key-toggle" onclick="toggleKey(this)">
+									📋 Answer Key <span>▾</span>
+								</button>
+								<div class="key-body" id="post4-key"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- ===== DAY 2 ===== -->
+			<div class="day-banner d2" id="day2">
+				<div class="day-num-big">02</div>
+				<div>
+					<div class="day-info-label">Day Two</div>
+					<div class="day-info-title">Alignment, Evolution & Image Analysis</div>
+					<div class="day-obj-pills">
+						<span class="obj-pill">Interpret MSA</span>
+						<span class="obj-pill">Phylogenetic Trees</span>
+						<span class="obj-pill">Polyploidy</span>
+						<span class="obj-pill">C3 vs C4 Evolution</span>
+						<span class="obj-pill">ImageJ Quantification</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- ── MODULE 5 ── -->
+			<div class="module-card" id="mod5">
+				<div class="module-header" onclick="toggleMod(this)">
+					<span class="mod-num">M 05</span>
+					<span class="mod-title">Multiple Sequence Alignment (MSA)</span>
+					<div class="mod-pills">
+						<span class="mpill mpill-lec">45 min lecture</span>
+						<span class="mpill mpill-ws">30 min workshop</span>
+					</div>
+					<span class="caret">▼</span>
+				</div>
+				<div class="module-body">
+					<div class="module-body-inner">
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge pre">Pre-Evaluation</span>
+								<span class="eval-title">Sequence alignment concepts</span>
+							</div>
+							<div id="pre5-qs"></div>
+							<div class="eval-actions">
+								<button class="eval-btn check" onclick="checkEval('pre5')">Check Answers</button>
+								<button class="eval-btn reset" onclick="resetEval('pre5')">Reset</button>
+								<span class="score-badge" id="pre5-score"></span>
+							</div>
+							<div class="key-section">
+								<button class="key-toggle" onclick="toggleKey(this)">
+									📋 Answer Key <span>▾</span>
+								</button>
+								<div class="key-body" id="pre5-key"></div>
+							</div>
+						</div>
+						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+						<div class="cg">
+							<div class="cb topics">
+								<div class="cb-head">Topics</div>
+								<ul class="cb-list">
+									<li>ClustalW, MUSCLE, MAFFT — differences in algorithm speed vs. accuracy</li>
+									<li>Conservation scoring: * (identical) : (conserved) . (semi-conserved)</li>
+									<li>Gaps represent insertions/deletions (indels) in evolution</li>
+									<li>Gap penalty: opening penalty >> extension penalty</li>
+									<li>Positional entropy as a quantitative conservation measure</li>
+								</ul>
+							</div>
+							<div class="cb emphasis">
+								<div class="cb-head">IBO Emphasis: Noisy Alignments</div>
+								<ul class="cb-list">
+									<li>Low-complexity regions (poly-A, disordered) should be masked</li>
+									<li>N-terminal signal peptides: often poorly conserved — this is normal</li>
+									<li>Hypervariable C-terminus of D1 protein encodes degradation signal</li>
+									<li>Biologically meaningful conservation ≠ highest-scoring region</li>
+								</ul>
+							</div>
+						</div>
+						<div class="ex-section">
+							<div class="ex-label-row">Alignment Reading Example</div>
+							<div class="ex-card">
+								<div class="code-snip">
+									At_PsbA:  WLGGPLIGAATFYSILAAHISTG-HNWFKATYG
+									Os_PsbA:  WLGGPLIGAATFYSILAAHISTG-HNWFKATYG
+									Cr_PsbA:  WLGGPLIGAATFYSILAAHISTG-HNWFKATYG
+									Syn_PsbA: WLGGPLIGAATFYSILA-HISTG-HNWFKATYG
+									*****************  *** ************
+									<span class="cm">* = identical across all species (catalytic residues of QB-binding niche)</span>
+									<span class="cm">Gap in Syn_PsbA at position 18 = ancestral deletion in cyanobacteria</span>
+								</div>
+								<p>The asterisk-dense region marks the QB-binding pocket — target of atrazine herbicide. Absolute conservation here reflects extreme functional constraint. The cyanobacterial gap represents a true deletion event, not alignment error.</p>
+							</div>
+						</div>
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge post">Post-Evaluation</span>
+								<span class="eval-title">MSA interpretation and conservation analysis</span>
+							</div>
+							<div id="post5-qs"></div>
+							<div class="eval-actions">
+								<button class="eval-btn check" onclick="checkEval('post5')">Check Answers</button>
+								<button class="eval-btn reset" onclick="resetEval('post5')">Reset</button>
+								<span class="score-badge" id="post5-score"></span>
+							</div>
+							<div class="key-section">
+								<button class="key-toggle" onclick="toggleKey(this)">
+									📋 Answer Key <span>▾</span>
+								</button>
+								<div class="key-body" id="post5-key"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- ── MODULE 6 ── -->
+			<div class="module-card" id="mod6">
+				<div class="module-header" onclick="toggleMod(this)">
+					<span class="mod-num">M 06</span>
+					<span class="mod-title">Phylogenetics & Plant Evolution</span>
+					<div class="mod-pills">
+						<span class="mpill mpill-lec">60 min lecture</span>
+						<span class="mpill mpill-ws">45 min workshop</span>
+					</div>
+					<span class="caret">▼</span>
+				</div>
+				<div class="module-body">
+					<div class="module-body-inner">
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge pre">Pre-Evaluation</span>
+								<span class="eval-title">Evolutionary trees and plant evolution</span>
+							</div>
+							<div id="pre6-qs"></div>
+							<div class="eval-actions">
+								<button class="eval-btn check" onclick="checkEval('pre6')">Check Answers</button>
+								<button class="eval-btn reset" onclick="resetEval('pre6')">Reset</button>
+								<span class="score-badge" id="pre6-score"></span>
+							</div>
+							<div class="key-section">
+								<button class="key-toggle" onclick="toggleKey(this)">
+									📋 Answer Key <span>▾</span>
+								</button>
+								<div class="key-body" id="pre6-key"></div>
+							</div>
+						</div>
+						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+						<div class="cg">
+							<div class="cb topics">
+								<div class="cb-head">Topics</div>
+								<ul class="cb-list">
+									<li>Rooted vs. unrooted trees; outgroup placement</li>
+									<li>Bootstrap values: resampling confidence (≥70 = acceptable)</li>
+									<li>Orthologs (speciation) vs. paralogs (duplication)</li>
+									<li>Polyploidy: hexaploid wheat (AABBDD) → 3 homeolog sets</li>
+									<li>C4 photosynthesis: evolved &gt;60 times independently in angiosperms</li>
+								</ul>
+							</div>
+							<div class="cb emphasis">
+								<div class="cb-head">Ambiguous Trees — IBO Focus</div>
+								<ul class="cb-list">
+									<li>Bootstrap &lt;50: topology unreliable — report as unresolved</li>
+									<li>Long branch attraction: fast-evolving lineages cluster artificially</li>
+									<li>Polytomy = uncertainty, not simultaneous divergence</li>
+									<li>Gene tree ≠ species tree (incomplete lineage sorting)</li>
+								</ul>
+							</div>
+						</div>
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge post">Post-Evaluation</span>
+								<span class="eval-title">Phylogenetic tree reading and interpretation</span>
+							</div>
+							<div id="post6-qs"></div>
+							<div class="eval-actions">
+								<button class="eval-btn check" onclick="checkEval('post6')">Check Answers</button>
+								<button class="eval-btn reset" onclick="resetEval('post6')">Reset</button>
+								<span class="score-badge" id="post6-score"></span>
+							</div>
+							<div class="key-section">
+								<button class="key-toggle" onclick="toggleKey(this)">
+									📋 Answer Key <span>▾</span>
+								</button>
+								<div class="key-body" id="post6-key"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- ── MODULE 7 ── -->
+			<div class="module-card" id="mod7">
+				<div class="module-header" onclick="toggleMod(this)">
+					<span class="mod-num">M 07</span>
+					<span class="mod-title">Transcriptomics & Gene Expression</span>
+					<div class="mod-pills">
+						<span class="mpill mpill-lec">60 min lecture</span>
+						<span class="mpill mpill-ws">45 min workshop</span>
+					</div>
+					<span class="caret">▼</span>
+				</div>
+				<div class="module-body">
+					<div class="module-body-inner">
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge pre">Pre-Evaluation</span>
+								<span class="eval-title">Gene expression and RNA-seq concepts</span>
+							</div>
+							<div id="pre7-qs"></div>
+							<div class="eval-actions">
+								<button class="eval-btn check" onclick="checkEval('pre7')">Check Answers</button>
+								<button class="eval-btn reset" onclick="resetEval('pre7')">Reset</button>
+								<span class="score-badge" id="pre7-score"></span>
+							</div>
+							<div class="key-section">
+								<button class="key-toggle" onclick="toggleKey(this)">
+									📋 Answer Key <span>▾</span>
+								</button>
+								<div class="key-body" id="pre7-key"></div>
+							</div>
+						</div>
+						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+						<div class="cg">
+							<div class="cb topics">
+								<div class="cb-head">Topics</div>
+								<ul class="cb-list">
+									<li>RNA-seq workflow: extract → library → sequence → align → count</li>
+									<li>Normalization: TPM (recommended), RPKM, FPKM</li>
+									<li>Log₂ fold change: log₂(treatment/control)</li>
+									<li>Adjusted p-value (FDR): corrects for multiple testing</li>
+									<li>Heatmap: rows = genes, columns = samples; color = log₂ expression</li>
+								</ul>
+							</div>
+							<div class="cb emphasis">
+								<div class="cb-head">Noisy Data Traps</div>
+								<ul class="cb-list">
+									<li>Very low counts (2 → 512): large fold change but high variance</li>
+									<li>Always require adjusted p &lt; 0.05 + |log₂FC| ≥ 1</li>
+									<li>n = 2 replicates: not statistically valid for DE analysis</li>
+									<li>Batch effects can mimic true expression differences</li>
+								</ul>
+							</div>
+						</div>
+						<div class="ex-section">
+							<div class="ex-label-row">Heatmap Reading Example</div>
+							<div class="ex-card">
+								<table class="data-table">
+									<tr>
+										<th>Gene</th>
+										<th>Control TPM</th>
+										<th>+ABA 6h TPM</th>
+										<th>log₂FC</th>
+										<th>adj. p</th>
+										<th>Call</th>
+									</tr>
+									<tr>
+										<td>RD29A</td>
+										<td>12</td>
+										<td>2340</td>
+										<td class="tag-g">+7.6</td>
+										<td class="tag-g">0.0001</td>
+										<td class="tag-g">UP ✓</td>
+									</tr>
+									<tr>
+										<td>RBCS1A</td>
+										<td>890</td>
+										<td>420</td>
+										<td class="tag-a">−1.1</td>
+										<td class="tag-a">0.03</td>
+										<td class="tag-a">mild DOWN</td>
+									</tr>
+									<tr>
+										<td>ACTIN2</td>
+										<td>1200</td>
+										<td>1210</td>
+										<td>~0</td>
+										<td>0.91</td>
+										<td>Not DE</td>
+									</tr>
+									<tr>
+										<td>Mystery</td>
+										<td>2</td>
+										<td>512</td>
+										<td class="tag-r">+8.0</td>
+										<td class="tag-r">0.18</td>
+										<td class="tag-r">REJECT — too few counts</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge post">Post-Evaluation</span>
+								<span class="eval-title">Interpret RNA-seq data and expression patterns</span>
+							</div>
+							<div id="post7-qs"></div>
+							<div class="eval-actions">
+								<button class="eval-btn check" onclick="checkEval('post7')">Check Answers</button>
+								<button class="eval-btn reset" onclick="resetEval('post7')">Reset</button>
+								<span class="score-badge" id="post7-score"></span>
+							</div>
+							<div class="key-section">
+								<button class="key-toggle" onclick="toggleKey(this)">
+									📋 Answer Key <span>▾</span>
+								</button>
+								<div class="key-body" id="post7-key"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- ===== DAY 3 ===== -->
+			<div class="day-banner d3" id="day3">
+				<div class="day-num-big">03</div>
+				<div>
+					<div class="day-info-label">Day Three</div>
+					<div class="day-info-title">Expression, Networks & Experimental Reasoning</div>
+					<div class="day-obj-pills">
+						<span class="obj-pill">RNA-seq Heatmaps</span>
+						<span class="obj-pill">Fold Change</span>
+						<span class="obj-pill">Metabolic Pathways</span>
+						<span class="obj-pill">CRISPR / RNAi Design</span>
+						<span class="obj-pill">Control Experiments</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- ── MODULE 8 ── -->
+			<div class="module-card" id="mod8">
+				<div class="module-header" onclick="toggleMod(this)">
+					<span class="mod-num">M 08</span>
+					<span class="mod-title">ImageJ Fundamentals</span>
+					<div class="mod-pills">
+						<span class="mpill mpill-lec">45 min lecture</span>
+						<span class="mpill mpill-ws">60 min workshop</span>
+					</div>
+					<span class="caret">▼</span>
+				</div>
+				<div class="module-body">
+					<div class="module-body-inner">
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge pre">Pre-Evaluation</span>
+								<span class="eval-title">Image analysis and biological measurement</span>
+							</div>
+							<div id="pre8-qs"></div>
+							<div class="eval-actions">
+								<button class="eval-btn check" onclick="checkEval('pre8')">Check Answers</button>
+								<button class="eval-btn reset" onclick="resetEval('pre8')">Reset</button>
+								<span class="score-badge" id="pre8-score"></span>
+							</div>
+							<div class="key-section">
+								<button class="key-toggle" onclick="toggleKey(this)">
+									📋 Answer Key <span>▾</span>
+								</button>
+								<div class="key-body" id="pre8-key"></div>
+							</div>
+						</div>
+						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+						<div class="cg">
+							<div class="cb topics">
+								<div class="cb-head">Key Techniques</div>
+								<ul class="cb-list">
+									<li>Scale calibration: draw line over scale bar → Analyze → Set Scale</li>
+									<li>Root length: Segmented Line tool along root midline</li>
+									<li>Stomatal density: count in known ROI area (convert to mm²)</li>
+									<li>CTCF = Integrated Density − (Area × Mean Background)</li>
+								</ul>
+							</div>
+							<div class="cb skills">
+								<div class="cb-head">Calculation Example</div>
+								<ul class="cb-list">
+									<li>100 px = 50 μm → 1 px = 0.5 μm; 1 px² = 0.25 μm²</li>
+									<li>ROI: 400 × 300 px = 120,000 px² × 0.25 = 30,000 μm² = 0.03 mm²</li>
+									<li>18 stomata in 0.03 mm² = 600 stomata/mm²</li>
+									<li>CTCF: 85,000 − (320 × 45) = 70,600 AU</li>
+								</ul>
+							</div>
+						</div>
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge post">Post-Evaluation</span>
+								<span class="eval-title">ImageJ calculations and data interpretation</span>
+							</div>
+							<div id="post8-qs"></div>
+							<div class="eval-actions">
+								<button class="eval-btn check" onclick="checkEval('post8')">Check Answers</button>
+								<button class="eval-btn reset" onclick="resetEval('post8')">Reset</button>
+								<span class="score-badge" id="post8-score"></span>
+							</div>
+							<div class="key-section">
+								<button class="key-toggle" onclick="toggleKey(this)">
+									📋 Answer Key <span>▾</span>
+								</button>
+								<div class="key-body" id="post8-key"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- ── MODULE 9 ── -->
+			<div class="module-card" id="mod9">
+				<div class="module-header" onclick="toggleMod(this)">
+					<span class="mod-num">M 09</span>
+					<span class="mod-title">Plant Metabolic Pathways & Networks</span>
+					<div class="mod-pills">
+						<span class="mpill mpill-lec">45 min lecture</span>
+						<span class="mpill mpill-ws">30 min workshop</span>
+					</div>
+					<span class="caret">▼</span>
+				</div>
+				<div class="module-body">
+					<div class="module-body-inner">
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge pre">Pre-Evaluation</span>
+								<span class="eval-title">Metabolic pathway logic and plant biochemistry</span>
+							</div>
+							<div id="pre9-qs"></div>
+							<div class="eval-actions">
+								<button class="eval-btn check" onclick="checkEval('pre9')">Check Answers</button>
+								<button class="eval-btn reset" onclick="resetEval('pre9')">Reset</button>
+								<span class="score-badge" id="pre9-score"></span>
+							</div>
+							<div class="key-section">
+								<button class="key-toggle" onclick="toggleKey(this)">
+									📋 Answer Key <span>▾</span>
+								</button>
+								<div class="key-body" id="pre9-key"></div>
+							</div>
+						</div>
+						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+						<div class="cg">
+							<div class="cb topics">
+								<div class="cb-head">Key Pathways</div>
+								<ul class="cb-list">
+									<li>Calvin cycle: RuBisCO, FBPase, PRK as key enzymes</li>
+									<li>Flavonoid pathway: PAL → C4H → CHS → CHI → F3H → DFR → ANS</li>
+									<li>ABA biosynthesis: zeaxanthin → violaxanthin → xanthoxin → ABA</li>
+									<li>Ethylene: SAM → ACC → ethylene (ACC synthase, ACC oxidase)</li>
+									<li>Rate-limiting enzyme = lowest Vmax or most regulated step</li>
+								</ul>
+							</div>
+							<div class="cb skills">
+								<div class="cb-head">Reasoning Rules</div>
+								<ul class="cb-list">
+									<li>Enzyme knockout → accumulation UPSTREAM, depletion DOWNSTREAM</li>
+									<li>Feedback inhibition: product inhibits its own synthesis enzyme</li>
+									<li>Bottleneck: slowest step controls flux through entire pathway</li>
+									<li>Redundant pathways: single knockout may have no phenotype</li>
+								</ul>
+							</div>
+						</div>
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge post">Post-Evaluation</span>
+								<span class="eval-title">Pathway disruption prediction</span>
+							</div>
+							<div id="post9-qs"></div>
+							<div class="eval-actions">
+								<button class="eval-btn check" onclick="checkEval('post9')">Check Answers</button>
+								<button class="eval-btn reset" onclick="resetEval('post9')">Reset</button>
+								<span class="score-badge" id="post9-score"></span>
+							</div>
+							<div class="key-section">
+								<button class="key-toggle" onclick="toggleKey(this)">
+									📋 Answer Key <span>▾</span>
+								</button>
+								<div class="key-body" id="post9-key"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- ── MODULE 10 ── -->
+			<div class="module-card" id="mod10">
+				<div class="module-header" onclick="toggleMod(this)">
+					<span class="mod-num">M 10</span>
+					<span class="mod-title">Experimental Validation & Biological Reasoning</span>
+					<div class="mod-pills">
+						<span class="mpill mpill-lec">60 min lecture</span>
+						<span class="mpill mpill-ws">45 min workshop</span>
+					</div>
+					<span class="caret">▼</span>
+				</div>
+				<div class="module-body">
+					<div class="module-body-inner">
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge pre">Pre-Evaluation</span>
+								<span class="eval-title">Experimental design concepts</span>
+							</div>
+							<div id="pre10-qs"></div>
+							<div class="eval-actions">
+								<button class="eval-btn check" onclick="checkEval('pre10')">Check Answers</button>
+								<button class="eval-btn reset" onclick="resetEval('pre10')">Reset</button>
+								<span class="score-badge" id="pre10-score"></span>
+							</div>
+							<div class="key-section">
+								<button class="key-toggle" onclick="toggleKey(this)">
+									📋 Answer Key <span>▾</span>
+								</button>
+								<div class="key-body" id="pre10-key"></div>
+							</div>
+						</div>
+						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+						<div class="cg">
+							<div class="cb emphasis">
+								<div class="cb-head">Core Principle</div>
+								<ul class="cb-list">
+									<li>Computational prediction = hypothesis, NOT proof</li>
+									<li>BLAST hit = putative function only</li>
+									<li>Correlation in expression ≠ causal relationship</li>
+									<li>A good negative result is still valid science</li>
+								</ul>
+							</div>
+							<div class="cb topics">
+								<div class="cb-head">Validation Methods</div>
+								<ul class="cb-list">
+									<li>T-DNA insertion: complete knockout (null allele)</li>
+									<li>RNAi: partial, tunable knockdown</li>
+									<li>CRISPR-Cas9: precise knockout or base editing</li>
+									<li>35S::Gene overexpression: gain-of-function test</li>
+									<li>Complementation: confirm causality by rescuing mutant</li>
+								</ul>
+							</div>
+							<div class="cb skills">
+								<div class="cb-head">Control Requirements</div>
+								<ul class="cb-list">
+									<li>Positive control: validates assay sensitivity</li>
+									<li>Negative control: empty vector or mock treatment</li>
+									<li>Off-target control: 2nd independent mutant allele</li>
+									<li>Complementation: mutant + transgene = WT phenotype</li>
+								</ul>
+							</div>
+							<div class="cb workshop">
+								<div class="cb-head">Workshop Design Task</div>
+								<ul class="cb-list">
+									<li>BLAST predicts AT5G12345 = drought tolerance kinase</li>
+									<li>Design a 3-step validation experiment</li>
+									<li>List all required controls with justifications</li>
+									<li>Predict both positive and negative outcomes</li>
+								</ul>
+							</div>
+						</div>
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge post">Post-Evaluation</span>
+								<span class="eval-title">Experimental design and controls</span>
+							</div>
+							<div id="post10-qs"></div>
+							<div class="eval-actions">
+								<button class="eval-btn check" onclick="checkEval('post10')">Check Answers</button>
+								<button class="eval-btn reset" onclick="resetEval('post10')">Reset</button>
+								<span class="score-badge" id="post10-score"></span>
+							</div>
+							<div class="key-section">
+								<button class="key-toggle" onclick="toggleKey(this)">
+									📋 Answer Key <span>▾</span>
+								</button>
+								<div class="key-body" id="post10-key"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Final Case Study -->
+			<div id="case-study">
+				<div class="cs-title">🔥 Final Integrated Case Study</div>
+				<div class="cs-sub">90 minutes · Synthesis of all 10 modules · IBO simulation format</div>
+				<div class="cs-ds-grid">
+					<div class="cs-ds-item">
+						<div class="cs-ds-icon">🔬</div>
+						<div class="cs-ds-label">BLAST Output</div>
+					</div>
+					<div class="cs-ds-item">
+						<div class="cs-ds-icon">📊</div>
+						<div class="cs-ds-label">MSA Alignment</div>
+					</div>
+					<div class="cs-ds-item">
+						<div class="cs-ds-icon">🌲</div>
+						<div class="cs-ds-label">Phylogenetic Tree</div>
+					</div>
+					<div class="cs-ds-item">
+						<div class="cs-ds-icon">🖥</div>
+						<div class="cs-ds-label">Genome Browser</div>
+					</div>
+					<div class="cs-ds-item">
+						<div class="cs-ds-icon">🌡</div>
+						<div class="cs-ds-label">RNA-seq Heatmap</div>
+					</div>
+					<div class="cs-ds-item">
+						<div class="cs-ds-icon">🔭</div>
+						<div class="cs-ds-label">Microscopy Image</div>
+					</div>
+					<div class="cs-ds-item">
+						<div class="cs-ds-icon">🔄</div>
+						<div class="cs-ds-label">Pathway Diagram</div>
+					</div>
+				</div>
+				<div class="cs-q-grid">
+					<div class="cs-q-item">
+						<span class="cs-q-num">Q1</span> Identify gene from BLAST + alignment data
+					</div>
+					<div class="cs-q-item">
+						<span class="cs-q-num">Q2</span> Characterize the mutation's effect on protein function
+					</div>
+					<div class="cs-q-item">
+						<span class="cs-q-num">Q3</span> Classify ortholog/paralog status from tree topology
+					</div>
+					<div class="cs-q-item">
+						<span class="cs-q-num">Q4</span> Interpret evolutionary significance of conservation pattern
+					</div>
+					<div class="cs-q-item">
+						<span class="cs-q-num">Q5</span> Analyze expression response from heatmap data
+					</div>
+					<div class="cs-q-item">
+						<span class="cs-q-num">Q6</span> Connect genotype to observed morphological phenotype
+					</div>
+					<div class="cs-q-item">
+						<span class="cs-q-num">Q7</span> Propose the best method to validate gene function
+					</div>
+					<div class="cs-q-item">
+						<span class="cs-q-num">Q8</span> Design a complete control set with full justification
+					</div>
+				</div>
+			</div>
+
+			<!-- Philosophy -->
+			<div id="philosophy">
+				<div class="sec-title" style="margin-bottom:1rem">
+					Core Training Philosophy <span class="sec-badge">Rationale</span>
+				</div>
+				<div class="phil-quote">"The modern IBO rewards biological reasoning under imperfect data. Comfort with uncertainty is more valuable than memorization."</div>
+				<div class="pillar-grid">
+					<div class="pillar-card" style="border-left-color:var(--green)">
+						<div class="pillar-title" style="color:var(--green)">Reason, Don't Memorize</div>
+						<p>Each module trains inference from incomplete data. IBO questions reward students who can justify a probabilistic conclusion, not those who can only recite facts.</p>
+					</div>
+					<div class="pillar-card" style="border-left-color:var(--blue)">
+						<div class="pillar-title" style="color:var(--blue)">Ambiguity Is the Test</div>
+						<p>Every module includes deliberate noise — conflicting BLAST hits, low bootstrap values, expression data with insufficient replicates. Practicing with messy data is essential.</p>
+					</div>
+					<div class="pillar-card" style="border-left-color:var(--amber)">
+						<div class="pillar-title" style="color:var(--amber)">Computation → Biology</div>
+						<p>Bioinformatics tools generate hypotheses. This training emphasizes that a prediction must always be connected back to a biological validation strategy.</p>
+					</div>
+					<div class="pillar-card" style="border-left-color:var(--rose)">
+						<div class="pillar-title" style="color:var(--rose)">Integration Is the Skill</div>
+						<p>The final case study combines seven data types simultaneously — reflecting how IBO questions and real research both require cross-dataset synthesis.</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Software -->
+			<section id="software">
+				<div class="sec-title" style="margin-top:2rem">
+					Recommended Software <span class="sec-badge">Tools</span>
+				</div>
+				<div class="sw-grid">
+					<div class="sw-card">
+						<div class="sw-icon">🔬</div>
+						<div class="sw-name">ImageJ / Fiji</div>
+						<div class="sw-cat">Image Analysis</div>
+					</div>
+					<div class="sw-card">
+						<div class="sw-icon">🧬</div>
+						<div class="sw-name">IGV</div>
+						<div class="sw-cat">Local Genome Browser</div>
+					</div>
+					<div class="sw-card">
+						<div class="sw-icon">🌐</div>
+						<div class="sw-name">UCSC Browser</div>
+						<div class="sw-cat">Web Genome Browser</div>
+					</div>
+					<div class="sw-card">
+						<div class="sw-icon">🌿</div>
+						<div class="sw-name">Ensembl Plants</div>
+						<div class="sw-cat">Plant Genome Portal</div>
+					</div>
+					<div class="sw-card">
+						<div class="sw-icon">🔍</div>
+						<div class="sw-name">NCBI BLAST</div>
+						<div class="sw-cat">Sequence Homology</div>
+					</div>
+					<div class="sw-card">
+						<div class="sw-icon">🌲</div>
+						<div class="sw-name">IQ-TREE / MEGA</div>
+						<div class="sw-cat">Phylogenetics</div>
+					</div>
+					<div class="sw-card">
+						<div class="sw-icon">📐</div>
+						<div class="sw-name">MAFFT</div>
+						<div class="sw-cat">Sequence Alignment</div>
+					</div>
+					<div class="sw-card">
+						<div class="sw-icon">📊</div>
+						<div class="sw-name">R / DESeq2</div>
+						<div class="sw-cat">Transcriptomics</div>
+					</div>
+				</div>
+			</section>
+
+		</main>
+
+		<script>
+			// ── All evaluation data ──────────────────────────────────────────────
+			const EVALS = {
+			pre1: {
+			qs: [
+			{ stem:"Which statement best describes endosymbiotic theory?", opts:["Plants evolved from fungi through gradual mutation","Chloroplasts and mitochondria originated from ancient bacteria engulfed by a host cell","All plant genes are encoded in the nucleus","Photosynthesis first evolved in the nuclear genome"], ans:1,
+			exp:"Endosymbiotic theory (Lynn Margulis, 1967) proposes that chloroplasts and mitochondria originated from free-living bacteria (cyanobacteria and proteobacteria, respectively) engulfed by ancient eukaryotic cells." },
+			{ stem:"In plants, which gene below is most likely encoded in the chloroplast genome?", opts:["LHCB1","RBCS1A","psbA","FtsZ1"], ans:2,
+			exp:"psbA encodes the D1 protein of PSII and follows the lowercase italic convention for plastid-encoded genes. LHCB1, RBCS1A, and FtsZ1 are all nuclear-encoded genes whose products are imported into the chloroplast." },
+			{ stem:"What is the main reason plant nuclear genomes vary so dramatically in size?", opts:["Number of exons per gene","Differential transposable element content and polyploidy","Chloroplast genome duplication","Alternative splicing frequency"], ans:1,
+			exp:"Nuclear genome size in plants varies enormously (135 Mb in Arabidopsis to 149 Gb in Paris japonica) primarily due to transposable element accumulation and polyploidy events, not gene number differences." }
+			]
+			},
+			post1: {
+			qs: [
+			{ stem:"A gene encodes a protein with a predicted N-terminal chloroplast transit peptide but is listed on chromosome 1 of Arabidopsis. Which conclusion is best?", opts:["The gene is a misannotation — all transit peptides come from plastid genes","The protein is nuclear-encoded but imported into the chloroplast after translation","The protein functions in the nucleus, not the chloroplast","Transit peptides are only found in mitochondrial proteins"], ans:1,
+			exp:"Many chloroplast proteins are nuclear-encoded but post-translationally imported into the chloroplast via the TOC/TIC translocon. The transit peptide is cleaved after import. This is the case for most RBCS and LHC proteins." },
+			{ stem:"RuBisCO large subunit (rbcL) and small subunit (RBCS1A) are both found in the chloroplast stroma, yet they are encoded in different genomes. Which pair correctly matches gene → location?", opts:["rbcL → nucleus; RBCS1A → chloroplast","rbcL → chloroplast; RBCS1A → nucleus","Both → chloroplast","Both → nucleus"], ans:1,
+			exp:"rbcL (lowercase) is encoded in the chloroplast genome. RBCS1A (uppercase) is encoded in the nucleus and its protein product is imported into the chloroplast stroma where it assembles with rbcL to form the RuBisCO holoenzyme." },
+			{ stem:"Arabidopsis has a ~135 Mb nuclear genome with ~27,000 genes, while wheat has ~17,000 Mb with ~108,000 genes. What best explains the wheat genome's enormous size?", opts:["Wheat is much more complex metabolically","Wheat is hexaploid (AABBDD) and has high TE content; three homeolog copies of most genes","Wheat has larger cells requiring more DNA","Wheat chloroplast genome is 100× larger than Arabidopsis"], ans:1,
+			exp:"Bread wheat (Triticum aestivum) is a hexaploid with three ancestral diploid subgenomes merged. Each gene exists as ~3 homeologs. Transposable elements comprise ~80% of the genome. The chloroplast genomes of the two species are very similar in size (~135–140 kb)." }
+			]
+			},
+			pre2: {
+			qs: [
+			{ stem:"How many reading frames exist for a double-stranded DNA sequence?", opts:["2","3","6","12"], ans:2,
+			exp:"There are 3 reading frames on each strand (positions +1, +2, +3 on the sense strand and −1, −2, −3 on the antisense strand), giving 6 reading frames total." },
+			{ stem:"A nonsense mutation converts a codon to a premature stop codon. What is the most likely consequence?", opts:["The protein is longer than normal","The protein is truncated at the mutation site","The protein folds differently but retains full function","Only one amino acid is changed"], ans:1,
+			exp:"A nonsense mutation creates a premature stop codon (UAA, UAG, or UGA in mRNA), causing ribosome termination and a truncated protein. If the stop is >50–55 nt upstream of an exon-exon junction, nonsense-mediated decay (NMD) also degrades the mRNA." },
+			{ stem:"What is the GT-AG rule in eukaryotic splicing?", opts:["Exons always begin with GT and end with AG","Introns almost always begin with GT (GU in RNA) at the 5' end and end with AG at the 3' end","Splice sites must be guanine-rich","GT-AG refers to the poly-A signal sequence"], ans:1,
+			exp:"The GT-AG rule states that the 5' splice site (donor) of a spliceosomal intron almost universally begins with GT (GU in the pre-mRNA), and the 3' splice site (acceptor) ends with AG. Mutations in either site cause intron retention or aberrant splicing." }
+			]
+			},
+			post2: {
+			qs: [
+			{ stem:"In the sequence 5'-ATGCGATCGTAACGATCG-3', what are the first and last codons of the longest ORF in Frame +1?", opts:["ATG and TAG","ATG and TAA","CGC and AAC","GCG and CGA"], ans:1,
+			exp:"Reading Frame +1 from the start: ATG-CGA-TCG-TAA. The first codon is ATG (start/Met) and the stop codon is TAA at position 10–12. This gives a 3-amino-acid ORF (Met-Arg-Ser). Always check all 6 frames before concluding which is the correct ORF." },
+			{ stem:"A frameshift mutation occurs when a single base is deleted from within an exon. Which statement is correct?", opts:["Only the codon containing the deletion is affected","All codons from the deletion point to the next stop codon are altered","The protein is elongated by one amino acid","The 5' UTR sequence is disrupted"], ans:1,
+			exp:"A single base deletion shifts the reading frame for all downstream codons. This typically produces either a truncated protein (if a stop codon is encountered early in the new frame) or a completely different C-terminal sequence." },
+			{ stem:"Which of the following correctly distinguishes an ORF from a gene?", opts:["An ORF always encodes a functional protein; a gene may not","A gene is always larger than an ORF","An ORF is any sequence between ATG and a stop codon; a gene requires biological evidence of transcription and function","Genes are found only in the nucleus; ORFs can be in the chloroplast"], ans:2,
+			exp:"An ORF is a computational prediction: any sequence beginning with ATG and ending with a stop codon in the same frame. A gene requires experimental evidence: it must be transcribed, and ideally the protein or RNA product must have a demonstrated biological role." }
+			]
+			},
+			pre3: {
+			qs: [
+			{ stem:"In a BLAST result, what does the E-value represent?", opts:["The percentage of identical residues between query and hit","The expected number of hits with an equal or better score that would occur by chance in a database of this size","The length of the sequence alignment","The evolutionary distance between query and hit"], ans:1,
+			exp:"The E-value (Expect value) is a statistical parameter indicating the number of hits you would expect to find by chance when searching a database of the given size. E = 0.001 means ~1 false positive per 1000 searches. Lower E-values indicate more statistically significant matches." },
+			{ stem:"A BLAST search returns a hit with 95% identity over only 15% query coverage. What is the best interpretation?", opts:["The full hit protein is highly similar to the query","Only a short domain or motif of the hit is similar to a small region of the query","The query protein is 95% identical to the hit protein across its whole length","The result is not significant because coverage is low"], ans:1,
+			exp:"High identity with low coverage means only a portion of the sequences is similar. The query may be a multi-domain protein, and only one domain matches the hit. You should search the remaining query sequence separately using domain databases (Pfam, InterPro) to characterize the full protein." },
+			{ stem:"How do orthologs differ from paralogs?", opts:["Orthologs have identical sequences; paralogs do not","Orthologs arise from speciation events; paralogs arise from gene duplication events","Orthologs are found only in plants; paralogs in animals","Orthologs always have higher BLAST identity than paralogs"], ans:1,
+			exp:"Orthologs are genes in different species that descend from the same ancestral gene via speciation (e.g., human BRCA1 and mouse Brca1). Paralogs are genes within the same or different species that arose by gene duplication (e.g., Arabidopsis RBCS1A, RBCS1B, RBCS2B, RBCS3B)." }
+			]
+			},
+			post3: {
+			qs: [
+			{ stem:"A BLAST search of an unknown plant protein returns: Hit 1 (E=3e-55, 88% identity, 97% coverage, 'Chalcone synthase, Arabidopsis') and Hit 2 (E=2e-12, 30% identity, 95% coverage, 'Stilbene synthase, grapevine'). Which conclusion is best?", opts:["The protein is a stilbene synthase based on the higher E-value hit","The protein is most likely a chalcone synthase, with stilbene synthase as a paralogous family member","Both hits are equally valid; no conclusion can be drawn","The protein has no known function because coverage is not 100%"], ans:1,
+			exp:"Hit 1 (E=3e-55, 88% identity, 97% coverage) strongly supports chalcone synthase function. Hit 2 represents a related type III polyketide synthase family member (stilbene synthase). The best annotation is 'probable chalcone synthase' based on the top hit." },
+			{ stem:"You find a plant gene with 4 BLAST hits in Arabidopsis: AT1G01234, AT1G05678, AT3G11234, AT5G67890, all with E < 1e-30 and >70% identity. What does this pattern suggest?", opts:["The query has 4 orthologs in Arabidopsis","The query gene belongs to a multi-member gene family in Arabidopsis (likely paralogs)","There is contamination in the database","All 4 hits are identical genes duplicated from one chromosomal locus"], ans:1,
+        exp:"Multiple high-scoring hits in the same genome with similar E-values strongly suggest a gene family with multiple paralogous members. Arabidopsis has many expanded gene families. To identify which is the true ortholog, use phylogenetic analysis and reciprocal best BLAST hits." },
+      { stem:"An E-value of 0.4 for a 400 bp alignment is reported. Should this hit be included in your functional annotation?", opts:["Yes, because the alignment is long","Yes, if identity is above 50%","No — an E-value > 0.01 suggests the hit is likely a chance alignment, not true homology","Only if it is the top hit in the result list"], ans:2,
+        exp:"An E-value of 0.4 means you would expect 0.4 alignments this good or better by random chance in a typical database search. This is not statistically significant. The conventional threshold is E < 0.01, and for reliable functional annotation E < 1e-10 is strongly preferred." }
+    ]
+  },
+  pre4: {
+    qs: [
+      { stem:"In a genome browser, what do the thick horizontal blocks in a gene model track typically represent?", opts:["Introns","Exons","Promoter regions","Untranslated regions only"], ans:1,
+        exp:"In standard genome browser displays (UCSC, Ensembl, IGV), thick blocks represent exons (protein-coding regions or UTRs), while thin lines connecting them represent introns. Arrowheads on the connecting lines indicate the direction of transcription." },
+      { stem:"What information does the height of peaks in an RNA-seq coverage track convey?", opts:["The length of the gene","The number of sequencing reads aligned to that position, proportional to expression level","The GC content at that position","The number of introns in the gene"], ans:1,
+        exp:"RNA-seq coverage tracks display a pileup of reads at each genomic position. Higher peaks indicate more reads = higher expression. Gaps within a gene model in RNA-seq tracks usually correspond to introns (reads do not span introns unless they are spliced reads)." },
+      { stem:"You navigate to Chr1:6000000-7000000 in the Arabidopsis genome browser. You see a gene model with 5 thick blocks connected by thin lines. How many introns does this gene have?", opts:["4","5","6","Cannot determine without more information"], ans:0,
+        exp:"If there are 5 exon blocks (thick segments), there must be 4 introns connecting them. The number of introns = number of exons − 1 for a contiguous gene model." }
+    ]
+  },
+  post4: {
+    qs: [
+      { stem:"In IGV, you load RNA-seq data for a drought-treated plant and observe uniform read coverage across most of a gene, but a complete gap of ~200 bp in the middle. What is the most likely explanation?", opts:["A deletion mutation in the drought treatment","An intron — RNA-seq reads do not cover intron sequence in mRNA","Low sequencing depth at that region","A repeat element masking reads"], ans:1,
+        exp:"In RNA-seq, reads are derived from mRNA (processed transcripts), which lack introns. A clean gap in read coverage within an annotated gene model most likely represents an intron that was spliced out. Actual sequencing depth issues usually produce noisy, gradual dropout rather than a clean gap." },
+      { stem:"You compare two RNA-seq tracks side by side: 'Control' and '+ABA treatment'. Gene DREB2A shows 3× higher peaks in the ABA track. What can you conclude from the browser view alone?", opts:["DREB2A is upregulated with statistical significance in response to ABA","DREB2A appears to have more aligned reads in the ABA condition, suggesting higher expression, but statistical significance requires DESeq2/edgeR analysis","DREB2A encodes a protein that binds ABA directly","The ABA treatment killed all other genes so only DREB2A reads remain"], ans:1,
+        exp:"A genome browser shows coverage visually but does not perform statistical testing. You can say DREB2A shows apparently higher coverage in ABA conditions, consistent with upregulation, but you cannot claim statistical significance from visual inspection alone." },
+      { stem:"You see a gene model displayed on the negative (reverse complement) strand in the UCSC browser. The arrows on the intron connecting lines point LEFT. What does this mean?", opts:["The gene has inverted exons","The gene is transcribed from right to left (3' to 5' on the top strand)","The arrowheads indicate the location of stop codons","The gene is in the chloroplast genome"], ans:1,
+        exp:"In genome browsers, arrowheads on intron lines indicate the direction of transcription. Leftward arrows indicate the gene is encoded on the minus (bottom/reverse complement) strand and is transcribed from right to left in the browser coordinate system." }
+    ]
+  },
+  pre5: {
+    qs: [
+      { stem:"In a ClustalW multiple sequence alignment output, what does a colon (:) beneath a column of residues indicate?", opts:["All residues in that column are identical","The residues are chemically similar (conservative substitution)","There is a gap in at least one sequence","The column is unreliable and should be ignored"], ans:1,
+        exp:"ClustalW uses three symbols under aligned columns: * (asterisk) = fully conserved (identical), : (colon) = conserved substitution (physicochemically similar), . (period) = semi-conserved substitution. Blank = no conservation." },
+      { stem:"Why do bioinformaticians use gap-opening penalties larger than gap-extension penalties in alignment algorithms?", opts:["To penalize sequences that are too long","Because gaps are more likely to persist (extensions) than to start (openings) in real evolutionary sequences","To prevent any gaps from appearing in alignments","Because extension penalties are always zero"], ans:1,
+        exp:"Biologically, a single insertion-deletion event that shifts multiple positions is more likely than many independent single-base indel events. Using a high gap-opening penalty but lower extension penalty reflects this — it's cheaper to extend an existing gap than to open a new one, which matches real evolutionary patterns." },
+      { stem:"In an MSA, the N-terminal signal peptide of a secreted protein is typically poorly conserved across species. Does this mean the signal peptide is non-functional?", opts:["Yes, important functional regions are always highly conserved","No — signal peptides are functionally defined by physicochemical properties (hydrophobic core), not specific sequence, so they can diverge while retaining function","Yes, because poorly conserved means recently evolved","No — signal peptides mutate faster because they are on the protein surface"], ans:1,
+        exp:"Signal peptides direct proteins to the secretory pathway. Their function depends on having a hydrophobic core region, not a specific amino acid sequence. Thus signal peptides evolve rapidly at the sequence level while maintaining their hydrophobic character — explaining poor conservation in MSA." }
+    ]
+  },
+  post5: {
+    qs: [
+      { stem:"In an MSA of 8 D1 (PsbA) proteins from land plants, algae, and cyanobacteria, you notice a 100% conserved histidine residue at position 198. What is the best biological interpretation?", opts:["This histidine is conserved by chance","This residue is almost certainly functionally essential — its absolute conservation across >1 billion years of evolution suggests any mutation is lethal or highly deleterious","The gene has not evolved since cyanobacteria","Histidine residues are always conserved in membrane proteins"], ans:1,
+        exp:"His198 in D1 is a key ligand coordinating the non-heme iron between QA and QB in PSII. Its conservation from cyanobacteria to vascular plants (~3 billion years of evolution) is strong evidence of functional essentiality. Mutations at this position disrupt the electron transfer chain." },
+      { stem:"An alignment of 6 sequences shows a large gap (20 residues) in all land plant sequences at a position where the cyanobacterial and algal sequences have conserved amino acids. What evolutionary event does this most likely represent?", opts:["A sequencing error in all land plant sequences","An ancient deletion event that occurred in the ancestor of land plants after divergence from algae","Poor alignment quality requiring a different algorithm","Contamination from bacterial sequences in the algal samples"], ans:1,
+        exp:"A gap present in all members of a clade (land plants) but absent in their outgroup (algae, cyanobacteria) most parsimoniously represents a single deletion event in the ancestor of that clade. This is a synapomorphy — a shared derived character of land plants." },
+      { stem:"You perform MSA on a protein family and find that the C-terminal 50 residues are almost entirely gaps and poorly aligned across species. How should you treat this region?", opts:["Include it in all downstream analyses as it may be important","Report it as fully conserved since gaps indicate missing data","Mask or exclude this region from phylogenetic analysis, as unreliable alignments produce artifactual trees","Replace all gaps with alanine before analysis"], ans:2,
+        exp:"Poorly aligned, gap-rich regions introduce alignment errors that propagate as noise in downstream analyses such as phylogenetic tree construction. Standard practice is to mask or trim these regions (e.g., using TrimAl or Gblocks) before building phylogenetic trees." }
+    ]
+  },
+  pre6: {
+    qs: [
+      { stem:"What does a bootstrap value of 95 on a node of a phylogenetic tree indicate?", opts:["The tree was built using 95 different methods","In 95 out of 100 bootstrap replicates, the taxa descended from this node clustered together","95% of the sequences are identical","The node represents a 95-million-year-old divergence"], ans:1,
+        exp:"Bootstrap analysis resamples alignment columns with replacement (typically 100–1000 times) and rebuilds the tree each time. A bootstrap value of 95 means 95% of resampled trees supported this particular grouping — a conventionally strong threshold (≥70 is generally accepted, ≥95 is strong)." },
+      { stem:"Bread wheat (Triticum aestivum) is a hexaploid with three subgenomes (A, B, D). What term describes copies of the same ancestral gene found in different subgenomes?", opts:["Paralogs","Orthologs","Homeologs","Alleles"], ans:2,
+        exp:"Homeologs are genes in different subgenomes of a polyploid that descend from the same ancestral gene. They are similar to orthologs (same gene, different genomes) but exist within one organism due to polyploidy. They differ from paralogs (which arise by within-genome duplication) and alleles (alternate forms at the same locus)." },
+      { stem:"C4 photosynthesis has evolved independently over 60 times in angiosperms. What does this pattern indicate about the evolution of C4?", opts:["C4 photosynthesis is ancestral to all plants","The C4 pathway evolved once and was laterally transferred","C4 is convergent evolution — the same metabolic outcome evolved through different genetic routes in unrelated lineages","C4 plants are more closely related to each other than to C3 plants"], ans:2,
+        exp:"The independent evolution of C4 photosynthesis in >60 angiosperm lineages (grasses, sedges, eudicots) is a textbook example of convergent evolution. Each lineage recruited pre-existing C3 enzymes (especially PEPC) and evolved anatomical adaptations (Kranz anatomy), but often through different genetic mechanisms." }
+    ]
+  },
+  post6: {
+    qs: [
+      { stem:"A phylogenetic tree shows a node uniting Species A and Species B with a bootstrap value of 42. What is the correct interpretation?", opts:["Species A and B are closely related based on strong statistical support","The relationship between A and B is poorly supported; this node should be treated as unresolved","Species A and B are definitely not related","A bootstrap of 42 is sufficient for IBO-quality conclusions"], ans:1,
+        exp:"Bootstrap values below 50 indicate that fewer than half of resampled trees supported this particular grouping — essentially no support. The node should be treated as a polytomy (unresolved). In IBO answers, always qualify conclusions from low-bootstrap nodes as tentative or unresolved." },
+      { stem:"A PEPC gene family tree shows that the C4 PEPC isoforms from maize, sorghum, and sugarcane cluster together WITHIN the larger grass PEPC clade, rather than forming a sister group to it. What does this topology indicate?", opts:["PEPC originated independently in each C4 grass","C4 PEPC function is a derived state that evolved within the grass lineage from a pre-existing cytosolic isoform","C4 grasses are more ancient than C3 grasses","The tree is constructed incorrectly"], ans:1,
+        exp:"When C4 PEPC sequences cluster within (nested in) the grass PEPC clade, it indicates the C4 function evolved from a pre-existing grass gene — it is a derived (not ancestral) state. The C4 clade forms a monophyletic group within the larger grass PEPC tree, consistent with a single origin of the C4-type isoform in grasses." },
+      { stem:"In a gene tree, Arabidopsis RBCS1A clusters more closely with rice RBCS than with Arabidopsis RBCS2B. What is this pattern called, and what does it indicate?", opts:["Long branch attraction; indicates rapid evolution","Gene tree–species tree discordance; indicates the gene family history differs from the species history, possibly due to incomplete lineage sorting or ancestral duplication","Bootstrap error; indicates the analysis is unreliable","Convergent evolution; indicates the same protein evolved twice"], ans:1,
+        exp:"When gene tree topology conflicts with the known species tree, this is called gene tree–species tree discordance. It commonly occurs due to (1) incomplete lineage sorting (alleles persist through speciation), (2) ancient gene duplication, or (3) gene conversion. In plant gene families, ancient duplications before species divergence are very common." }
+    ]
+  },
+	pre7: {
+	qs: [
+	  { stem:"In RNA-seq, what does TPM (Transcripts Per Million) correct for?", opts:["Sequencing errors only","Both gene length and library size — allowing comparison within and across samples","Only library size (total reads)","Only gene length"], ans:1,
+		exp:"TPM (Transcripts Per Million) normalizes first for gene length (longer genes capture more fragments) then for library size. This makes TPM values directly comparable between samples, unlike RPKM/FPKM which only corrects in one order." },
+	  { stem:"A gene has log₂ fold change = +3.2 and adjusted p-value = 0.42. Is this gene differentially expressed?", opts:["Yes — the fold change is large","No — the adjusted p-value fails the significance threshold (typically < 0.05)","Yes — log₂FC > 1 is always sufficient","Cannot tell from this information"], ans:1,
+		exp:"Differential expression requires BOTH a meaningful fold change (typically |log₂FC| ≥ 1) AND statistical significance (adjusted p-value < 0.05 after multiple testing correction). An adj. p = 0.42 means this result is not statistically significant — likely noise, not a true expression change." },
+	  { stem:"Why is it important to use the adjusted p-value (FDR) rather than the raw p-value in RNA-seq analysis?", opts:["Adjusted p-values are always lower than raw p-values","When testing thousands of genes simultaneously, many will appear significant by chance — FDR correction controls the false discovery rate","The raw p-value cannot be calculated for RNA-seq data","Adjusted p-values are required only for gene ontology analysis"], ans:1,
+		exp:"In a typical RNA-seq experiment, 20,000+ genes are tested simultaneously. At p < 0.05, you'd expect ~1,000 false positives by chance alone. FDR correction (Benjamini-Hochberg method, used in DESeq2) controls the proportion of false discoveries among all significant results." }
+	]
+  },
+  post7: {
+	qs: [
+	  { stem:"Gene RD29A has Control TPM = 8 and Drought TPM = 1,024. What is the log₂ fold change?", opts:["+7","−7","128","8"], ans:0,
+		exp:"log₂FC = log₂(1024/8) = log₂(128) = 7. A log₂FC of +7 means the gene is 2⁷ = 128-fold upregulated in drought conditions." },
+	  { stem:"In a drought RNA-seq dataset, you identify a gene with log₂FC = +6.8 and adjusted p = 0.0003. Another gene has log₂FC = +0.4 and adjusted p = 0.0001. Which gene is more likely biologically important for drought response?", opts:["The second gene because its p-value is lower","The first gene because it has a much larger fold change with strong significance","Both are equally important","Neither — both require validation"], ans:1,
+		exp:"The first gene (log₂FC = +6.8, adj p = 0.0003) shows a very large, statistically significant fold change (~111-fold). The second gene, despite a lower p-value, has a fold change of only +0.4 (~1.3-fold), which is biologically negligible even if statistically significant. For drought response, magnitude of change matters." },
+	  { stem:"A heatmap is generated for 50 genes across 6 samples (3 control, 3 drought). Genes cluster into two groups: Cluster A (red in drought, blue in control) and Cluster B (blue in drought, red in control). What do these clusters represent?", opts:["Random noise in clustering","Cluster A = drought-induced genes; Cluster B = drought-repressed genes","Cluster A = housekeeping genes; Cluster B = stress genes","The clusters cannot be interpreted without a p-value"], ans:1,
+		exp:"In a heatmap using red = high expression and blue = low expression: Cluster A genes (red in drought, blue in control) are upregulated by drought. Cluster B genes (blue in drought, red in control) are downregulated by drought. This co-expression clustering reflects shared regulatory mechanisms." }
+	]
+  },
+	pre8: {
+	qs: [
+	  { stem:"Before measuring cells in ImageJ, why must you set the scale?", opts:["To improve image contrast","To convert pixel measurements into real-world units (e.g., micrometers)","To increase the resolution of the image","To automatically count cells"], ans:1,
+		exp:"ImageJ measures distances in pixels by default. Setting the scale (Analyze > Set Scale) allows the software to convert pixel measurements into physical units (μm, mm) based on a known reference distance — usually the scale bar in the image." },
+	  { stem:"You use ImageJ to measure a root and get a result of 340 pixels. Your scale calibration is 1 pixel = 0.8 μm. What is the root length in μm?", opts:["340 μm","272 μm","425 μm","0.8 μm"], ans:1,
+		exp:"Root length = 340 pixels × 0.8 μm/pixel = 272 μm. Always multiply pixel count by the scale factor to convert to physical units." },
+	  { stem:"What does CTCF stand for in fluorescence microscopy quantification?", opts:["Cell Total Confocal Fluorescence","Corrected Total Cell Fluorescence","Calibrated Threshold Counting Function","Cytoplasmic Total Channel Fluorescence"], ans:1,
+		exp:"CTCF (Corrected Total Cell Fluorescence) = Integrated Density − (Area of selection × Mean fluorescence of background). This subtraction corrects for non-specific background fluorescence, allowing valid comparison between images." }
+	]
+  },
+  post8: {
+	qs: [
+	  { stem:"In ImageJ, your scale calibration yields: 200 px = 100 μm. You select a rectangular ROI of 500 × 400 px and count 24 stomata. What is the stomatal density in stomata/mm²?", opts:["480 stomata/mm²","240 stomata/mm²","960 stomata/mm²","120 stomata/mm²"], ans:0,
+		exp:"Scale: 1 px = 0.5 μm; 1 px² = 0.25 μm². ROI area: 500 × 400 = 200,000 px² × 0.25 μm²/px² = 50,000 μm² = 0.05 mm². Density = 24 stomata / 0.05 mm² = 480 stomata/mm²." },
+	  { stem:"You measure fluorescence in two cells. Cell A: Integrated Density = 120,000 AU, Area = 500 px², Background = 50 AU/px². Cell B: Int. Density = 80,000 AU, Area = 400 px², Background = 60 AU/px². Which cell has higher CTCF?", opts:["Cell A (CTCF = 95,000)","Cell B (CTCF = 56,000)","Both are equal","Cannot be determined"], ans:0,
+		exp:"Cell A CTCF = 120,000 − (500 × 50) = 120,000 − 25,000 = 95,000 AU. Cell B CTCF = 80,000 − (400 × 60) = 80,000 − 24,000 = 56,000 AU. Cell A has significantly higher corrected fluorescence." },
+	  { stem:"A student measures root length in 5 WT and 5 mutant seedlings and obtains: WT mean = 18.5 mm (SD ± 1.2), mutant mean = 12.3 mm (SD ± 0.8). What statistical test should be applied?", opts:["Chi-squared test (for categorical data)","Student's t-test (comparing two group means)","ANOVA (for 3+ groups)","Linear regression (for correlation)"], ans:1,
+		exp:"Student's t-test is appropriate for comparing the means of two independent groups (WT vs. mutant) with continuous data and small sample sizes. ANOVA would be used if comparing 3+ groups. Chi-squared tests categorical (count) data. Linear regression tests for correlations between two continuous variables." }
+	]
+  },
+  pre9: {
+    qs: [
+      { stem:"In the flavonoid biosynthesis pathway, Chalcone Synthase (CHS) catalyzes the first committed step. If CHS is knocked out, which downstream product will be absent?", opts:["Chlorophyll","Anthocyanins and flavonols","Lignin","Cellulose"], ans:1,
+        exp:"Chalcone Synthase produces naringenin chalcone from p-coumaroyl-CoA and malonyl-CoA — the first committed step in flavonoid synthesis. All downstream flavonoid products (chalcones, flavanones, flavonols, anthocyanins, proanthocyanidins) will be absent in a CHS knockout (Arabidopsis tt4 mutant). Chlorophyll, lignin, and cellulose use different pathways." },
+      { stem:"In a metabolic pathway, enzyme B is knocked out. What accumulates upstream?", opts:["The product of enzyme B","The substrate of enzyme B (product of enzyme A)","All metabolites in the entire pathway","Nothing — the pathway adjusts automatically"], ans:1,
+        exp:"Blocking a step in a pathway (enzyme B knockout) causes the substrate of that enzyme — which is the product of the previous enzyme (A) — to accumulate. Downstream products of enzyme B are depleted. This metabolite accumulation can itself be toxic or can feedback-inhibit upstream steps." },
+      { stem:"Which enzyme is considered the rate-limiting step of the Calvin cycle?", opts:["Fructose-1,6-bisphosphatase (FBPase)","RuBisCO","Phosphoribulokinase (PRK)","Glyceraldehyde-3-phosphate dehydrogenase (GAPDH)"], ans:1,
+        exp:"RuBisCO (Ribulose-1,5-bisphosphate carboxylase/oxygenase) is the rate-limiting enzyme of the Calvin cycle. It has a very slow catalytic rate (~3 reactions/second) and competing oxygenase activity (photorespiration), making it the primary bottleneck of carbon fixation. This is why plants produce enormous quantities of RuBisCO." }
+    ]
+  },
+  post9: {
+    qs: [
+      { stem:"A researcher knocks out the gene encoding ACC synthase in Arabidopsis. What phenotype would you predict?", opts:["No effect — ACC synthase is redundant","Severely reduced ethylene production, leading to reduced fruit ripening and altered senescence responses","Overproduction of ethylene due to feedback relief","No seed germination due to ABA accumulation"], ans:1,
+        exp:"ACC synthase converts SAM to ACC (1-aminocyclopropane-1-carboxylic acid), the immediate precursor of ethylene. Knockout leads to reduced ethylene biosynthesis. Phenotypes include reduced triple response in etiolated seedlings, delayed fruit ripening (in fruit-bearing species), altered organ abscission, and modified stress responses." },
+      { stem:"ADP-glucose pyrophosphorylase (AGPase) is the key regulatory enzyme in starch biosynthesis. It is allosterically activated by 3-phosphoglycerate and inhibited by inorganic phosphate. If you overexpress a feedback-insensitive AGPase mutant, what do you predict?", opts:["Less starch accumulation because the enzyme is mutated","More starch accumulation because the enzyme is no longer inhibited by Pi","No change in starch because other enzymes are rate-limiting","The plant becomes ABA-deficient"], ans:1,
+        exp:"A feedback-insensitive AGPase is not inhibited by inorganic phosphate, so it remains constitutively active regardless of cellular energy status. This leads to enhanced flux through the starch synthesis pathway and higher starch accumulation. This approach has been successfully used in crop improvement strategies (e.g., in potato and maize)." },
+      { stem:"In the phenylpropanoid pathway, which compound accumulates if F3H (Flavanone 3-hydroxylase) is knocked out?", opts:["Lignin","Naringenin (the substrate of F3H)","Quercetin","Cyanidin"], ans:1,
+        exp:"F3H converts naringenin to dihydrokaempferol. If F3H is blocked, naringenin (its substrate) accumulates. All downstream products requiring dihydrokaempferol as a precursor (dihydroquercetin, dihydromyricetin, and downstream anthocyanins and flavonols) are depleted." }
+    ]
+  },
+  pre10: {
+    qs: [
+      { stem:"A BLAST search predicts that a gene encodes a 'drought tolerance kinase.' Is this sufficient to conclude the gene confers drought tolerance in the plant?", opts:["Yes — BLAST is highly accurate and the prediction is reliable","No — BLAST provides a putative functional annotation; experimental validation is required to confirm function","Yes, if the E-value is below 1e-30","No, only if the gene is in Arabidopsis"], ans:1,
+        exp:"Computational prediction (BLAST, domain analysis) generates a hypothesis about gene function. Experimental validation — such as knockout phenotype analysis, protein biochemistry, or complementation — is required to confirm that the gene actually performs that function in the plant." },
+      { stem:"What is the purpose of a negative control in a plant transformation experiment?", opts:["To show the maximum possible phenotype","To confirm that the transformation protocol worked","To show that the observed phenotype is caused by the gene of interest, not by the transformation process or vector alone","To count the number of transformed plants"], ans:2,
+        exp:"A negative control (e.g., plant transformed with empty vector or vector containing GFP) undergoes the same transformation protocol as the experimental line. If the negative control shows no phenotype, it confirms that the phenotype observed in the experimental line is due to the inserted gene, not the transformation stress or vector elements." },
+      { stem:"Which experimental approach would most directly test whether Gene X is REQUIRED for a biological process (i.e., loss-of-function analysis)?", opts:["Overexpress Gene X under the 35S promoter","Knock out Gene X using CRISPR-Cas9 or T-DNA insertion and observe the phenotype","Report its expression pattern using GUS fusion","Use Y2H to find interaction partners"], ans:1,
+        exp:"Loss-of-function analysis (knockout via CRISPR, T-DNA insertion, or RNAi) directly tests whether the gene is required. If the knockout shows a phenotype, the gene is necessary for that process. Overexpression tests sufficiency (gain-of-function), GUS tests expression pattern, and Y2H tests protein-protein interactions." }
+    ]
+  },
+  post10: {
+    qs: [
+      { stem:"You generate a T-DNA knockout of DroughtKinase1 and observe that mutant plants wilt faster than WT under drought. However, another lab's knockout of the same gene shows no phenotype. What is the most rigorous next step?", opts:["Publish your results immediately — you have the primary data","Generate a second independent allele (different T-DNA insertion site or CRISPR allele) to confirm the phenotype is due to loss of DroughtKinase1, not a T-DNA insertion elsewhere","Repeat the experiment in different weather","Conclude the other lab is wrong"], ans:1,
+        exp:"Off-target T-DNA insertions elsewhere in the genome can cause phenotypes unrelated to the target gene. Generating a second independent allele (different insertion site) or CRISPR knockout is essential. If both alleles show the same phenotype, it confirms causality. Complementation with the wild-type gene also validates the result." },
+      { stem:"You want to demonstrate that GFP-DroughtKinase1 protein localizes to the nucleus. Which controls are essential?", opts:["35S::GFP only (unfused GFP, shows nuclear exclusion / whole-cell distribution)","WT untransformed plants only","Another nuclear protein fused to RFP (positive control for nuclear localization)","Both A and C — GFP-only negative control AND nuclear marker positive control"], ans:3,
+        exp:"You need: (1) a 35S::GFP negative control to show where unfused GFP goes (typically diffuse cytoplasmic/nuclear), to distinguish from specific nuclear targeting; and (2) a known nuclear marker (e.g., histone-RFP) as a positive control to confirm your confocal settings correctly detect nuclear signal. Both are needed for rigorous interpretation." },
+      { stem:"A student performs complementation by introducing WT DroughtKinase1 back into the droughtkinase1 T-DNA mutant. The complemented line shows WT phenotype under drought. What does this result confirm?", opts:["DroughtKinase1 protein interacts with ABA receptors","The drought phenotype of the mutant is specifically caused by loss of DroughtKinase1 function — not by off-target effects","DroughtKinase1 is expressed in all plant tissues","The T-DNA insertion site is in a non-coding region"], ans:1,
+        exp:"Complementation — restoring the WT phenotype by introducing the gene back into the mutant — is the gold-standard proof of causality. It demonstrates that the mutant phenotype is specifically due to loss of that gene's function, ruling out off-target insertion effects. This is required for definitive functional characterization in peer-reviewed plant biology." }
+    ]
+  }
+};
+
+// ── Render evaluations ─────────────────────────────────────────────
+function renderEval(id) {
+  const data = EVALS[id];
+  if (!data) return;
+  const container = document.getElementById(id + '-qs');
+  const keyContainer = document.getElementById(id + '-key');
+  if (!container) return;
+  container.innerHTML = '';
+  if (keyContainer) keyContainer.innerHTML = '';
+  data.qs.forEach((q, qi) => {
+    const qDiv = document.createElement('div');
+    qDiv.className = 'q-item';
+    qDiv.innerHTML = `<div class="q-stem">Q${qi+1}. ${q.stem}</div>
+			<ul class="q-options" id="${id}-q${qi}-opts">
+				${q.opts.map((o,oi)=>`<li class="q-opt" data-q="${qi}" data-o="${oi}" onclick="selectOpt(this,'${id}',${qi})">
+					<span class="opt-letter">${String.fromCharCode(65+oi)}</span>${o}
+				</li>`).join('')}
+			</ul>`;
+			container.appendChild(qDiv);
+			// Key entry
+			if (keyContainer) {
+			const kDiv = document.createElement('div');
+			kDiv.className = 'key-item';
+			kDiv.innerHTML = `<span class="key-num">Q${qi+1}</span>
+			<div>
+				<span class="key-ans">Answer: ${String.fromCharCode(65+q.ans)}</span>
+				<br>
+					<span class="key-exp">${q.exp}</span>
+			</div>`;
+			keyContainer.appendChild(kDiv);
+			}
+			});
+			}
+
+			function selectOpt(el, id, qi) {
+			const opts = document.querySelectorAll(`#${id}-q${qi}-opts .q-opt`);
+			opts.forEach(o => { o.classList.remove('selected','correct','wrong'); });
+			el.classList.add('selected');
+			el._selected = parseInt(el.dataset.o);
+			}
+
+			function checkEval(id) {
+			const data = EVALS[id];
+			let correct = 0;
+			data.qs.forEach((q, qi) => {
+			const opts = document.querySelectorAll(`#${id}-q${qi}-opts .q-opt`);
+			let answered = false;
+			opts.forEach(o => {
+			const oi = parseInt(o.dataset.o);
+			if (o.classList.contains('selected')) { answered = true; }
+			if (oi === q.ans) o.classList.add('correct');
+			else if (o.classList.contains('selected')) o.classList.add('wrong');
+			});
+			const selectedOpts = document.querySelectorAll(`#${id}-q${qi}-opts .q-opt.selected`);
+			selectedOpts.forEach(o => { if (parseInt(o.dataset.o) === q.ans) correct++; });
+			});
+			const scoreEl = document.getElementById(id + '-score');
+			const total = data.qs.length;
+			const pct = Math.round(correct/total*100);
+			let bg = pct>=80 ? 'background:var(--green-bg);color:var(--green);border:1.5px solid var(--green-bd)'
+			: pct>=60 ? 'background:var(--amber-bg);color:var(--amber);border:1.5px solid var(--amber-bd)'
+			: 'background:var(--rose-bg);color:var(--rose);border:1.5px solid var(--rose-bd)';
+			scoreEl.style.cssText = bg;
+			scoreEl.textContent = `${correct}/${total} (${pct}%)`;
+			scoreEl.classList.add('show');
+			}
+
+			function resetEval(id) {
+			const data = EVALS[id];
+			data.qs.forEach((q, qi) => {
+			const opts = document.querySelectorAll(`#${id}-q${qi}-opts .q-opt`);
+			opts.forEach(o => o.classList.remove('selected','correct','wrong'));
+			});
+			const scoreEl = document.getElementById(id + '-score');
+			scoreEl.classList.remove('show');
+			}
+
+			// ── Module toggle ────────────────────────────────────────────────
+			function toggleMod(header) {
+			header.parentElement.classList.toggle('open');
+			}
+
+			// ── Key toggle ───────────────────────────────────────────────────
+			function toggleKey(btn) {
+			const body = btn.nextElementSibling;
+			body.classList.toggle('open');
+			btn.querySelector('span').textContent = body.classList.contains('open') ? '▴' : '▾';
+			}
+
+			// ── Sidebar / in-page anchor scroll ───────────────────────────────
+			// New name to avoid shadowing native window.scrollTo
+			function goToId(id) {
+			const el = document.getElementById(id);
+			if (!el) return;
+			const moduleCard = el.classList.contains('module-card') ? el : el.closest('.module-card');
+			if (moduleCard) moduleCard.classList.add('open');
+			el.scrollIntoView({behavior:'smooth',block:'start'});
+			try { history.replaceState(null, '', '#' + id); } catch(e) { location.hash = id; }
+			}
+
+			// Ensure any anchor links with href="#..." also use the enhanced goToId behavior
+			document.querySelectorAll('a[href^="#"]').forEach(a=>{
+			a.addEventListener('click', function(e){
+			const href = this.getAttribute('href');
+			if (!href || href === '#') return;
+			const id = href.slice(1);
+			const el = document.getElementById(id);
+			if (el) {
+			e.preventDefault();
+			goToId(id);
+			}
+			});
+			});
+
+			// ── Gantt ────────────────────────────────────────────────────────
+			const ganttData = [
+			{ day:'D1', name:'M1 · Genome Fundamentals', sub:'Day 1', start:'08:00', lec:45, ws:20 },
+			{ day:'D1', name:'M2 · ORFs & Annotation',   sub:'Day 1', start:'09:15', lec:45, ws:30 },
+			{ day:'D1', name:'Break + Pre-eval',          sub:'',      start:'10:30', brk:15 },
+			{ day:'D1', name:'M3 · BLAST & Inference',    sub:'Day 1', start:'10:45', lec:60, ws:45 },
+			{ day:'D1', name:'Lunch',                     sub:'',      start:'12:30', brk:60 },
+			{ day:'D1', name:'M4 · Genome Browser',       sub:'Day 1', start:'13:30', lec:45, ws:45 },
+			{ day:'D2', name:'M5 · MSA',                  sub:'Day 2', start:'08:00', lec:45, ws:30 },
+			{ day:'D2', name:'M6 · Phylogenetics',         sub:'Day 2', start:'09:15', lec:60, ws:45 },
+			{ day:'D2', name:'Break',                     sub:'',      start:'11:00', brk:15 },
+			{ day:'D2', name:'M7 · Transcriptomics',      sub:'Day 2', start:'11:15', lec:45, ws:60 },
+			{ day:'D3', name:'M8 · ImageJ',               sub:'Day 3', start:'08:00', lec:60, ws:45 },
+			{ day:'D3', name:'M9 · Pathways',             sub:'Day 3', start:'09:45', lec:45, ws:30 },
+			{ day:'D3', name:'Break',                     sub:'',      start:'11:00', brk:15 },
+			{ day:'D3', name:'M10 · Validation',          sub:'Day 3', start:'11:15', lec:60, ws:45 },
+			{ day:'D3', name:'Lunch',                     sub:'',      start:'13:00', brk:60 },
+			{ day:'D3', name:'Case Study',                sub:'Day 3', start:'14:00', cs:90 },
+			];
+			const MAX=120;
+			const tbody=document.getElementById('gantt-body');
+			const dayColors={'D1':'var(--day1)','D2':'var(--day2)','D3':'var(--day3)'};
+			ganttData.forEach(r=>{
+			const tr=document.createElement('tr'); tr.className='gantt-row';
+			let bar='';
+			if(r.brk) bar=`<div class="g-bar">
+				<div class="g-seg g-brk" style="width:${r.brk/MAX*100}%">${r.brk}m</div>
+			</div>`;
+			else if(r.cs) bar=`<div class="g-bar">
+				<div class="g-seg" style="width:${r.cs/MAX*100}%;background:var(--purple-bg);color:var(--purple)">${r.cs}m case study</div>
+			</div>`;
+			else bar=`<div class="g-bar">
+				<div class="g-seg g-lec" style="width:${r.lec/MAX*100}%">${r.lec}m lec</div>${r.ws?`<div class="g-seg g-ws" style="width:${r.ws/MAX*100}%">${r.ws}m ws</div>`:''}
+			</div>`;
+			tr.innerHTML=`<td class="g-mod">
+				<span style="color:${dayColors[r.day]||'var(--text3)'}; font-size:0.68rem; font-weight:800">${r.day||''}</span> ${r.name}${r.sub?`<span>${r.sub}</span>`:''}
+			</td><td class="g-time">${r.start}</td><td>${bar}</td>`;
+			tbody.appendChild(tr);
+			});
+
+			// ── Progress bar ─────────────────────────────────────────────────
+			window.addEventListener('scroll',()=>{
+			const el=document.documentElement;
+			document.getElementById('progress-fill').style.width=(el.scrollTop/(el.scrollHeight-el.clientHeight)*100)+'%';
+			});
+
+			// ── Init: render all evals and open first module ─────────────────
+			Object.keys(EVALS).forEach(id => renderEval(id));
+			document.querySelectorAll('.module-card')[0]?.classList.add('open');
+		</script>
+	</body>
+</html>

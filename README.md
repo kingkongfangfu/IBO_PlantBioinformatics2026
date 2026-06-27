@@ -15,11 +15,11 @@ biology through lectures, hands-on activities, and case studies.
 CONTENTS
 ----------------------------------------------------------------------
 
-• 3-day training program
-• 10 instructional modules
-• Interactive HTML learning materials
-• Practical workshops and case studies
-• Supporting resources and references
+- 3-day training program
+- 10 instructional modules
+- Interactive HTML learning materials
+- Practical workshops and case studies
+- Supporting resources and references
 
 ----------------------------------------------------------------------
 LEARNING OBJECTIVES
@@ -27,13 +27,13 @@ LEARNING OBJECTIVES
 
 Participants will learn to:
 
-• Understand plant genome organization and gene structure.
-• Perform sequence annotation and functional inference.
-• Interpret BLAST and multiple sequence alignment results.
-• Explore genome browsers and transcriptomic datasets.
-• Analyze biological images using ImageJ.
-• Interpret metabolic pathways and gene expression.
-• Design experiments to validate computational predictions.
+- Understand plant genome organization and gene structure.
+- Perform sequence annotation and functional inference.
+- Interpret BLAST and multiple sequence alignment results.
+- Explore genome browsers and transcriptomic datasets.
+- Analyze biological images using ImageJ.
+- Interpret metabolic pathways and gene expression.
+- Design experiments to validate computational predictions.
 
 ----------------------------------------------------------------------
 AI-ASSISTED DEVELOPMENT
@@ -67,10 +67,11 @@ suitability for specific applications.
 ----------------------------------------------------------------------
 AUTHORS/ CONTRIBUTORS
 ----------------------------------------------------------------------
-ALONDAY, Roneil Christan S.
-CARDONA, Don Emanuel M.
-MANTALABA, Weljane Lou P.
-FURUSHO, Kaito O.
+- ALONDAY, Roneil Christan S.
+- CARDONA, Don Emanuel M.
+- MANTALABA, Weljane Lou P.
+- FURUSHO, Kaito O.
 
-Philippine Genome Center R&D Program for Agriculture, Livestock, Fisheries, and Forestry
-University of the Philippines Los Baños
+2026.
+Philippine Genome Center R&D Program for Agriculture, Livestock, Fisheries, and Forestry (PGC-Agriculture).
+University of the Philippines Los Baños.

@@ -72,6 +72,6 @@ AUTHORS/ CONTRIBUTORS
 - MANTALABA, Weljane Lou P.
 - FURUSHO, Kaito O.
 
-2026.
+JULY 2026.
 Philippine Genome Center R&D Program for Agriculture, Livestock, Fisheries, and Forestry (PGC-Agriculture).
 University of the Philippines Los Baños.

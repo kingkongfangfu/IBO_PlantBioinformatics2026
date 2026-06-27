@@ -1,42 +1,1529 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IBO Plant Bioinformatics 2026</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 2rem;
-      background: #f7f9fc;
-      color: #222;
-    }
-    .container {
-      max-width: 700px;
-      margin: 0 auto;
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-    h1 {
-      margin-top: 0;
-    }
-    a {
-      color: #1a73e8;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>IBO Plant Bioinformatics 2026</h1>
-    <p>Welcome to the course materials.</p>
-    <p><a href="IBO_training2.html">Open IBO Training 2</a></p>
-  </div>
-</body>
+	<head>
+		<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<title>IBO Plant Computational Biology — Student Training Modules</title>
+				<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+					<style>
+						:root {
+						--bg:       #faf8f4;
+						--bg2:      #f2ede4;
+						--bg3:      #ece6da;
+						--white:    #ffffff;
+						--border:   #e0d9ce;
+						--border2:  #cfc8bc;
+						--text:     #1e1a14;
+						--text2:    #5a5245;
+						--text3:    #9e9485;
+						--green:    #1a7a4a;
+						--green-bg: #eaf5ef;
+						--green-bd: #b3ddc5;
+						--blue:     #1a5fa0;
+						--blue-bg:  #e8f2fb;
+						--blue-bd:  #aacbec;
+						--amber:    #8a5c00;
+						--amber-bg: #fef7e6;
+						--amber-bd: #f0d080;
+						--rose:     #a02040;
+						--rose-bg:  #fdeef2;
+						--rose-bd:  #f0a8b8;
+						--purple:   #5e3a9e;
+						--purple-bg:#f2eeff;
+						--purple-bd:#c9b0f0;
+						--teal:     #0e6b6b;
+						--teal-bg:  #e6f6f6;
+						--teal-bd:  #9ed8d8;
+						--day1:     #1a7a4a;
+						--day2:     #1a5fa0;
+						--day3:     #7a1a60;
+						--radius:   10px;
+						--radius-lg:16px;
+						--shadow:   0 1px 4px rgba(30,26,20,0.07), 0 4px 16px rgba(30,26,20,0.05);
+						--shadow-sm:0 1px 3px rgba(30,26,20,0.08);
+						}
+						*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+						html { scroll-behavior: smooth; }
+						body {
+						background: var(--bg);
+						color: var(--text);
+						font-family: 'Nunito', sans-serif;
+						font-size: 15px;
+						line-height: 1.7;
+						}
+
+						/* ── Sidebar ─────────────────────────────── */
+						.sidebar {
+						position: fixed; left:0; top:0; bottom:0; width:252px;
+						background: var(--white);
+						border-right: 1px solid var(--border);
+						overflow-y: auto; z-index:100;
+						padding-bottom: 2rem;
+						}
+						.sidebar::-webkit-scrollbar { width:4px; }
+						.sidebar::-webkit-scrollbar-thumb { background:var(--border2); border-radius:4px; }
+						.sidebar-brand {
+						padding: 1.25rem 1.25rem 1rem;
+						border-bottom: 1px solid var(--border);
+						display: flex; align-items: center; gap: 10px;
+						}
+						.brand-leaf {
+						width:36px; height:36px; background:var(--green-bg);
+						border-radius:50%; display:flex; align-items:center; justify-content:center;
+						font-size:1.1rem; flex-shrink:0;
+						}
+						.brand-text { line-height:1.2; }
+						.brand-title { font-size:0.82rem; font-weight:800; color:var(--text); }
+						.brand-sub   { font-size:0.68rem; color:var(--text3); font-weight:600; }
+						.nav-group { padding: 0.75rem 0 0; }
+						.nav-group-label {
+						font-size:0.62rem; font-weight:800; text-transform:uppercase;
+						letter-spacing:0.1em; color:var(--text3);
+						padding: 0 1.25rem 0.35rem;
+						}
+						.nav-item {
+						display:flex; align-items:center; gap:8px;
+						padding: 0.38rem 1.25rem;
+						font-size:0.78rem; font-weight:600;
+						color:var(--text2); text-decoration:none;
+						border-left:3px solid transparent;
+						transition: all 0.14s; cursor:pointer;
+						background:none; border-top:none; border-right:none; border-bottom:none;
+						width:100%; text-align:left;
+						}
+						.nav-item:hover { color:var(--text); background:var(--bg); }
+						.nav-item.active { color:var(--green); border-left-color:var(--green); background:var(--green-bg); }
+						.nav-dot {
+						width:7px; height:7px; border-radius:50%; flex-shrink:0;
+						}
+
+						/* ── Progress bar ─────────────────────────── */
+						#progress-bar { position:fixed; top:0; left:252px; right:0; height:3px; background:var(--border); z-index:200; }
+						#progress-fill { height:100%; background:var(--green); width:0%; transition:width .1s; }
+
+						/* ── Main ─────────────────────────────────── */
+						.main { margin-left:252px; max-width:980px; padding:0 2.5rem 6rem; }
+
+						/* ── Hero ─────────────────────────────────── */
+						.hero {
+						padding: 3rem 0 2.5rem;
+						border-bottom: 1px solid var(--border);
+						margin-bottom: 2.5rem;
+						}
+						.hero-eyebrow {
+						display:inline-flex; align-items:center; gap:6px;
+						background:var(--green-bg); border:1px solid var(--green-bd);
+						color:var(--green); font-size:0.72rem; font-weight:800;
+						letter-spacing:0.07em; text-transform:uppercase;
+						padding:0.3rem 0.8rem; border-radius:100px; margin-bottom:1.25rem;
+						}
+						.hero h1 {
+						font-family:'Source Serif 4', serif;
+						font-size:2.4rem; font-weight:600; line-height:1.15;
+						color:var(--text); margin-bottom:0.75rem; letter-spacing:-0.01em;
+						}
+						.hero h1 em { color:var(--green); font-style:italic; }
+						.hero-desc { color:var(--text2); font-size:0.95rem; max-width:600px; margin-bottom:1.75rem; }
+						.hero-stats { display:flex; gap:2.5rem; flex-wrap:wrap; }
+						.stat-item { }
+						.stat-n { font-size:2rem; font-weight:900; color:var(--green); line-height:1; }
+						.stat-l { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--text3); margin-top:1px; }
+
+						/* ── Section titles ───────────────────────── */
+						.sec-title {
+						font-family:'Source Serif 4', serif;
+						font-size:1.4rem; font-weight:600; color:var(--text);
+						margin-bottom:0.35rem; display:flex; align-items:center; gap:10px;
+						}
+						.sec-badge {
+						font-family:'Nunito',sans-serif;
+						font-size:0.62rem; font-weight:800; text-transform:uppercase;
+						letter-spacing:0.09em; border:1px solid var(--border2); color:var(--text3);
+						padding:2px 8px; border-radius:4px; margin-top:3px;
+						}
+						.sec-desc { color:var(--text2); font-size:0.92rem; margin-bottom:1.25rem; }
+
+						/* ── TOC ──────────────────────────────────── */
+						#toc {
+						background:var(--white); border:1px solid var(--border);
+						border-radius:var(--radius-lg); padding:1.75rem;
+						margin-bottom:2.5rem; box-shadow:var(--shadow-sm);
+						}
+						.toc-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.25rem; margin-top:1.25rem; }
+						.toc-col {
+						background:var(--bg); border-radius:var(--radius);
+						padding:1rem 1.1rem; border-top:3px solid;
+						}
+						.toc-col.d1 { border-color:var(--day1); }
+						.toc-col.d2 { border-color:var(--day2); }
+						.toc-col.d3 { border-color:var(--day3); }
+						.toc-col-title {
+						font-size:0.72rem; font-weight:800; text-transform:uppercase;
+						letter-spacing:0.07em; margin-bottom:0.6rem;
+						}
+						.toc-col.d1 .toc-col-title { color:var(--day1); }
+						.toc-col.d2 .toc-col-title { color:var(--day2); }
+						.toc-col.d3 .toc-col-title { color:var(--day3); }
+						.toc-link {
+						display:block; font-size:0.78rem; font-weight:600; color:var(--text2);
+						text-decoration:none; padding:0.18rem 0;
+						border-left:2px solid transparent; padding-left:6px;
+						transition:all .14s;
+						}
+						.toc-link:hover { color:var(--text); border-left-color:var(--border2); }
+
+						/* ── Day Header ───────────────────────────── */
+						.day-banner {
+						display:flex; align-items:center; gap:1.25rem;
+						background:var(--white); border:1px solid var(--border);
+						border-radius:var(--radius-lg); padding:1.25rem 1.5rem;
+						margin:2.5rem 0 1.5rem; box-shadow:var(--shadow-sm);
+						border-left:5px solid;
+						}
+						.day-banner.d1 { border-left-color:var(--day1); }
+						.day-banner.d2 { border-left-color:var(--day2); }
+						.day-banner.d3 { border-left-color:var(--day3); }
+						.day-num-big { font-size:2.8rem; font-weight:900; line-height:1; opacity:0.12; }
+						.day-banner.d1 .day-num-big { color:var(--day1); opacity:1; }
+						.day-banner.d2 .day-num-big { color:var(--day2); opacity:1; }
+						.day-banner.d3 .day-num-big { color:var(--day3); opacity:1; }
+						.day-info-label { font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; }
+						.day-banner.d1 .day-info-label { color:var(--day1); }
+						.day-banner.d2 .day-info-label { color:var(--day2); }
+						.day-banner.d3 .day-info-label { color:var(--day3); }
+						.day-info-title { font-family:'Source Serif 4',serif; font-size:1.15rem; font-weight:600; color:var(--text); }
+						.day-obj-pills { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.6rem; }
+						.obj-pill {
+						font-size:0.7rem; font-weight:700;
+						padding:2px 10px; border-radius:100px;
+						border:1px solid;
+						}
+						.d1 .obj-pill { background:var(--green-bg); color:var(--green); border-color:var(--green-bd); }
+						.d2 .obj-pill { background:var(--blue-bg);  color:var(--blue);  border-color:var(--blue-bd); }
+						.d3 .obj-pill { background:var(--rose-bg);  color:var(--rose);  border-color:var(--rose-bd); }
+
+						/* ── Module Card ──────────────────────────── */
+						.module-card {
+						background:var(--white); border:1px solid var(--border);
+						border-radius:var(--radius-lg); margin-bottom:1.5rem;
+						box-shadow:var(--shadow-sm); overflow:hidden;
+						}
+						.module-header {
+						display:flex; align-items:center; gap:0.9rem;
+						padding:1.1rem 1.4rem; cursor:pointer;
+						user-select:none; border-bottom:1px solid transparent;
+						transition:background .15s;
+						}
+						.module-header:hover { background:var(--bg); }
+						.module-card.open .module-header { border-bottom-color:var(--border); }
+						.mod-num {
+						font-family:'JetBrains Mono',monospace;
+						font-size:0.65rem; font-weight:500;
+						background:var(--bg2); color:var(--text3);
+						padding:2px 8px; border-radius:5px; white-space:nowrap;
+						border:1px solid var(--border);
+						}
+						.mod-title { font-size:1rem; font-weight:800; color:var(--text); flex:1; }
+						.mod-pills { display:flex; gap:0.5rem; }
+						.mpill {
+						font-size:0.65rem; font-weight:700; padding:2px 9px;
+						border-radius:100px; border:1px solid; white-space:nowrap;
+						}
+						.mpill-lec { background:var(--blue-bg); color:var(--blue); border-color:var(--blue-bd); }
+						.mpill-ws  { background:var(--green-bg); color:var(--green); border-color:var(--green-bd); }
+						.caret { font-size:0.72rem; color:var(--text3); transition:transform .25s; }
+						.module-card.open .caret { transform:rotate(180deg); }
+						.module-body { display:none; }
+						.module-card.open .module-body { display:block; }
+						.module-body-inner { padding:1.5rem; }
+
+						/* ── Content Grid ─────────────────────────── */
+						.cg { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.25rem; }
+						.cb {
+						background:var(--bg); border-radius:var(--radius);
+						padding:1rem 1.1rem; border-left:3px solid;
+						}
+						.cb.topics  { border-color:var(--blue); }
+						.cb.skills  { border-color:var(--green); }
+						.cb.context { border-color:var(--amber); }
+						.cb.workshop{ border-color:var(--rose); }
+						.cb.emphasis{ border-color:var(--purple); }
+						.cb-head {
+						font-size:0.64rem; font-weight:800; text-transform:uppercase;
+						letter-spacing:0.09em; margin-bottom:0.6rem;
+						}
+						.cb.topics .cb-head  { color:var(--blue); }
+						.cb.skills .cb-head  { color:var(--green); }
+						.cb.context .cb-head { color:var(--amber); }
+						.cb.workshop .cb-head{ color:var(--rose); }
+						.cb.emphasis .cb-head{ color:var(--purple); }
+						.cb-list { list-style:none; font-size:0.85rem; color:var(--text2); line-height:1.65; }
+						.cb-list li { display:flex; gap:6px; padding:0.1rem 0; }
+						.cb-list li::before { content:'›'; color:var(--text3); flex-shrink:0; }
+
+						/* ── Example Tabs ─────────────────────────── */
+						.ex-section { margin-top:1.25rem; }
+						.ex-label-row {
+						font-size:0.68rem; font-weight:800; text-transform:uppercase;
+						letter-spacing:0.09em; color:var(--text3); margin-bottom:0.6rem;
+						display:flex; align-items:center; gap:8px;
+						}
+						.ex-label-row::before { content:''; display:block; width:20px; height:1.5px; background:var(--border2); }
+						.ex-tabs { display:flex; gap:0; border-bottom:1.5px solid var(--border); margin-bottom:0; }
+						.ex-tab {
+						font-size:0.75rem; font-weight:700; padding:0.45rem 1rem;
+						cursor:pointer; color:var(--text3);
+						border-bottom:2px solid transparent; margin-bottom:-1.5px;
+						background:none; border-top:none; border-left:none; border-right:none;
+						transition:all .14s;
+						}
+						.ex-tab:hover { color:var(--text2); }
+						.ex-tab.active { color:var(--green); border-bottom-color:var(--green); }
+						.ex-panel { display:none; padding:1rem 0; }
+						.ex-panel.active { display:block; }
+						.ex-card {
+						background:var(--bg); border:1px solid var(--border);
+						border-radius:var(--radius); padding:1rem 1.1rem; margin-bottom:0.75rem;
+						}
+						.ex-card-label { font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:var(--text3); margin-bottom:0.5rem; }
+						.ex-card p { font-size:0.88rem; color:var(--text2); line-height:1.65; }
+						.ex-card strong { color:var(--text); }
+						.data-table {
+						width:100%; border-collapse:collapse;
+						font-family:'JetBrains Mono',monospace; font-size:0.72rem;
+						}
+						.data-table th {
+						background:var(--bg2); color:var(--text3); text-align:left;
+						padding:5px 10px; font-weight:500; border-bottom:1.5px solid var(--border);
+						}
+						.data-table td { color:var(--text2); padding:5px 10px; border-bottom:1px solid var(--border); }
+						.data-table tr:last-child td { border-bottom:none; }
+						.tag-g { color:var(--green); font-weight:700; }
+						.tag-a { color:var(--amber); font-weight:700; }
+						.tag-r { color:var(--rose);  font-weight:700; }
+						.code-snip {
+						background:#f8f6f0; border:1px solid var(--border);
+						border-radius:8px; padding:0.9rem 1rem;
+						font-family:'JetBrains Mono',monospace; font-size:0.76rem;
+						color:#3a3328; line-height:1.75; overflow-x:auto; margin:0.6rem 0;
+						}
+						.code-snip .kw { color:#7a3a9e; font-weight:500; }
+						.code-snip .cm { color:#9e9485; font-style:italic; }
+						.code-snip .hi { color:#1a7a4a; font-weight:500; }
+
+						/* ── EVALUATION ───────────────────────────── */
+						.eval-section {
+						margin-top:1.5rem;
+						border-top:2px dashed var(--border2);
+						padding-top:1.25rem;
+						}
+						.eval-header {
+						display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;
+						}
+						.eval-badge {
+						font-size:0.65rem; font-weight:800; text-transform:uppercase;
+						letter-spacing:0.08em; padding:3px 10px; border-radius:100px;
+						border:1.5px solid;
+						}
+						.eval-badge.pre  { background:var(--blue-bg); color:var(--blue); border-color:var(--blue-bd); }
+						.eval-badge.post { background:var(--purple-bg); color:var(--purple); border-color:var(--purple-bd); }
+						.eval-title { font-size:0.88rem; font-weight:800; color:var(--text); }
+						.eval-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+						.eval-col-label {
+						font-size:0.65rem; font-weight:800; text-transform:uppercase;
+						letter-spacing:0.09em; margin-bottom:0.65rem;
+						}
+						.eval-col-label.pre  { color:var(--blue); }
+						.eval-col-label.post { color:var(--purple); }
+						/* Question */
+						.q-item { margin-bottom:1rem; }
+						.q-stem {
+						font-size:0.85rem; font-weight:700; color:var(--text);
+						margin-bottom:0.4rem; line-height:1.5;
+						}
+						.q-options { list-style:none; }
+						.q-opt {
+						display:flex; align-items:flex-start; gap:8px;
+						font-size:0.82rem; color:var(--text2);
+						padding:0.3rem 0.5rem; border-radius:6px; margin-bottom:2px;
+						cursor:pointer; transition:background .12s;
+						border:1px solid transparent;
+						line-height:1.5;
+						}
+						.q-opt:hover { background:var(--bg2); border-color:var(--border); }
+						.q-opt.selected { background:var(--bg2); border-color:var(--border2); }
+						.q-opt.correct  { background:var(--green-bg)!important; border-color:var(--green-bd)!important; color:var(--green)!important; }
+						.q-opt.wrong    { background:var(--rose-bg)!important; border-color:var(--rose-bd)!important; color:var(--rose)!important; }
+						.opt-letter {
+						width:20px; height:20px; border-radius:50%; border:1.5px solid var(--border2);
+						display:flex; align-items:center; justify-content:center;
+						font-size:0.68rem; font-weight:800; flex-shrink:0; margin-top:1px;
+						font-family:'JetBrains Mono',monospace;
+						}
+						.q-opt.correct .opt-letter { background:var(--green); color:#fff; border-color:var(--green); }
+						.q-opt.wrong   .opt-letter { background:var(--rose);  color:#fff; border-color:var(--rose); }
+						/* Submit + score */
+						.eval-actions { display:flex; align-items:center; gap:1rem; margin-top:0.75rem; }
+						.eval-btn {
+						font-family:'Nunito',sans-serif; font-size:0.8rem; font-weight:800;
+						padding:0.45rem 1.25rem; border-radius:8px; cursor:pointer;
+						border:1.5px solid; transition:all .15s;
+						}
+						.eval-btn.check {
+						background:var(--green); color:#fff; border-color:var(--green);
+						}
+						.eval-btn.check:hover { opacity:0.88; }
+						.eval-btn.reset {
+						background:transparent; color:var(--text3); border-color:var(--border2);
+						}
+						.eval-btn.reset:hover { color:var(--text); border-color:var(--border2); background:var(--bg2); }
+						.score-badge {
+						font-size:0.78rem; font-weight:800;
+						padding:3px 12px; border-radius:100px;
+						display:none;
+						}
+						.score-badge.show { display:inline-block; }
+						/* Answer Key */
+						.key-section {
+						margin-top:1rem; background:var(--amber-bg);
+						border:1px solid var(--amber-bd); border-radius:var(--radius);
+						overflow:hidden;
+						}
+						.key-toggle {
+						display:flex; align-items:center; justify-content:space-between;
+						padding:0.65rem 1rem; cursor:pointer;
+						font-size:0.78rem; font-weight:800; color:var(--amber);
+						background:none; border:none; width:100%; text-align:left;
+						}
+						.key-toggle:hover { background:rgba(0,0,0,0.02); }
+						.key-body { display:none; padding:0.75rem 1rem 1rem; border-top:1px solid var(--amber-bd); }
+						.key-body.open { display:block; }
+						.key-item {
+						display:flex; align-items:flex-start; gap:8px;
+						font-size:0.82rem; color:var(--text2); margin-bottom:0.6rem;
+						line-height:1.55;
+						}
+						.key-num {
+						background:var(--amber); color:#fff;
+						font-size:0.62rem; font-weight:800; font-family:'JetBrains Mono',monospace;
+						padding:1px 6px; border-radius:4px; flex-shrink:0; margin-top:2px;
+						}
+						.key-ans { color:var(--amber); font-weight:800; }
+						.key-exp { color:var(--text2); }
+
+						/* ── Gantt ────────────────────────────────── */
+						.gantt-wrap {
+						background:var(--white); border:1px solid var(--border);
+						border-radius:var(--radius-lg); padding:1.5rem 1.75rem;
+						box-shadow:var(--shadow-sm); overflow-x:auto; margin-bottom:2.5rem;
+						}
+						.gantt-table { width:100%; border-collapse:collapse; min-width:660px; }
+						.gantt-table th {
+						font-size:0.64rem; font-weight:800; text-transform:uppercase;
+						letter-spacing:0.09em; color:var(--text3); text-align:left;
+						padding:0 0 0.65rem; font-family:'Nunito',sans-serif;
+						}
+						.gantt-row { border-top:1px solid var(--border); }
+						.gantt-row td { padding:0.55rem 0; vertical-align:middle; }
+						.g-mod { font-size:0.78rem; font-weight:700; color:var(--text); padding-right:1rem; width:190px; }
+						.g-mod span { display:block; font-size:0.68rem; font-weight:600; color:var(--text3); }
+						.g-time { font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:var(--text3); padding-right:1rem; width:70px; }
+						.g-bar { display:flex; height:24px; border-radius:5px; overflow:hidden; gap:2px; }
+						.g-seg {
+						height:100%; display:flex; align-items:center; padding:0 8px;
+						font-size:0.62rem; font-weight:700; white-space:nowrap; border-radius:4px;
+						}
+						.g-lec { background:var(--blue-bg); color:var(--blue); }
+						.g-ws  { background:var(--green-bg); color:var(--green); }
+						.g-brk { background:var(--amber-bg); color:var(--amber); border-radius:4px; }
+						.g-cs  { background:var(--purple-bg); color:var(--purple); }
+						.gantt-legend { display:flex; gap:1.25rem; margin-top:0.9rem; flex-wrap:wrap; }
+						.gl-item { display:flex; align-items:center; gap:5px; font-size:0.7rem; font-weight:700; color:var(--text3); }
+						.gl-dot { width:10px; height:10px; border-radius:3px; }
+
+						/* ── Philosophy ───────────────────────────── */
+						#philosophy {
+						background:var(--white); border:1px solid var(--border);
+						border-radius:var(--radius-lg); padding:2rem;
+						box-shadow:var(--shadow-sm); margin:2.5rem 0;
+						}
+						.phil-quote {
+						font-family:'Source Serif 4',serif; font-style:italic;
+						font-size:1.15rem; color:var(--text);
+						border-left:4px solid var(--green); padding-left:1.25rem;
+						margin-bottom:1.25rem; line-height:1.65;
+						}
+						.pillar-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.9rem; }
+						.pillar-card { background:var(--bg); border-radius:var(--radius); padding:1rem 1.1rem; border-left:3px solid var(--border); }
+						.pillar-title { font-size:0.85rem; font-weight:800; margin-bottom:0.35rem; }
+						.pillar-card p { font-size:0.83rem; color:var(--text2); line-height:1.6; }
+
+						/* ── Software ─────────────────────────────── */
+						.sw-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:0.75rem; margin-top:0.75rem; }
+						.sw-card {
+						background:var(--white); border:1px solid var(--border);
+						border-radius:var(--radius); padding:1rem 1rem 0.8rem;
+						text-align:center; box-shadow:var(--shadow-sm);
+						}
+						.sw-icon { font-size:1.4rem; margin-bottom:5px; }
+						.sw-name { font-size:0.78rem; font-weight:800; color:var(--text); }
+						.sw-cat  { font-size:0.68rem; color:var(--text3); font-weight:600; }
+
+						/* ── Case Study ───────────────────────────── */
+						#case-study {
+						background:var(--white); border:2px solid var(--green-bd);
+						border-radius:var(--radius-lg); padding:1.75rem;
+						box-shadow:var(--shadow); margin:2.5rem 0;
+						}
+						.cs-title { font-family:'Source Serif 4',serif; font-size:1.35rem; font-weight:600; color:var(--green); margin-bottom:0.3rem; }
+						.cs-sub { color:var(--text3); font-size:0.85rem; font-weight:700; margin-bottom:1.25rem; }
+						.cs-ds-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:0.6rem; margin-bottom:1.25rem; }
+						.cs-ds-item { background:var(--bg); border-radius:var(--radius); padding:0.65rem; text-align:center; border:1px solid var(--border); }
+						.cs-ds-icon { font-size:1.25rem; }
+						.cs-ds-label { font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; color:var(--text3); margin-top:3px; }
+						.cs-q-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; }
+						.cs-q-item { display:flex; align-items:flex-start; gap:7px; font-size:0.83rem; color:var(--text2); }
+						.cs-q-num { background:var(--green); color:#fff; font-size:0.62rem; font-weight:800; padding:1px 6px; border-radius:4px; flex-shrink:0; margin-top:2px; font-family:'JetBrains Mono',monospace; }
+
+						@media(max-width:860px){
+						.sidebar { display:none; } .main { margin-left:0; padding:0 1.25rem 4rem; }
+						.toc-grid,.eval-grid,.cg,.pillar-grid,.cs-q-grid { grid-template-columns:1fr; }
+						}
+						section,div[id^="mod"],div[id="case-study"],div[id="philosophy"] { scroll-margin-top:1rem; }
+					</style>
+				</head>
+	<body>
+
+		<!-- Sidebar -->
+		<nav class="sidebar">
+			<div class="sidebar-brand">
+				<div class="brand-leaf">🌿</div>
+				<div class="brand-text">
+					<div class="brand-title">IBO Training 2026</div>
+					<div class="brand-sub">Plant Computational Bio</div>
+				</div>
+			</div>
+			<div class="nav-group">
+				<div class="nav-group-label" onclick="goToId('toc')" style="cursor:pointer">Overview</div>
+				<button class="nav-item" onclick="goToId('toc')">
+					<span class="nav-dot" style="background:var(--text3)"></span>Table of Contents
+				</button>
+				<button class="nav-item" onclick="goToId('gantt')">
+					<span class="nav-dot" style="background:var(--text3)"></span>Schedule & Gantt
+				</button>
+				<button class="nav-item" onclick="goToId('philosophy')">
+					<span class="nav-dot" style="background:var(--text3)"></span>Core Philosophy
+				</button>
+			</div>
+			<div class="nav-group">
+				<div class="nav-group-label" onclick="goToId('day1')" style="cursor:pointer">Day 1 · Sequences</div>
+				<button class="nav-item" onclick="goToId('mod1')">
+					<span class="nav-dot" style="background:var(--day1)"></span>M1 · Genome Fundamentals
+				</button>
+				<button class="nav-item" onclick="goToId('mod2')">
+					<span class="nav-dot" style="background:var(--day1)"></span>M2 · ORFs & Annotation
+				</button>
+				<button class="nav-item" onclick="goToId('mod3')">
+					<span class="nav-dot" style="background:var(--day1)"></span>M3 · BLAST & Inference
+				</button>
+				<button class="nav-item" onclick="goToId('mod4')">
+					<span class="nav-dot" style="background:var(--day1)"></span>M4 · Genome Browser
+				</button>
+			</div>
+			<div class="nav-group">
+				<div class="nav-group-label" onclick="goToId('day2')" style="cursor:pointer">Day 2 · Evolution</div>
+				<button class="nav-item" onclick="goToId('mod5')">
+					<span class="nav-dot" style="background:var(--day2)"></span>M5 · MSA
+				</button>
+				<button class="nav-item" onclick="goToId('mod6')">
+					<span class="nav-dot" style="background:var(--day2)"></span>M6 · Phylogenetics
+				</button>
+				<button class="nav-item" onclick="goToId('mod7')">
+					<span class="nav-dot" style="background:var(--day2)"></span>M7 · Transcriptomics
+				</button>
+			</div>
+			<div class="nav-group">
+				<div class="nav-group-label" onclick="goToId('day3')" style="cursor:pointer">Day 3 · Expression</div>
+				<button class="nav-item" onclick="goToId('mod8')">
+					<span class="nav-dot" style="background:var(--day3)"></span>M8 · ImageJ
+				</button>
+				<button class="nav-item" onclick="goToId('mod9')">
+					<span class="nav-dot" style="background:var(--day3)"></span>M9 · Pathways
+				</button>
+				<button class="nav-item" onclick="goToId('mod10')">
+					<span class="nav-dot" style="background:var(--day3)"></span>M10 · Validation
+				</button>
+				<button class="nav-item" onclick="goToId('case-study')">
+					<span class="nav-dot" style="background:var(--text3)"></span>Final Case Study
+				</button>
+			</div>
+		</nav>
+
+		<div id="progress-bar">
+			<div id="progress-fill"></div>
+		</div>
+
+		<main class="main">
+
+			<!-- Hero -->
+			<section id="hero" class="hero">
+				<div class="hero-eyebrow">🌱 Plant Bioinformatics Module for IBO 2026</div>
+				<h1>
+					3-Day Training in<br>
+						<em>Plant Computational Biology</em>
+						<br>& Bioinformatics
+				</h1>
+				</div>
+			</section>
+
+			<!-- TOC -->
+			<section id="toc">
+				<div class="sec-title">
+					Table of Contents <span class="sec-badge">Overview</span>
+				</div>
+				<div class="toc-grid">
+					<div class="toc-col d1">
+						<div class="toc-col-title">Day 1 · Sequences & Genomes</div>
+						<a class="toc-link" href="#mod1">Module 1 · Plant Genome Fundamentals</a>
+						<a class="toc-link" href="#mod2">Module 2 · ORFs & Gene Annotation</a>
+						<a class="toc-link" href="#mod3">Module 3 · BLAST & Functional Inference</a>
+						<a class="toc-link" href="#mod4">Module 4 · Genome Browser Basics</a>
+					</div>
+					<div class="toc-col d2">
+						<div class="toc-col-title">Day 2 · Alignment & Evolution</div>
+						<a class="toc-link" href="#mod5">Module 5 · Multiple Sequence Alignment</a>
+						<a class="toc-link" href="#mod6">Module 6 · Phylogenetics & Evolution</a>
+						<a class="toc-link" href="#mod7">Module 7 · Transcriptomics</a>
+					</div>
+					<div class="toc-col d3">
+						<div class="toc-col-title">Day 3 · Expression & Reasoning</div>
+						<a class="toc-link" href="#mod8">Module 8 · ImageJ & Image Analysis</a>
+						<a class="toc-link" href="#mod9">Module 9 · Metabolic Pathways</a>
+						<a class="toc-link" href="#mod10">Module 10 · Experimental Validation</a>
+						<a class="toc-link" href="#case-study">Final Integrated Case Study</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- Gantt (schedule hidden) -->
+			<section id="gantt">
+				<div class="sec-title">
+					3-Day Schedule <span class="sec-badge">Gantt</span>
+				</div>
+				<p class="sec-desc">Schedule temporarily hidden. Use the button to open the full schedule program.</p>
+				<div style="margin-top:1rem">
+					<button class="eval-btn check" onclick="openSchedule()" type="button">Open Schedule Program</button>
+				</div>
+			</section>
+
+			<!-- ===== DAY 1 ===== -->
+			<div class="day-banner d1" id="day1">
+				<div class="day-num-big">01</div>
+				<div>
+					<div class="day-info-label">Day One</div>
+					<div class="day-info-title">Sequences, Genes & Genome Interpretation</div>
+					<div class="day-obj-pills">
+						<span class="obj-pill">Identify ORFs</span>
+						<span class="obj-pill">Interpret BLAST</span>
+						<span class="obj-pill">Ortholog vs. Paralog</span>
+						<span class="obj-pill">Chloroplast vs. Nuclear</span>
+						<span class="obj-pill">Genome Browser Navigation</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- ── MODULE 1 ── -->
+			<div class="module-card" id="mod1">
+				<div class="module-header" onclick="toggleMod(this)">
+					<span class="mod-num">M 01</span>
+					<span class="mod-title">Plant Genome Fundamentals</span>
+					<div class="mod-pills">
+						<span class="mpill mpill-lec">45 min lecture</span>
+						<span class="mpill mpill-ws">20 min workshop</span>
+					</div>
+					<span class="caret">▼</span>
+				</div>
+				<div class="module-body">
+					<div class="module-body-inner">
+
+						<!-- PRE-EVAL (replaced) -->
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge pre">Materials</span>
+								<span class="eval-title">Open module materials</span>
+							</div>
+							<div style="margin-top:0.6rem">
+								<a class="eval-btn check" href="materials/mod1.html" target="_blank" rel="noopener noreferrer">Open Materials</a>
+							</div>
+						</div>
+
+						<!-- CONTENT -->
+						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+						<div class="cg">
+							<div class="cb topics">
+								<div class="cb-head">Topics</div>
+								<ul class="cb-list">
+									<li>Nuclear, chloroplast, and mitochondrial genome organization</li>
+									<li>Gene structure: exon, intron, UTR, promoter</li>
+									<li>Coding vs. non-coding DNA; C-value paradox</li>
+									<li>Endosymbiotic origin of chloroplasts (Margulis)</li>
+								</ul>
+							</div>
+							<div class="cb context">
+								<div class="cb-head">Plant Examples</div>
+								<ul class="cb-list">
+									<li>
+										<em>Arabidopsis</em>: ~135 Mb nuclear, 154 kb chloroplast
+									</li>
+									<li>Maize: ~2.4 Gb nuclear (85% transposable elements)</li>
+									<li>rbcL (cpDNA) vs. RBCS1A (nuclear, transit peptide)</li>
+									<li>~130 protein-coding genes in the chloroplast genome</li>
+								</ul>
+							</div>
+							<div class="cb skills">
+								<div class="cb-head">Key Skill</div>
+								<ul class="cb-list">
+									<li>Classify genes as chloroplast-origin vs. nuclear-origin</li>
+									<li>Lowercase gene name (e.g., rbcL) = plastid-encoded convention</li>
+									<li>Uppercase (e.g., RBCS) = nuclear-encoded convention</li>
+									<li>Detect transit peptides using ChloroP or TargetP</li>
+								</ul>
+							</div>
+							<div class="cb workshop">
+								<div class="cb-head">Workshop Task</div>
+								<ul class="cb-list">
+									<li>Classify 10 photosynthesis genes as nuclear or chloroplast</li>
+									<li>Justify one ambiguous case (e.g., FtsZ — nuclear but plastid function)</li>
+									<li>Sketch a simplified chloroplast genome map with LSC/SSC/IR regions</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- ── MODULE 2 ── -->
+			<div class="module-card" id="mod2">
+				<div class="module-header" onclick="toggleMod(this)">
+					<span class="mod-num">M 02</span>
+					<span class="mod-title">ORFs & Gene Annotation</span>
+					<div class="mod-pills">
+						<span class="mpill mpill-lec">45 min lecture</span>
+						<span class="mpill mpill-ws">30 min workshop</span>
+					</div>
+					<span class="caret">▼</span>
+				</div>
+				<div class="module-body">
+					<div class="module-body-inner">
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge pre">Materials</span>
+								<span class="eval-title">Open module materials</span>
+							</div>
+							<div style="margin-top:0.6rem">
+								<a class="eval-btn check" href="materials/mod2.html" target="_blank" rel="noopener noreferrer">Open Materials</a>
+							</div>
+						</div>
+						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+						<div class="cg">
+							<div class="cb topics">
+								<div class="cb-head">Topics</div>
+								<ul class="cb-list">
+									<li>Six reading frames (3 forward, 3 reverse complement)</li>
+									<li>Start codon ATG; stop codons TAA, TAG, TGA</li>
+									<li>ORF = longest uninterrupted run between ATG and stop</li>
+									<li>GT-AG rule for plant intron splice sites</li>
+									<li>Kozak context around ATG affects translation efficiency</li>
+								</ul>
+							</div>
+							<div class="cb skills">
+								<div class="cb-head">Skills</div>
+								<ul class="cb-list">
+									<li>Identify the longest ORF in all 6 frames</li>
+									<li>Predict effect of nonsense vs. frameshift mutation</li>
+									<li>Distinguish ORF / CDS / transcript / mRNA</li>
+									<li>Identify 5' UTR, CDS, and 3' UTR from a GenBank entry</li>
+								</ul>
+							</div>
+							<div class="cb emphasis">
+								<div class="cb-head">Common Traps</div>
+								<ul class="cb-list">
+									<li>Longest ORF ≠ always correct gene (context required)</li>
+									<li>ORF ≠ functional gene (may be non-translated)</li>
+									<li>A single base insertion shifts ALL downstream codons</li>
+									<li>Intron retention from mutated GT or AG splice sites</li>
+								</ul>
+							</div>
+							<div class="cb workshop">
+								<div class="cb-head">Workshop</div>
+								<ul class="cb-list">
+									<li>Given 200 bp sequence — locate ORF in all 6 frames</li>
+									<li>Introduce a +1 frameshift and predict new protein</li>
+									<li>Identify the splice sites in a 3-exon gene model</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- ── MODULE 3 ── -->
+			<div class="module-card" id="mod3">
+				<div class="module-header" onclick="toggleMod(this)">
+					<span class="mod-num">M 03</span>
+					<span class="mod-title">BLAST & Functional Inference</span>
+					<div class="mod-pills">
+						<span class="mpill mpill-lec">60 min lecture</span>
+						<span class="mpill mpill-ws">45 min workshop</span>
+					</div>
+					<span class="caret">▼</span>
+				</div>
+				<div class="module-body">
+					<div class="module-body-inner">
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge pre">Materials</span>
+								<span class="eval-title">Open module materials</span>
+							</div>
+							<div style="margin-top:0.6rem">
+								<a class="eval-btn check" href="materials/mod3.html" target="_blank" rel="noopener noreferrer">Open Materials</a>
+							</div>
+						</div>
+						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+						<div class="cg">
+							<div class="cb topics">
+								<div class="cb-head">Topics</div>
+								<ul class="cb-list">
+									<li>BLAST algorithm: word seeding → extension → scoring</li>
+									<li>E-value: expected hits by chance (lower = more significant)</li>
+									<li>Percent identity vs. percent similarity (conservative subs)</li>
+									<li>Query coverage: what fraction of your sequence is matched</li>
+									<li>Bit score: independent of database size; comparable across runs</li>
+								</ul>
+							</div>
+							<div class="cb emphasis">
+								<div class="cb-head">IBO Ambiguity Scenarios</div>
+								<ul class="cb-list">
+									<li>High identity + low coverage → domain hit only</li>
+									<li>Multiple top hits with similar E-values → gene family</li>
+									<li>Bacterial hit with weak E-value on a plant gene → likely noise</li>
+									<li>Paralog confusion: D1 vs D2 of PSII (32% identity, full coverage)</li>
+								</ul>
+							</div>
+							<div class="cb skills">
+								<div class="cb-head">Interpretation Rules</div>
+								<ul class="cb-list">
+									<li>E &lt; 1e-10: statistically significant</li>
+									<li>E &lt; 1e-30: likely functional homolog</li>
+									<li>E &gt; 0.01: discard — chance hit</li>
+									<li>Always combine E-value + identity + coverage + coverage</li>
+								</ul>
+							</div>
+							<div class="cb workshop">
+								<div class="cb-head">Workshop</div>
+								<ul class="cb-list">
+									<li>Analyze 3 BLAST result tables for an unknown plant protein</li>
+									<li>Determine ortholog vs. paralog from hit patterns</li>
+									<li>Write a 2-sentence functional annotation with confidence level</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- ── MODULE 4 ── -->
+			<div class="module-card" id="mod4">
+				<div class="module-header" onclick="toggleMod(this)">
+					<span class="mod-num">M 04</span>
+					<span class="mod-title">Genome Browser Basics</span>
+					<div class="mod-pills">
+						<span class="mpill mpill-lec">45 min lecture</span>
+						<span class="mpill mpill-ws">45 min workshop</span>
+					</div>
+					<span class="caret">▼</span>
+				</div>
+				<div class="module-body">
+					<div class="module-body-inner">
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge pre">Materials</span>
+								<span class="eval-title">Open module materials</span>
+							</div>
+							<div style="margin-top:0.6rem">
+								<a class="eval-btn check" href="materials/mod4.html" target="_blank" rel="noopener noreferrer">Open Materials</a>
+							</div>
+						</div>
+						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+						<div class="cg">
+							<div class="cb topics">
+								<div class="cb-head">Tools</div>
+								<ul class="cb-list">
+									<li>IGV (Integrative Genomics Viewer) — local, BAM/VCF visualization</li>
+									<li>UCSC Genome Browser — web, extensive track database</li>
+									<li>Ensembl Plants — plant-specific annotation, synteny</li>
+									<li>Coordinate format: Chr1:12345-67890</li>
+								</ul>
+							</div>
+							<div class="cb skills">
+								<div class="cb-head">Track Reading</div>
+								<ul class="cb-list">
+									<li>Thick blocks = exons; thin connecting lines = introns</li>
+									<li>Arrowheads on intron lines = direction of transcription</li>
+									<li>RNA-seq coverage height = relative expression level</li>
+									<li>Gap in RNA-seq coverage within a gene = likely intron</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- ===== DAY 2 ===== -->
+			<div class="day-banner d2" id="day2">
+				<div class="day-num-big">02</div>
+				<div>
+					<div class="day-info-label">Day Two</div>
+					<div class="day-info-title">Alignment, Evolution & Image Analysis</div>
+					<div class="day-obj-pills">
+						<span class="obj-pill">Interpret MSA</span>
+						<span class="obj-pill">Phylogenetic Trees</span>
+						<span class="obj-pill">Polyploidy</span>
+						<span class="obj-pill">C3 vs C4 Evolution</span>
+						<span class="obj-pill">ImageJ Quantification</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- ── MODULE 5 ── -->
+			<div class="module-card" id="mod5">
+				<div class="module-header" onclick="toggleMod(this)">
+					<span class="mod-num">M 05</span>
+					<span class="mod-title">Multiple Sequence Alignment (MSA)</span>
+					<div class="mod-pills">
+						<span class="mpill mpill-lec">45 min lecture</span>
+						<span class="mpill mpill-ws">30 min workshop</span>
+					</div>
+					<span class="caret">▼</span>
+				</div>
+				<div class="module-body">
+					<div class="module-body-inner">
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge pre">Materials</span>
+								<span class="eval-title">Open module materials</span>
+							</div>
+							<div style="margin-top:0.6rem">
+								<a class="eval-btn check" href="materials/mod5.html" target="_blank" rel="noopener noreferrer">Open Materials</a>
+							</div>
+						</div>
+						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+						<div class="cg">
+							<div class="cb topics">
+								<div class="cb-head">Topics</div>
+								<ul class="cb-list">
+									<li>ClustalW, MUSCLE, MAFFT — differences in algorithm speed vs. accuracy</li>
+									<li>Conservation scoring: * (identical) : (conserved) . (semi-conserved)</li>
+									<li>Gaps represent insertions/deletions (indels) in evolution</li>
+									<li>Gap penalty: opening penalty >> extension penalty</li>
+									<li>Positional entropy as a quantitative conservation measure</li>
+								</ul>
+							</div>
+							<div class="cb emphasis">
+								<div class="cb-head">IBO Emphasis: Noisy Alignments</div>
+								<ul class="cb-list">
+									<li>Low-complexity regions (poly-A, disordered) should be masked</li>
+									<li>N-terminal signal peptides: often poorly conserved — this is normal</li>
+									<li>Hypervariable C-terminus of D1 protein encodes degradation signal</li>
+									<li>Biologically meaningful conservation ≠ highest-scoring region</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- ── MODULE 6 ── -->
+			<div class="module-card" id="mod6">
+				<div class="module-header" onclick="toggleMod(this)">
+					<span class="mod-num">M 06</span>
+					<span class="mod-title">Phylogenetics & Plant Evolution</span>
+					<div class="mod-pills">
+						<span class="mpill mpill-lec">60 min lecture</span>
+						<span class="mpill mpill-ws">45 min workshop</span>
+					</div>
+					<span class="caret">▼</span>
+				</div>
+				<div class="module-body">
+					<div class="module-body-inner">
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge pre">Materials</span>
+								<span class="eval-title">Open module materials</span>
+							</div>
+							<div style="margin-top:0.6rem">
+								<a class="eval-btn check" href="materials/mod6.html" target="_blank" rel="noopener noreferrer">Open Materials</a>
+							</div>
+						</div>
+						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+						<div class="cg">
+							<div class="cb topics">
+								<div class="cb-head">Topics</div>
+								<ul class="cb-list">
+									<li>Rooted vs. unrooted trees; outgroup placement</li>
+									<li>Bootstrap values: resampling confidence (≥70 = acceptable)</li>
+									<li>Orthologs (speciation) vs. paralogs (duplication)</li>
+									<li>Polyploidy: hexaploid wheat (AABBDD) → 3 homeolog sets</li>
+									<li>C4 photosynthesis: evolved &gt;60 times independently in angiosperms</li>
+								</ul>
+							</div>
+							<div class="cb emphasis">
+								<div class="cb-head">Ambiguous Trees — IBO Focus</div>
+								<ul class="cb-list">
+									<li>Bootstrap &lt;50: topology unreliable — report as unresolved</li>
+									<li>Long branch attraction: fast-evolving lineages cluster artificially</li>
+									<li>Polytomy = uncertainty, not simultaneous divergence</li>
+									<li>Gene tree ≠ species tree (incomplete lineage sorting)</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- ── MODULE 7 ── -->
+			<div class="module-card" id="mod7">
+				<div class="module-header" onclick="toggleMod(this)">
+					<span class="mod-num">M 07</span>
+					<span class="mod-title">Transcriptomics & Gene Expression</span>
+					<div class="mod-pills">
+						<span class="mpill mpill-lec">60 min lecture</span>
+						<span class="mpill mpill-ws">45 min workshop</span>
+					</div>
+					<span class="caret">▼</span>
+				</div>
+				<div class="module-body">
+					<div class="module-body-inner">
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge pre">Materials</span>
+								<span class="eval-title">Open module materials</span>
+							</div>
+							<div style="margin-top:0.6rem">
+								<a class="eval-btn check" href="materials/mod7.html" target="_blank" rel="noopener noreferrer">Open Materials</a>
+							</div>
+						</div>
+						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+						<div class="cg">
+							<div class="cb topics">
+								<div class="cb-head">Topics</div>
+								<ul class="cb-list">
+									<li>RNA-seq workflow: extract → library → sequence → align → count</li>
+									<li>Normalization: TPM (recommended), RPKM, FPKM</li>
+									<li>Log₂ fold change: log₂(treatment/control)</li>
+									<li>Adjusted p-value (FDR): corrects for multiple testing</li>
+									<li>Heatmap: rows = genes, columns = samples; color = log₂ expression</li>
+								</ul>
+							</div>
+							<div class="cb emphasis">
+								<div class="cb-head">Noisy Data Traps</div>
+								<ul class="cb-list">
+									<li>Very low counts (2 → 512): large fold change but high variance</li>
+									<li>Always require adjusted p &lt; 0.05 + |log₂FC| ≥ 1</li>
+									<li>n = 2 replicates: not statistically valid for DE analysis</li>
+									<li>Batch effects can mimic true expression differences</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- ===== DAY 3 ===== -->
+			<div class="day-banner d3" id="day3">
+				<div class="day-num-big">03</div>
+				<div>
+					<div class="day-info-label">Day Three</div>
+					<div class="day-info-title">Expression, Networks & Experimental Reasoning</div>
+					<div class="day-obj-pills">
+						<span class="obj-pill">RNA-seq Heatmaps</span>
+						<span class="obj-pill">Fold Change</span>
+						<span class="obj-pill">Metabolic Pathways</span>
+						<span class="obj-pill">CRISPR / RNAi Design</span>
+						<span class="obj-pill">Control Experiments</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- ── MODULE 8 ── -->
+			<div class="module-card" id="mod8">
+				<div class="module-header" onclick="toggleMod(this)">
+					<span class="mod-num">M 08</span>
+					<span class="mod-title">ImageJ Fundamentals</span>
+					<div class="mod-pills">
+						<span class="mpill mpill-lec">45 min lecture</span>
+						<span class="mpill mpill-ws">60 min workshop</span>
+					</div>
+					<span class="caret">▼</span>
+				</div>
+				<div class="module-body">
+					<div class="module-body-inner">
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge pre">Materials</span>
+								<span class="eval-title">Open module materials</span>
+							</div>
+							<div style="margin-top:0.6rem">
+								<a class="eval-btn check" href="materials/mod8.html" target="_blank" rel="noopener noreferrer">Open Materials</a>
+							</div>
+						</div>
+						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+						<div class="cg">
+							<div class="cb topics">
+								<div class="cb-head">Key Techniques</div>
+								<ul class="cb-list">
+									<li>Scale calibration: draw line over scale bar → Analyze → Set Scale</li>
+									<li>Root length: Segmented Line tool along root midline</li>
+									<li>Stomatal density: count in known ROI area (convert to mm²)</li>
+									<li>CTCF = Integrated Density − (Area × Mean Background)</li>
+								</ul>
+							</div>
+							<div class="cb skills">
+								<div class="cb-head">Calculation Example</div>
+								<ul class="cb-list">
+									<li>100 px = 50 μm → 1 px = 0.5 μm; 1 px² = 0.25 μm²</li>
+									<li>ROI: 400 × 300 px = 120,000 px² × 0.25 = 30,000 μm² = 0.03 mm²</li>
+									<li>18 stomata in 0.03 mm² = 600 stomata/mm²</li>
+									<li>CTCF: 85,000 − (320 × 45) = 70,600 AU</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- ── MODULE 9 ── -->
+			<div class="module-card" id="mod9">
+				<div class="module-header" onclick="toggleMod(this)">
+					<span class="mod-num">M 09</span>
+					<span class="mod-title">Plant Metabolic Pathways & Networks</span>
+					<div class="mod-pills">
+						<span class="mpill mpill-lec">45 min lecture</span>
+						<span class="mpill mpill-ws">30 min workshop</span>
+					</div>
+					<span class="caret">▼</span>
+				</div>
+				<div class="module-body">
+					<div class="module-body-inner">
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge pre">Materials</span>
+								<span class="eval-title">Open module materials</span>
+							</div>
+							<div style="margin-top:0.6rem">
+								<a class="eval-btn check" href="materials/mod9.html" target="_blank" rel="noopener noreferrer">Open Materials</a>
+							</div>
+						</div>
+						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+						<div class="cg">
+							<div class="cb topics">
+								<div class="cb-head">Key Pathways</div>
+								<ul class="cb-list">
+									<li>Calvin cycle: RuBisCO, FBPase, PRK as key enzymes</li>
+									<li>Flavonoid pathway: PAL → C4H → CHS → CHI → F3H → DFR → ANS</li>
+									<li>ABA biosynthesis: zeaxanthin → violaxanthin → xanthoxin → ABA</li>
+									<li>Ethylene: SAM → ACC → ethylene (ACC synthase, ACC oxidase)</li>
+									<li>Rate-limiting enzyme = lowest Vmax or most regulated step</li>
+								</ul>
+							</div>
+							<div class="cb skills">
+								<div class="cb-head">Reasoning Rules</div>
+								<ul class="cb-list">
+									<li>Enzyme knockout → accumulation UPSTREAM, depletion DOWNSTREAM</li>
+									<li>Feedback inhibition: product inhibits its own synthesis enzyme</li>
+									<li>Bottleneck: slowest step controls flux through entire pathway</li>
+									<li>Redundant pathways: single knockout may have no phenotype</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- ── MODULE 10 ── -->
+			<div class="module-card" id="mod10">
+				<div class="module-header" onclick="toggleMod(this)">
+					<span class="mod-num">M 10</span>
+					<span class="mod-title">Experimental Validation & Biological Reasoning</span>
+					<div class="mod-pills">
+						<span class="mpill mpill-lec">60 min lecture</span>
+						<span class="mpill mpill-ws">45 min workshop</span>
+					</div>
+					<span class="caret">▼</span>
+				</div>
+				<div class="module-body">
+					<div class="module-body-inner">
+						<div class="eval-section">
+							<div class="eval-header">
+								<span class="eval-badge pre">Materials</span>
+								<span class="eval-title">Open module materials</span>
+							</div>
+							<div style="margin-top:0.6rem">
+								<a class="eval-btn check" href="materials/mod10.html" target="_blank" rel="noopener noreferrer">Open Materials</a>
+							</div>
+						</div>
+						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+						<div class="cg">
+							<div class="cb emphasis">
+								<div class="cb-head">Core Principle</div>
+								<ul class="cb-list">
+									<li>Computational prediction = hypothesis, NOT proof</li>
+									<li>BLAST hit = putative function only</li>
+									<li>Correlation in expression ≠ causal relationship</li>
+									<li>A good negative result is still valid science</li>
+								</ul>
+							</div>
+							<div class="cb topics">
+								<div class="cb-head">Validation Methods</div>
+								<ul class="cb-list">
+									<li>T-DNA insertion: complete knockout (null allele)</li>
+									<li>RNAi: partial, tunable knockdown</li>
+									<li>CRISPR-Cas9: precise knockout or base editing</li>
+									<li>35S::Gene overexpression: gain-of-function test</li>
+									<li>Complementation: confirm causality by rescuing mutant</li>
+								</ul>
+							</div>
+							<div class="cb skills">
+								<div class="cb-head">Control Requirements</div>
+								<ul class="cb-list">
+									<li>Positive control: validates assay sensitivity</li>
+									<li>Negative control: empty vector or mock treatment</li>
+									<li>Off-target control: 2nd independent mutant allele</li>
+									<li>Complementation: mutant + transgene = WT phenotype</li>
+								</ul>
+							</div>
+							<div class="cb workshop">
+								<div class="cb-head">Workshop Design Task</div>
+								<ul class="cb-list">
+									<li>BLAST predicts AT5G12345 = drought tolerance kinase</li>
+									<li>Design a 3-step validation experiment</li>
+									<li>List all required controls with justifications</li>
+									<li>Predict both positive and negative outcomes</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Final Case Study -->
+			<div id="case-study">
+				<div class="cs-title">🔥 Final Integrated Case Study</div>
+				<div class="cs-sub">Synthesis of all 10 modules · IBO simulation format</div>
+				<div class="cs-ds-grid">
+					<div class="cs-ds-item">
+						<div class="cs-ds-icon">🔬</div>
+						<div class="cs-ds-label">BLAST Output</div>
+					</div>
+					<div class="cs-ds-item">
+						<div class="cs-ds-icon">📊</div>
+						<div class="cs-ds-label">MSA Alignment</div>
+					</div>
+					<div class="cs-ds-item">
+						<div class="cs-ds-icon">🌲</div>
+						<div class="cs-ds-label">Phylogenetic Tree</div>
+					</div>
+					<div class="cs-ds-item">
+						<div class="cs-ds-icon">🖥</div>
+						<div class="cs-ds-label">Genome Browser</div>
+					</div>
+					<div class="cs-ds-item">
+						<div class="cs-ds-icon">🌡</div>
+						<div class="cs-ds-label">RNA-seq Heatmap</div>
+					</div>
+					<div class="cs-ds-item">
+						<div class="cs-ds-icon">🔭</div>
+						<div class="cs-ds-label">Microscopy Image</div>
+					</div>
+					<div class="cs-ds-item">
+						<div class="cs-ds-icon">🔄</div>
+						<div class="cs-ds-label">Pathway Diagram</div>
+					</div>
+				</div>
+				<div class="cs-q-grid">
+					<div class="cs-q-item">
+						<span class="cs-q-num">Q1</span> Identify gene from BLAST + alignment data
+					</div>
+					<div class="cs-q-item">
+						<span class="cs-q-num">Q2</span> Characterize the mutation's effect on protein function
+					</div>
+					<div class="cs-q-item">
+						<span class="cs-q-num">Q3</span> Classify ortholog/paralog status from tree topology
+					</div>
+					<div class="cs-q-item">
+						<span class="cs-q-num">Q4</span> Interpret evolutionary significance of conservation pattern
+					</div>
+					<div class="cs-q-item">
+						<span class="cs-q-num">Q5</span> Analyze expression response from heatmap data
+					</div>
+					<div class="cs-q-item">
+						<span class="cs-q-num">Q6</span> Connect genotype to observed morphological phenotype
+					</div>
+					<div class="cs-q-item">
+						<span class="cs-q-num">Q7</span> Propose the best method to validate gene function
+					</div>
+					<div class="cs-q-item">
+						<span class="cs-q-num">Q8</span> Design a complete control set with full justification
+					</div>
+				</div>
+			</div>
+
+			<!-- Philosophy -->
+			<div id="philosophy">
+				<div class="sec-title" style="margin-bottom:1rem">
+					Core Training Philosophy <span class="sec-badge">Rationale</span>
+				</div>
+				<div class="phil-quote">"The modern IBO rewards biological reasoning under imperfect data. Comfort with uncertainty is more valuable than memorization."</div>
+				<div class="pillar-grid">
+					<div class="pillar-card" style="border-left-color:var(--green)">
+						<div class="pillar-title" style="color:var(--green)">Reason, Don't Memorize</div>
+						<p>Each module trains inference from incomplete data. IBO questions reward students who can justify a probabilistic conclusion, not those who can only recite facts.</p>
+					</div>
+					<div class="pillar-card" style="border-left-color:var(--blue)">
+						<div class="pillar-title" style="color:var(--blue)">Ambiguity Is the Test</div>
+						<p>Every module includes deliberate noise — conflicting BLAST hits, low bootstrap values, expression data with insufficient replicates. Practicing with messy data is essential.</p>
+					</div>
+					<div class="pillar-card" style="border-left-color:var(--amber)">
+						<div class="pillar-title" style="color:var(--amber)">Computation → Biology</div>
+						<p>Bioinformatics tools generate hypotheses. This training emphasizes that a prediction must always be connected back to a biological validation strategy.</p>
+					</div>
+					<div class="pillar-card" style="border-left-color:var(--rose)">
+						<div class="pillar-title" style="color:var(--rose)">Integration Is the Skill</div>
+						<p>The final case study combines seven data types simultaneously — reflecting how IBO questions and real research both require cross-dataset synthesis.</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Software -->
+			<section id="software">
+				<div class="sec-title" style="margin-top:2rem">
+					Recommended Software <span class="sec-badge">Tools</span>
+				</div>
+				<div class="sw-grid">
+					<div class="sw-card">
+						<div class="sw-icon">🔬</div>
+						<div class="sw-name">ImageJ / Fiji</div>
+						<div class="sw-cat">Image Analysis</div>
+					</div>
+					<div class="sw-card">
+						<div class="sw-icon">🧬</div>
+						<div class="sw-name">IGV</div>
+						<div class="sw-cat">Local Genome Browser</div>
+					</div>
+					<div class="sw-card">
+						<div class="sw-icon">🌐</div>
+						<div class="sw-name">UCSC Browser</div>
+						<div class="sw-cat">Web Genome Browser</div>
+					</div>
+					<div class="sw-card">
+						<div class="sw-icon">🌿</div>
+						<div class="sw-name">Ensembl Plants</div>
+						<div class="sw-cat">Plant Genome Portal</div>
+					</div>
+					<div class="sw-card">
+						<div class="sw-icon">🔍</div>
+						<div class="sw-name">NCBI BLAST</div>
+						<div class="sw-cat">Sequence Homology</div>
+					</div>
+					<div class="sw-card">
+						<div class="sw-icon">🌲</div>
+						<div class="sw-name">IQ-TREE / MEGA</div>
+						<div class="sw-cat">Phylogenetics</div>
+					</div>
+					<div class="sw-card">
+						<div class="sw-icon">📐</div>
+						<div class="sw-name">MAFFT</div>
+						<div class="sw-cat">Sequence Alignment</div>
+					</div>
+					<div class="sw-card">
+						<div class="sw-icon">📊</div>
+						<div class="sw-name">R / DESeq2</div>
+						<div class="sw-cat">Transcriptomics</div>
+					</div>
+				</div>
+			</section>
+
+		</main>
+
+		<script>
+			// ── All evaluation data ──────────────────────────────────────────────
+			const EVALS = {
+				// pre/post evaluation entries removed
+			};
+
+// ── Render evaluations ─────────────────────────────────────────────
+function renderEval(id) {
+  const data = EVALS[id];
+  if (!data) return;
+  const container = document.getElementById(id + '-qs');
+  const keyContainer = document.getElementById(id + '-key');
+  if (!container) return;
+  container.innerHTML = '';
+  if (keyContainer) keyContainer.innerHTML = '';
+  data.qs.forEach((q, qi) => {
+    const qDiv = document.createElement('div');
+    qDiv.className = 'q-item';
+    qDiv.innerHTML = `<div class="q-stem">Q${qi+1}. ${q.stem}</div>
+			<ul class="q-options" id="${id}-q${qi}-opts">
+				${q.opts.map((o,oi)=>`<li class="q-opt" data-q="${qi}" data-o="${oi}" onclick="selectOpt(this,'${id}',${qi})">
+					<span class="opt-letter">${String.fromCharCode(65+oi)}</span>${o}
+				</li>`).join('')}
+			</ul>`;
+			container.appendChild(qDiv);
+			// Key entry
+			if (keyContainer) {
+			const kDiv = document.createElement('div');
+			kDiv.className = 'key-item';
+			kDiv.innerHTML = `<span class="key-num">Q${qi+1}</span>
+			<div>
+				<span class="key-ans">Answer: ${String.fromCharCode(65+q.ans)}</span>
+				<br>
+					<span class="key-exp">${q.exp}</span>
+			</div>`;
+			keyContainer.appendChild(kDiv);
+			}
+			});
+			}
+
+			function selectOpt(el, id, qi) {
+			const opts = document.querySelectorAll(`#${id}-q${qi}-opts .q-opt`);
+			opts.forEach(o => { o.classList.remove('selected','correct','wrong'); });
+			el.classList.add('selected');
+			el._selected = parseInt(el.dataset.o);
+			}
+
+			function checkEval(id) {
+			const data = EVALS[id];
+			let correct = 0;
+			data.qs.forEach((q, qi) => {
+			const opts = document.querySelectorAll(`#${id}-q${qi}-opts .q-opt`);
+			let answered = false;
+			opts.forEach(o => {
+			const oi = parseInt(o.dataset.o);
+			if (o.classList.contains('selected')) { answered = true; }
+			if (oi === q.ans) o.classList.add('correct');
+			else if (o.classList.contains('selected')) o.classList.add('wrong');
+			});
+			const selectedOpts = document.querySelectorAll(`#${id}-q${qi}-opts .q-opt.selected`);
+			selectedOpts.forEach(o => { if (parseInt(o.dataset.o) === q.ans) correct++; });
+			});
+			const scoreEl = document.getElementById(id + '-score');
+			const total = data.qs.length;
+			const pct = Math.round(correct/total*100);
+			let bg = pct>=80 ? 'background:var(--green-bg);color:var(--green);border:1.5px solid var(--green-bd)'
+			: pct>=60 ? 'background:var(--amber-bg);color:var(--amber);border:1.5px solid var(--amber-bd)'
+			: 'background:var(--rose-bg);color:var(--rose);border:1.5px solid var(--rose-bd)';
+			scoreEl.style.cssText = bg;
+			scoreEl.textContent = `${correct}/${total} (${pct}%)`;
+			scoreEl.classList.add('show');
+			}
+
+			function resetEval(id) {
+			const data = EVALS[id];
+			data.qs.forEach((q, qi) => {
+			const opts = document.querySelectorAll(`#${id}-q${qi}-opts .q-opt`);
+			opts.forEach(o => o.classList.remove('selected','correct','wrong'));
+			});
+			const scoreEl = document.getElementById(id + '-score');
+			scoreEl.classList.remove('show');
+			}
+
+			// ── Module toggle ────────────────────────────────────────────────
+			function toggleMod(header) {
+			header.parentElement.classList.toggle('open');
+			}
+
+			// ── Key toggle ───────────────────────────────────────────────────
+			function toggleKey(btn) {
+			const body = btn.nextElementSibling;
+			body.classList.toggle('open');
+			btn.querySelector('span').textContent = body.classList.contains('open') ? '▴' : '▾';
+			}
+
+			// ── Sidebar / in-page anchor scroll ───────────────────────────────
+			// New name to avoid shadowing native window.scrollTo
+			function goToId(id) {
+			const el = document.getElementById(id);
+			if (!el) return;
+			const moduleCard = el.classList.contains('module-card') ? el : el.closest('.module-card');
+			if (moduleCard) moduleCard.classList.add('open');
+			el.scrollIntoView({behavior:'smooth',block:'start'});
+			try { history.replaceState(null, '', '#' + id); } catch(e) { location.hash = id; }
+			}
+
+			// Ensure any anchor links with href="#..." also use the enhanced goToId behavior
+			document.querySelectorAll('a[href^="#"]').forEach(a=>{
+			a.addEventListener('click', function(e){
+			const href = this.getAttribute('href');
+			if (!href || href === '#') return;
+			const id = href.slice(1);
+			const el = document.getElementById(id);
+			if (el) {
+			e.preventDefault();
+			goToId(id);
+			}
+			});
+			});
+
+			// ── Gantt ────────────────────────────────────────────────────────
+			const ganttData = [
+			{ day:'D1', name:'M1 · Genome Fundamentals', sub:'Day 1', start:'08:00', lec:45, ws:20 },
+			{ day:'D1', name:'M2 · ORFs & Annotation',   sub:'Day 1', start:'09:15', lec:45, ws:30 },
+			{ day:'D1', name:'Break + Pre-eval',          sub:'',      start:'10:30', brk:15 },
+			{ day:'D1', name:'M3 · BLAST & Inference',    sub:'Day 1', start:'10:45', lec:60, ws:45 },
+			{ day:'D1', name:'Lunch',                     sub:'',      start:'12:30', brk:60 },
+			{ day:'D1', name:'M4 · Genome Browser',       sub:'Day 1', start:'13:30', lec:45, ws:45 },
+			{ day:'D2', name:'M5 · MSA',                  sub:'Day 2', start:'08:00', lec:45, ws:30 },
+			{ day:'D2', name:'M6 · Phylogenetics',         sub:'Day 2', start:'09:15', lec:60, ws:45 },
+			{ day:'D2', name:'Break',                     sub:'',      start:'11:00', brk:15 },
+			{ day:'D2', name:'M7 · Transcriptomics',      sub:'Day 2', start:'11:15', lec:45, ws:60 },
+			{ day:'D3', name:'M8 · ImageJ',               sub:'Day 3', start:'08:00', lec:60, ws:45 },
+			{ day:'D3', name:'M9 · Pathways',             sub:'Day 3', start:'09:45', lec:45, ws:30 },
+			{ day:'D3', name:'Break',                     sub:'',      start:'11:00', brk:15 },
+			{ day:'D3', name:'M10 · Validation',          sub:'Day 3', start:'11:15', lec:60, ws:45 },
+			{ day:'D3', name:'Lunch',                     sub:'',      start:'13:00', brk:60 },
+			{ day:'D3', name:'Case Study',                sub:'Day 3', start:'14:00', cs:90 },
+			];
+			const MAX=120;
+			const tbody=document.getElementById('gantt-body');
+			const dayColors={'D1':'var(--day1)','D2':'var(--day2)','D3':'var(--day3)'};
+			ganttData.forEach(r=>{
+			const tr=document.createElement('tr'); tr.className='gantt-row';
+			let bar='';
+			if(r.brk) bar=`<div class="g-bar">
+				<div class="g-seg g-brk" style="width:${r.brk/MAX*100}%">${r.brk}m</div>
+			</div>`;
+			else if(r.cs) bar=`<div class="g-bar">
+				<div class="g-seg" style="width:${r.cs/MAX*100}%;background:var(--purple-bg);color:var(--purple)">${r.cs}m case study</div>
+			</div>`;
+			else bar=`<div class="g-bar">
+				<div class="g-seg g-lec" style="width:${r.lec/MAX*100}%">${r.lec}m lec</div>${r.ws?`<div class="g-seg g-ws" style="width:${r.ws/MAX*100}%">${r.ws}m ws</div>`:''}
+			</div>`;
+			tr.innerHTML=`<td class="g-mod">
+				<span style="color:${dayColors[r.day]||'var(--text3)'}; font-size:0.68rem; font-weight:800">${r.day||''}</span> ${r.name}${r.sub?`<span>${r.sub}</span>`:''}
+			</td><td class="g-time">${r.start}</td><td>${bar}</td>`;
+			tbody.appendChild(tr);
+			});
+
+			// ── Progress bar ─────────────────────────────────────────────────
+			window.addEventListener('scroll',()=>{
+			const el=document.documentElement;
+			document.getElementById('progress-fill').style.width=(el.scrollTop/(el.scrollHeight-el.clientHeight)*100)+'%';
+			});
+
+			// ── Init: render all evals and open first module ─────────────────
+			Object.keys(EVALS).filter(id => !id.startsWith('pre') && !id.startsWith('post')).forEach(id => renderEval(id));
+			document.querySelectorAll('.module-card')[0]?.classList.add('open');
+		</script>
+	</body>
 </html>

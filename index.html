@@ -16,27 +16,36 @@
 						--text:     #1e1a14;
 						--text2:    #5a5245;
 						--text3:    #9e9485;
-						--green:    #1a7a4a;
-						--green-bg: #eaf5ef;
-						--green-bd: #b3ddc5;
-						--blue:     #1a5fa0;
-						--blue-bg:  #e8f2fb;
-						--blue-bd:  #aacbec;
-						--amber:    #8a5c00;
-						--amber-bg: #fef7e6;
-						--amber-bd: #f0d080;
-						--rose:     #a02040;
-						--rose-bg:  #fdeef2;
-						--rose-bd:  #f0a8b8;
-						--purple:   #5e3a9e;
-						--purple-bg:#f2eeff;
-						--purple-bd:#c9b0f0;
-						--teal:     #0e6b6b;
-						--teal-bg:  #e6f6f6;
-						--teal-bd:  #9ed8d8;
-						--day1:     #1a7a4a;
-						--day2:     #1a5fa0;
-						--day3:     #7a1a60;
+						
+						/* Custom Color Palette */
+						--maroon:    #8A1538;     /* PANTONE 1955C */
+						--maroon-bg: #fbf1f3;
+						--maroon-bd: #f5ccd4;
+						--green:     #00573F;     /* PANTONE 7484C */
+						--green-bg:  #e6f2eb;
+						--green-bd:  #a3d3bf;
+						--amber:     #FFB81C;     /* PANTONE 1235C */
+						--amber-bg:  #fffcf0;
+						--amber-bd:  #ffeaa3;
+						
+						--blue:      #1a5fa0;
+						--blue-bg:   #e8f2fb;
+						--blue-bd:   #aacbec;
+						--rose:      #8A1538;     
+						--rose-bg:   #fdf0f3;
+						--rose-bd:   #f5ccd4;
+						--purple:    #5e3a9e;
+						--purple-bg: #f2eeff;
+						--purple-bd: #c9b0f0;
+						
+						/* Day Accent Settings */
+						--day1:     #8A1538;
+						--day1-bg:  #faf0f2;
+						--day2:     #00573F;
+						--day2-bg:  #e7f2ed;
+						--day3:     #FFB81C;
+						--day3-bg:  #fffdf2;
+						
 						--radius:   10px;
 						--radius-lg:16px;
 						--shadow:   0 1px 4px rgba(30,26,20,0.07), 0 4px 16px rgba(30,26,20,0.05);
@@ -68,7 +77,7 @@
 						display: flex; align-items: center; gap: 10px;
 						}
 						.brand-leaf {
-						width:36px; height:36px; background:var(--green-bg);
+						width:36px; height:36px; background:var(--maroon-bg);
 						border-radius:50%; display:flex; align-items:center; justify-content:center;
 						font-size:1.1rem; flex-shrink:0;
 						}
@@ -92,14 +101,14 @@
 						width:100%; text-align:left;
 						}
 						.nav-item:hover { color:var(--text); background:var(--bg); }
-						.nav-item.active { color:var(--green); border-left-color:var(--green); background:var(--green-bg); }
+						.nav-item.active { color:var(--maroon); border-left-color:var(--maroon); background:var(--maroon-bg); }
 						.nav-dot {
 						width:7px; height:7px; border-radius:50%; flex-shrink:0;
 						}
 
 						/* ── Progress bar ─────────────────────────── */
 						#progress-bar { position:fixed; top:0; left:252px; right:0; height:3px; background:var(--border); z-index:200; }
-						#progress-fill { height:100%; background:var(--green); width:0%; transition:width .1s; }
+						#progress-fill { height:100%; background:var(--maroon); width:0%; transition:width .1s; }
 
 						/* ── Main ─────────────────────────────────── */
 						.main { margin-left:252px; max-width:980px; padding:0 2.5rem 6rem; }
@@ -112,8 +121,8 @@
 						}
 						.hero-eyebrow {
 						display:inline-flex; align-items:center; gap:6px;
-						background:var(--green-bg); border:1px solid var(--green-bd);
-						color:var(--green); font-size:0.72rem; font-weight:800;
+						background:var(--maroon-bg); border:1px solid var(--maroon-bd);
+						color:var(--maroon); font-size:0.72rem; font-weight:800;
 						letter-spacing:0.07em; text-transform:uppercase;
 						padding:0.3rem 0.8rem; border-radius:100px; margin-bottom:1.25rem;
 						}
@@ -122,12 +131,8 @@
 						font-size:2.4rem; font-weight:600; line-height:1.15;
 						color:var(--text); margin-bottom:0.75rem; letter-spacing:-0.01em;
 						}
-						.hero h1 em { color:var(--green); font-style:italic; }
+						.hero h1 em { color:var(--maroon); font-style:italic; }
 						.hero-desc { color:var(--text2); font-size:0.95rem; max-width:600px; margin-bottom:1.75rem; }
-						.hero-stats { display:flex; gap:2.5rem; flex-wrap:wrap; }
-						.stat-item { }
-						.stat-n { font-size:2rem; font-weight:900; color:var(--green); line-height:1; }
-						.stat-l { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--text3); margin-top:1px; }
 
 						/* ── Section titles ───────────────────────── */
 						.sec-title {
@@ -180,9 +185,9 @@
 						margin:2.5rem 0 1.5rem; box-shadow:var(--shadow-sm);
 						border-left:5px solid;
 						}
-						.day-banner.d1 { border-left-color:var(--day1); }
-						.day-banner.d2 { border-left-color:var(--day2); }
-						.day-banner.d3 { border-left-color:var(--day3); }
+						.day-banner.d1 { border-left-color:var(--day1); background:var(--day1-bg); }
+						.day-banner.d2 { border-left-color:var(--day2); background:var(--day2-bg); }
+						.day-banner.d3 { border-left-color:var(--day3); background:var(--day3-bg); }
 						.day-num-big { font-size:2.8rem; font-weight:900; line-height:1; opacity:0.12; }
 						.day-banner.d1 .day-num-big { color:var(--day1); opacity:1; }
 						.day-banner.d2 .day-num-big { color:var(--day2); opacity:1; }
@@ -198,9 +203,9 @@
 						padding:2px 10px; border-radius:100px;
 						border:1px solid;
 						}
-						.d1 .obj-pill { background:var(--green-bg); color:var(--green); border-color:var(--green-bd); }
-						.d2 .obj-pill { background:var(--blue-bg);  color:var(--blue);  border-color:var(--blue-bd); }
-						.d3 .obj-pill { background:var(--rose-bg);  color:var(--rose);  border-color:var(--rose-bd); }
+						.d1 .obj-pill { background:var(--white); color:var(--day1); border-color:var(--maroon-bd); }
+						.d2 .obj-pill { background:var(--white); color:var(--day2); border-color:var(--green-bd); }
+						.d3 .obj-pill { background:var(--white); color:var(--amber); border-color:var(--amber-bd); }
 
 						/* ── Module Card ──────────────────────────── */
 						.module-card {
@@ -243,173 +248,61 @@
 						background:var(--bg); border-radius:var(--radius);
 						padding:1rem 1.1rem; border-left:3px solid;
 						}
-						.cb.topics  { border-color:var(--blue); }
+						.cb.topics  { border-color:var(--maroon); }
 						.cb.skills  { border-color:var(--green); }
 						.cb.context { border-color:var(--amber); }
-						.cb.workshop{ border-color:var(--rose); }
-						.cb.emphasis{ border-color:var(--purple); }
 						.cb-head {
 						font-size:0.64rem; font-weight:800; text-transform:uppercase;
 						letter-spacing:0.09em; margin-bottom:0.6rem;
 						}
-						.cb.topics .cb-head  { color:var(--blue); }
+						.cb.topics .cb-head  { color:var(--maroon); }
 						.cb.skills .cb-head  { color:var(--green); }
 						.cb.context .cb-head { color:var(--amber); }
-						.cb.workshop .cb-head{ color:var(--rose); }
-						.cb.emphasis .cb-head{ color:var(--purple); }
 						.cb-list { list-style:none; font-size:0.85rem; color:var(--text2); line-height:1.65; }
 						.cb-list li { display:flex; gap:6px; padding:0.1rem 0; }
 						.cb-list li::before { content:'›'; color:var(--text3); flex-shrink:0; }
 
-						/* ── Example Tabs ─────────────────────────── */
-						.ex-section { margin-top:1.25rem; }
-						.ex-label-row {
-						font-size:0.68rem; font-weight:800; text-transform:uppercase;
-						letter-spacing:0.09em; color:var(--text3); margin-bottom:0.6rem;
-						display:flex; align-items:center; gap:8px;
-						}
-						.ex-label-row::before { content:''; display:block; width:20px; height:1.5px; background:var(--border2); }
-						.ex-tabs { display:flex; gap:0; border-bottom:1.5px solid var(--border); margin-bottom:0; }
-						.ex-tab {
-						font-size:0.75rem; font-weight:700; padding:0.45rem 1rem;
-						cursor:pointer; color:var(--text3);
-						border-bottom:2px solid transparent; margin-bottom:-1.5px;
-						background:none; border-top:none; border-left:none; border-right:none;
-						transition:all .14s;
-						}
-						.ex-tab:hover { color:var(--text2); }
-						.ex-tab.active { color:var(--green); border-bottom-color:var(--green); }
-						.ex-panel { display:none; padding:1rem 0; }
-						.ex-panel.active { display:block; }
-						.ex-card {
-						background:var(--bg); border:1px solid var(--border);
-						border-radius:var(--radius); padding:1rem 1.1rem; margin-bottom:0.75rem;
-						}
-						.ex-card-label { font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:var(--text3); margin-bottom:0.5rem; }
-						.ex-card p { font-size:0.88rem; color:var(--text2); line-height:1.65; }
-						.ex-card strong { color:var(--text); }
-						.data-table {
-						width:100%; border-collapse:collapse;
-						font-family:'JetBrains Mono',monospace; font-size:0.72rem;
-						}
-						.data-table th {
-						background:var(--bg2); color:var(--text3); text-align:left;
-						padding:5px 10px; font-weight:500; border-bottom:1.5px solid var(--border);
-						}
-						.data-table td { color:var(--text2); padding:5px 10px; border-bottom:1px solid var(--border); }
-						.data-table tr:last-child td { border-bottom:none; }
-						.tag-g { color:var(--green); font-weight:700; }
-						.tag-a { color:var(--amber); font-weight:700; }
-						.tag-r { color:var(--rose);  font-weight:700; }
-						.code-snip {
-						background:#f8f6f0; border:1px solid var(--border);
-						border-radius:8px; padding:0.9rem 1rem;
-						font-family:'JetBrains Mono',monospace; font-size:0.76rem;
-						color:#3a3328; line-height:1.75; overflow-x:auto; margin:0.6rem 0;
-						}
-						.code-snip .kw { color:#7a3a9e; font-weight:500; }
-						.code-snip .cm { color:#9e9485; font-style:italic; }
-						.code-snip .hi { color:#1a7a4a; font-weight:500; }
-
-						/* ── EVALUATION ───────────────────────────── */
+						/* ── Download Action Bar ── */
 						.eval-section {
-						margin-top:1.5rem;
-						border-top:2px dashed var(--border2);
-						padding-top:1.25rem;
+						margin-top:0.5rem;
+						padding-top:0;
 						}
 						.eval-header {
-						display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;
+						display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem;
 						}
 						.eval-badge {
 						font-size:0.65rem; font-weight:800; text-transform:uppercase;
 						letter-spacing:0.08em; padding:3px 10px; border-radius:100px;
 						border:1.5px solid;
 						}
-						.eval-badge.pre  { background:var(--blue-bg); color:var(--blue); border-color:var(--blue-bd); }
-						.eval-badge.post { background:var(--purple-bg); color:var(--purple); border-color:var(--purple-bd); }
+						.eval-badge.pre  { background:var(--maroon-bg); color:var(--maroon); border-color:var(--maroon-bd); }
+						.eval-badge.post { background:var(--green-bg); color:var(--green); border-color:var(--green-bd); }
 						.eval-title { font-size:0.88rem; font-weight:800; color:var(--text); }
-						.eval-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
-						.eval-col-label {
-						font-size:0.65rem; font-weight:800; text-transform:uppercase;
-						letter-spacing:0.09em; margin-bottom:0.65rem;
-						}
-						.eval-col-label.pre  { color:var(--blue); }
-						.eval-col-label.post { color:var(--purple); }
-						/* Question */
-						.q-item { margin-bottom:1rem; }
-						.q-stem {
-						font-size:0.85rem; font-weight:700; color:var(--text);
-						margin-bottom:0.4rem; line-height:1.5;
-						}
-						.q-options { list-style:none; }
-						.q-opt {
-						display:flex; align-items:flex-start; gap:8px;
-						font-size:0.82rem; color:var(--text2);
-						padding:0.3rem 0.5rem; border-radius:6px; margin-bottom:2px;
-						cursor:pointer; transition:background .12s;
-						border:1px solid transparent;
-						line-height:1.5;
-						}
-						.q-opt:hover { background:var(--bg2); border-color:var(--border); }
-						.q-opt.selected { background:var(--bg2); border-color:var(--border2); }
-						.q-opt.correct  { background:var(--green-bg)!important; border-color:var(--green-bd)!important; color:var(--green)!important; }
-						.q-opt.wrong    { background:var(--rose-bg)!important; border-color:var(--rose-bd)!important; color:var(--rose)!important; }
-						.opt-letter {
-						width:20px; height:20px; border-radius:50%; border:1.5px solid var(--border2);
-						display:flex; align-items:center; justify-content:center;
-						font-size:0.68rem; font-weight:800; flex-shrink:0; margin-top:1px;
-						font-family:'JetBrains Mono',monospace;
-						}
-						.q-opt.correct .opt-letter { background:var(--green); color:#fff; border-color:var(--green); }
-						.q-opt.wrong   .opt-letter { background:var(--rose);  color:#fff; border-color:var(--rose); }
-						/* Submit + score */
-						.eval-actions { display:flex; align-items:center; gap:1rem; margin-top:0.75rem; }
 						.eval-btn {
 						font-family:'Nunito',sans-serif; font-size:0.8rem; font-weight:800;
 						padding:0.45rem 1.25rem; border-radius:8px; cursor:pointer;
 						border:1.5px solid; transition:all .15s;
 						}
 						.eval-btn.check {
-						background:var(--green); color:#fff; border-color:var(--green);
+						background:var(--maroon); color:#fff; border-color:var(--maroon);
 						}
 						.eval-btn.check:hover { opacity:0.88; }
-						.eval-btn.reset {
-						background:transparent; color:var(--text3); border-color:var(--border2);
-						}
-						.eval-btn.reset:hover { color:var(--text); border-color:var(--border2); background:var(--bg2); }
-						.score-badge {
-						font-size:0.78rem; font-weight:800;
-						padding:3px 12px; border-radius:100px;
-						display:none;
-						}
-						.score-badge.show { display:inline-block; }
-						/* Answer Key */
+						
+						/* Answer Key Collapsible */
 						.key-section {
-						margin-top:1rem; background:var(--amber-bg);
-						border:1px solid var(--amber-bd); border-radius:var(--radius);
+						margin-top:1rem; background:var(--bg2);
+						border:1px solid var(--border); border-radius:var(--radius);
 						overflow:hidden;
 						}
 						.key-toggle {
 						display:flex; align-items:center; justify-content:space-between;
 						padding:0.65rem 1rem; cursor:pointer;
-						font-size:0.78rem; font-weight:800; color:var(--amber);
+						font-size:0.78rem; font-weight:800; color:var(--text);
 						background:none; border:none; width:100%; text-align:left;
 						}
 						.key-toggle:hover { background:rgba(0,0,0,0.02); }
-						.key-body { display:none; padding:0.75rem 1rem 1rem; border-top:1px solid var(--amber-bd); }
+						.key-body { display:none; padding:0.75rem 1rem 1rem; border-top:1px solid var(--border); }
 						.key-body.open { display:block; }
-						.key-item {
-						display:flex; align-items:flex-start; gap:8px;
-						font-size:0.82rem; color:var(--text2); margin-bottom:0.6rem;
-						line-height:1.55;
-						}
-						.key-num {
-						background:var(--amber); color:#fff;
-						font-size:0.62rem; font-weight:800; font-family:'JetBrains Mono',monospace;
-						padding:1px 6px; border-radius:4px; flex-shrink:0; margin-top:2px;
-						}
-						.key-ans { color:var(--amber); font-weight:800; }
-						.key-exp { color:var(--text2); }
 
 						/* ── Gantt ────────────────────────────────── */
 						.gantt-wrap {
@@ -450,7 +343,7 @@
 						.phil-quote {
 						font-family:'Source Serif 4',serif; font-style:italic;
 						font-size:1.15rem; color:var(--text);
-						border-left:4px solid var(--green); padding-left:1.25rem;
+						border-left:4px solid var(--maroon); padding-left:1.25rem;
 						margin-bottom:1.25rem; line-height:1.65;
 						}
 						.pillar-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.9rem; }
@@ -471,21 +364,18 @@
 
 						/* ── Case Study ───────────────────────────── */
 						#case-study {
-						background:var(--white); border:2px solid var(--green-bd);
+						background:var(--white); border:2px solid var(--maroon-bd);
 						border-radius:var(--radius-lg); padding:1.75rem;
 						box-shadow:var(--shadow); margin:2.5rem 0;
 						}
-						.cs-title { font-family:'Source Serif 4',serif; font-size:1.35rem; font-weight:600; color:var(--green); margin-bottom:0.3rem; }
+						.cs-title { font-family:'Source Serif 4',serif; font-size:1.35rem; font-weight:600; color:var(--maroon); margin-bottom:0.3rem; }
 						.cs-sub { color:var(--text3); font-size:0.85rem; font-weight:700; margin-bottom:1.25rem; }
 						.cs-ds-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:0.6rem; margin-bottom:1.25rem; }
 						.cs-ds-item { background:var(--bg); border-radius:var(--radius); padding:0.65rem; text-align:center; border:1px solid var(--border); }
 						.cs-ds-icon { font-size:1.25rem; }
 						.cs-ds-label { font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; color:var(--text3); margin-top:3px; }
-						.cs-q-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; }
-						.cs-q-item { display:flex; align-items:flex-start; gap:7px; font-size:0.83rem; color:var(--text2); }
-						.cs-q-num { background:var(--green); color:#fff; font-size:0.62rem; font-weight:800; padding:1px 6px; border-radius:4px; flex-shrink:0; margin-top:2px; font-family:'JetBrains Mono',monospace; }
 
-						/* ── Overlays and Modals ── */
+						/* Overlays and Modals (Schedule Only) */
 						.modal {
 						display: none;
 						position: fixed;
@@ -525,16 +415,14 @@
 						line-height: 1;
 						}
 						.modal-close:hover {
-						color: var(--rose);
+						color: var(--maroon);
 						}
-						
-						/* Materials Document Styles */
 						.materials-title {
 						font-family: 'Source Serif 4', serif;
 						font-size: 1.8rem;
 						color: var(--text);
 						margin-bottom: 1.5rem;
-						border-bottom: 2px solid var(--green-bd);
+						border-bottom: 2px solid var(--maroon-bd);
 						padding-bottom: 0.5rem;
 						}
 						.materials-section {
@@ -543,7 +431,7 @@
 						.materials-section h3 {
 						font-family: 'Source Serif 4', serif;
 						font-size: 1.2rem;
-						color: var(--green);
+						color: var(--maroon);
 						margin-top: 1.4rem;
 						margin-bottom: 0.5rem;
 						}
@@ -561,7 +449,6 @@
 						.materials-section li {
 						margin-bottom: 0.4rem;
 						}
-
 						.sub-sched-title {
 						font-size: 0.95rem;
 						font-weight: 800;
@@ -615,7 +502,7 @@
 					<span class="nav-dot" style="background:var(--day1)"></span>M3 · BLAST & Inference
 				</button>
 				<button class="nav-item" onclick="goToId('mod4')">
-					<span class="nav-dot" style="background:var(--day1)"></span>M4 · Genome Browser
+					<span class="nav-dot" style="background:var(--day1)"></span>M4 · Genome Browsers
 				</button>
 			</div>
 			<div class="nav-group">
@@ -633,10 +520,10 @@
 			<div class="nav-group">
 				<div class="nav-group-label" onclick="goToId('day3')" style="cursor:pointer">Day 3 · Expression</div>
 				<button class="nav-item" onclick="goToId('mod8')">
-					<span class="nav-dot" style="background:var(--day3)"></span>M8 · Transcriptomics
+					<span class="nav-dot" style="background:var(--day3)"></span>M8 · Plant Transcriptomics
 				</button>
 				<button class="nav-item" onclick="goToId('mod9')">
-					<span class="nav-dot" style="background:var(--day3)"></span>M9 · Pathways
+					<span class="nav-dot" style="background:var(--day3)"></span>M9 · Metabolomic Pathways
 				</button>
 				<button class="nav-item" onclick="goToId('case-study')">
 					<span class="nav-dot" style="background:var(--text3)"></span>Final Case Study
@@ -662,7 +549,7 @@
 				<p class="hero-desc">The modules were prepared by researchers from the Philippine Genome Center R&amp;D Program for Agriculture, Livestock, Fisheries, and Forestry. They provide an introduction to genomics, bioinformatics, and computational biology through lectures, hands-on activities, and case studies.</p>
 			</section>
 
-			<!-- Disclaimer & Authors -->
+			<!-- Disclaimer & Contributors -->
 			<section id="disclaimer" style="margin-bottom:1.5rem">
 				<div class="sec-title">Disclaimer &amp; Contributors <span class="sec-badge">Info</span></div>
 				<p class="sec-desc"><strong>DISCLAIMER</strong><br>This material is intended solely for educational and training purposes in preparation for the International Biology Olympiad (IBO) 2026.</p>
@@ -685,7 +572,7 @@
 						<a class="toc-link" href="#mod1">Module 1 · Plant Genome Fundamentals</a>
 						<a class="toc-link" href="#mod2">Module 2 · ORFs & Gene Annotation</a>
 						<a class="toc-link" href="#mod3">Module 3 · BLAST & Functional Inference</a>
-						<a class="toc-link" href="#mod4">Module 4 · Genome Browser Basics</a>
+						<a class="toc-link" href="#mod4">Module 4 · Genome Browsers</a>
 					</div>
 					<div class="toc-col d2">
 						<div class="toc-col-title">Day 2 · Alignment & Evolution</div>
@@ -742,55 +629,33 @@
 				</div>
 				<div class="module-body">
 					<div class="module-body-inner">
-
-						<div class="eval-section" style="border-top:none; padding-top:0;">
+						<div class="eval-section" style="border-top:none; padding-top:0; margin-bottom:1rem;">
 							<div class="eval-header">
 								<span class="eval-badge pre">Materials</span>
-								<span class="eval-title">Open module materials</span>
+								<span class="eval-title">Get Lecture & Workshop Files</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<button class="eval-btn check" type="button" onclick="openMaterials('mod1')">Open Materials</button>
+								<a class="eval-btn check" href="materials/Module1_Lecture.pdf" download style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
 							</div>
 						</div>
 
-						<!-- CONTENT -->
-						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
 						<div class="cg">
 							<div class="cb topics">
 								<div class="cb-head">Topics</div>
 								<ul class="cb-list">
-									<li>Nuclear, chloroplast, and mitochondrial genome organization</li>
-									<li>Gene structure: exon, intron, UTR, promoter</li>
-									<li>Coding vs. non-coding DNA; C-value paradox</li>
-									<li>Endosymbiotic origin of chloroplasts (Margulis)</li>
-								</ul>
-							</div>
-							<div class="cb context">
-								<div class="cb-head">Plant Examples</div>
-								<ul class="cb-list">
-									<li>
-										<em>Arabidopsis</em>: ~135 Mb nuclear, 154 kb chloroplast
-									</li>
-									<li>Maize: ~2.4 Gb nuclear (85% transposable elements)</li>
-									<li>rbcL (cpDNA) vs. RBCS1A (nuclear, transit peptide)</li>
-									<li>~130 protein-coding genes in the chloroplast genome</li>
+									<li>Genome organization</li>
+									<li>Nuclear vs chloroplast genomes</li>
+									<li>Gene structure</li>
+									<li>C3 vs C4</li>
 								</ul>
 							</div>
 							<div class="cb skills">
-								<div class="cb-head">Key Skill</div>
+								<div class="cb-head">Learning Outcomes</div>
 								<ul class="cb-list">
-									<li>Classify genes as chloroplast-origin vs. nuclear-origin</li>
-									<li>Lowercase gene name (e.g., rbcL) = plastid-encoded convention</li>
-									<li>Uppercase (e.g., RBCS) = nuclear-encoded convention</li>
-									<li>Detect transit peptides using ChloroP or TargetP</li>
-								</ul>
-							</div>
-							<div class="cb workshop">
-								<div class="cb-head">Workshop Task</div>
-								<ul class="cb-list">
-									<li>Classify 10 photosynthesis genes as nuclear or chloroplast</li>
-									<li>Justify one ambiguous case (e.g., FtsZ — nuclear but plastid function)</li>
-									<li>Sketch a simplified chloroplast genome map with LSC/SSC/IR regions</li>
+									<li>Identify coding regions and ORFs</li>
+									<li>Interpret BLAST outputs</li>
+									<li>Distinguish orthologs vs paralogs</li>
+									<li>Understand chloroplast vs nuclear genes</li>
 								</ul>
 							</div>
 						</div>
@@ -811,51 +676,32 @@
 				</div>
 				<div class="module-body">
 					<div class="module-body-inner">
-						<div class="eval-section" style="border-top:none; padding-top:0;">
+						<div class="eval-section" style="border-top:none; padding-top:0; margin-bottom:1rem;">
 							<div class="eval-header">
 								<span class="eval-badge pre">Materials</span>
-								<span class="eval-title">Open module materials</span>
+								<span class="eval-title">Get Lecture & Workshop Files</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<button class="eval-btn check" type="button" onclick="openMaterials('mod2')">Open Materials</button>
+								<a class="eval-btn check" href="materials/Module2_Lecture.pdf" download style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
 							</div>
 						</div>
-						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+
 						<div class="cg">
 							<div class="cb topics">
 								<div class="cb-head">Topics</div>
 								<ul class="cb-list">
-									<li>Six reading frames (3 forward, 3 reverse complement)</li>
-									<li>Start codon ATG; stop codons TAA, TAG, TGA</li>
-									<li>ORF = longest uninterrupted run between ATG and stop</li>
-									<li>GT-AG rule for plant intron splice sites</li>
-									<li>Kozak context around ATG affects translation efficiency</li>
+									<li>Reading frames</li>
+									<li>Start/stop codons</li>
+									<li>ORF identification</li>
+									<li>Gene annotation logic</li>
 								</ul>
 							</div>
 							<div class="cb skills">
-								<div class="cb-head">Skills</div>
+								<div class="cb-head">Learning Outcomes</div>
 								<ul class="cb-list">
-									<li>Identify the longest ORF in all 6 frames</li>
-									<li>Predict effect of nonsense vs. frameshift mutation</li>
-									<li>Distinguish ORF / CDS / transcript / mRNA</li>
-									<li>Identify 5' UTR, CDS, and 3' UTR from a GenBank entry</li>
-								</ul>
-							</div>
-							<div class="cb emphasis">
-								<div class="cb-head">Common Traps</div>
-								<ul class="cb-list">
-									<li>Longest ORF ≠ always correct gene (context required)</li>
-									<li>ORF ≠ functional gene (may be non-translated)</li>
-									<li>A single base insertion shifts ALL downstream codons</li>
-									<li>Intron retention from mutated GT or AG splice sites</li>
-								</ul>
-							</div>
-							<div class="cb workshop">
-								<div class="cb-head">Workshop</div>
-								<ul class="cb-list">
-									<li>Given 200 bp sequence — locate ORF in all 6 frames</li>
-									<li>Introduce a +1 frameshift and predict new protein</li>
-									<li>Identify the splice sites in a 3-exon gene model</li>
+									<li>Identify longest ORF</li>
+									<li>Predict coding sequence</li>
+									<li>Infer protein-coding regions</li>
 								</ul>
 							</div>
 						</div>
@@ -876,51 +722,32 @@
 				</div>
 				<div class="module-body">
 					<div class="module-body-inner">
-						<div class="eval-section" style="border-top:none; padding-top:0;">
+						<div class="eval-section" style="border-top:none; padding-top:0; margin-bottom:1rem;">
 							<div class="eval-header">
 								<span class="eval-badge pre">Materials</span>
-								<span class="eval-title">Open module materials</span>
+								<span class="eval-title">Get Lecture & Workshop Files</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<button class="eval-btn check" type="button" onclick="openMaterials('mod3')">Open Materials</button>
+								<a class="eval-btn check" href="materials/Module3_Lecture.pdf" download style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
 							</div>
 						</div>
-						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+
 						<div class="cg">
 							<div class="cb topics">
 								<div class="cb-head">Topics</div>
 								<ul class="cb-list">
-									<li>BLAST algorithm: word seeding → extension → scoring</li>
-									<li>E-value: expected hits by chance (lower = more significant)</li>
-									<li>Percent identity vs. percent similarity (conservative subs)</li>
-									<li>Query coverage: what fraction of your sequence is matched</li>
-									<li>Bit score: independent of database size; comparable across runs</li>
-								</ul>
-							</div>
-							<div class="cb emphasis">
-								<div class="cb-head">IBO Ambiguity Scenarios</div>
-								<ul class="cb-list">
-									<li>High identity + low coverage → domain hit only</li>
-									<li>Multiple top hits with similar E-values → gene family</li>
-									<li>Bacterial hit with weak E-value on a plant gene → likely noise</li>
-									<li>Paralog confusion: D1 vs D2 of PSII (32% identity, full coverage)</li>
+									<li>BLAST interpretation</li>
+									<li>Identity</li>
+									<li>Coverage</li>
+									<li>E-value</li>
+									<li>Confidence reasoning</li>
 								</ul>
 							</div>
 							<div class="cb skills">
-								<div class="cb-head">Interpretation Rules</div>
+								<div class="cb-head">Learning Outcomes</div>
 								<ul class="cb-list">
-									<li>E &lt; 1e-10: statistically significant</li>
-									<li>E &lt; 1e-30: likely functional homolog</li>
-									<li>E &gt; 0.01: discard — chance hit</li>
-									<li>Always combine E-value + identity + coverage</li>
-								</ul>
-							</div>
-							<div class="cb workshop">
-								<div class="cb-head">Workshop</div>
-								<ul class="cb-list">
-									<li>Analyze 3 BLAST result tables for an unknown plant protein</li>
-									<li>Determine ortholog vs. paralog from hit patterns</li>
-									<li>Write a 2-sentence functional annotation with confidence level</li>
+									<li>Identify which information to look for in BLAST results</li>
+									<li>Should be able to discern conflicting BLAST hits</li>
 								</ul>
 							</div>
 						</div>
@@ -932,7 +759,7 @@
 			<div class="module-card" id="mod4">
 				<div class="module-header" onclick="toggleMod(this)">
 					<span class="mod-num">M 04</span>
-					<span class="mod-title">Genome Browser Basics</span>
+					<span class="mod-title">Genome Browsers</span>
 					<div class="mod-pills">
 						<span class="mpill mpill-lec">45 min lecture</span>
 						<span class="mpill mpill-ws">45 min workshop</span>
@@ -941,33 +768,35 @@
 				</div>
 				<div class="module-body">
 					<div class="module-body-inner">
-						<div class="eval-section" style="border-top:none; padding-top:0;">
+						<div class="eval-section" style="border-top:none; padding-top:0; margin-bottom:1rem;">
 							<div class="eval-header">
 								<span class="eval-badge pre">Materials</span>
-								<span class="eval-title">Open module materials</span>
+								<span class="eval-title">Get Lecture & Workshop Files</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<button class="eval-btn check" type="button" onclick="openMaterials('mod4')">Open Materials</button>
+								<a class="eval-btn check" href="materials/Module4_Lecture.pdf" download style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
 							</div>
 						</div>
-						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+
 						<div class="cg">
 							<div class="cb topics">
-								<div class="cb-head">Tools</div>
+								<div class="cb-head">Topics</div>
 								<ul class="cb-list">
-									<li>IGV (Integrative Genomics Viewer) — local, BAM/VCF visualization</li>
-									<li>UCSC Genome Browser — web, extensive track database</li>
-									<li>Ensembl Plants — plant-specific annotation, synteny</li>
-									<li>Coordinate format: Chr1:12345-67890</li>
+									<li>Genome Annotation and Navigation</li>
+									<li>Sequence Alignments and Small Variants</li>
+									<li>Structural Events</li>
 								</ul>
 							</div>
 							<div class="cb skills">
-								<div class="cb-head">Track Reading</div>
+								<div class="cb-head">Learning Outcomes</div>
 								<ul class="cb-list">
-									<li>Thick blocks = exons; thin connecting lines = introns</li>
-									<li>Arrowheads on intron lines = direction of transcription</li>
-									<li>RNA-seq coverage height = relative expression level</li>
-									<li>Gap in RNA-seq coverage within a gene = likely intron</li>
+									<li>Navigate genomic regions using a genome browser.</li>
+									<li>Interpret genome annotations and identify gene features.</li>
+									<li>Understand genomic coordinates, transcripts, and coding regions.</li>
+									<li>Interpret sequencing read alignments and evaluate read coverage.</li>
+									<li>Identify and interpret small genetic variants and predict their functional effects.</li>
+									<li>Recognize sequencing evidence supporting structural variants.</li>
+									<li>Compare different classes of structural variants and infer their potential biological consequences.</li>
 								</ul>
 							</div>
 						</div>
@@ -995,7 +824,7 @@
 			<div class="module-card" id="mod5">
 				<div class="module-header" onclick="toggleMod(this)">
 					<span class="mod-num">M 05</span>
-					<span class="mod-title">Multiple Sequence Alignment (MSA)</span>
+					<span class="mod-title">Multiple Sequence Alignment</span>
 					<div class="mod-pills">
 						<span class="mpill mpill-lec">45 min lecture</span>
 						<span class="mpill mpill-ws">30 min workshop</span>
@@ -1004,34 +833,38 @@
 				</div>
 				<div class="module-body">
 					<div class="module-body-inner">
-						<div class="eval-section" style="border-top:none; padding-top:0;">
+						<div class="eval-section" style="border-top:none; padding-top:0; margin-bottom:1rem;">
 							<div class="eval-header">
 								<span class="eval-badge pre">Materials</span>
-								<span class="eval-title">Open module materials</span>
+								<span class="eval-title">Get Lecture & Workshop Files</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<button class="eval-btn check" type="button" onclick="openMaterials('mod5')">Open Materials</button>
+								<a class="eval-btn check" href="materials/Module5_Lecture.pdf" download style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
 							</div>
 						</div>
-						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+
 						<div class="cg">
 							<div class="cb topics">
 								<div class="cb-head">Topics</div>
 								<ul class="cb-list">
-									<li>ClustalW, MUSCLE, MAFFT — differences in algorithm speed vs. accuracy</li>
-									<li>Conservation scoring: * (identical) : (conserved) . (semi-conserved)</li>
-									<li>Gaps represent insertions/deletions (indels) in evolution</li>
-									<li>Gap penalty: opening penalty >> extension penalty</li>
-									<li>Positional entropy as a quantitative conservation measure</li>
+									<li>Introduction to Sequence Alignment</li>
+									<li>Homology, Similarity, and Identity</li>
+									<li>Orthologs and Paralogs</li>
+									<li>Pairwise Sequence Alignment</li>
+									<li>Multiple Sequence Alignment</li>
+									<li>Interpreting an Alignment</li>
 								</ul>
 							</div>
-							<div class="cb emphasis">
-								<div class="cb-head">IBO Emphasis: Noisy Alignments</div>
+							<div class="cb skills">
+								<div class="cb-head">Learning Outcomes</div>
 								<ul class="cb-list">
-									<li>Low-complexity regions (poly-A, disordered) should be masked</li>
-									<li>N-terminal signal peptides: often poorly conserved — this is normal</li>
-									<li>Hypervariable C-terminus of D1 protein encodes degradation signal</li>
-									<li>Biologically meaningful conservation ≠ highest-scoring region</li>
+									<li>Explain why biological sequences are aligned.</li>
+									<li>Distinguish sequence similarity from sequence identity.</li>
+									<li>Differentiate homologs, orthologs, and paralogs.</li>
+									<li>Compare global and local sequence alignment.</li>
+									<li>Perform multiple sequence alignment using MUSCLE, ClustalW, and MAFFT in MEGA.</li>
+									<li>Interpret conserved residues, gaps, and functional motifs from an alignment.</li>
+									<li>Identify biologically meaningful conservation while recognizing poorly aligned regions.</li>
 								</ul>
 							</div>
 						</div>
@@ -1052,34 +885,39 @@
 				</div>
 				<div class="module-body">
 					<div class="module-body-inner">
-						<div class="eval-section" style="border-top:none; padding-top:0;">
+						<div class="eval-section" style="border-top:none; padding-top:0; margin-bottom:1rem;">
 							<div class="eval-header">
 								<span class="eval-badge pre">Materials</span>
-								<span class="eval-title">Open module materials</span>
+								<span class="eval-title">Get Lecture & Workshop Files</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<button class="eval-btn check" type="button" onclick="openMaterials('mod6')">Open Materials</button>
+								<a class="eval-btn check" href="materials/Module6_Lecture.pdf" download style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
 							</div>
 						</div>
-						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+
 						<div class="cg">
 							<div class="cb topics">
 								<div class="cb-head">Topics</div>
 								<ul class="cb-list">
-									<li>Rooted vs. unrooted trees; outgroup placement</li>
-									<li>Bootstrap values: resampling confidence (≥70 = acceptable)</li>
-									<li>Orthologs (speciation) vs. paralogs (duplication)</li>
-									<li>Polyploidy: hexaploid wheat (AABBDD) → 3 homeolog sets</li>
-									<li>C4 photosynthesis: evolved &gt;60 times independently in angiosperms</li>
+									<li>Introduction to Phylogenetics and Plant Evolution</li>
+									<li>Anatomy of a Phylogenetic Tree</li>
+									<li>Rooted vs. Unrooted Trees</li>
+									<li>Tree Construction Methods</li>
+									<li>Bootstrap Support</li>
+									<li>Interpreting Phylogenetic Trees</li>
+									<li>Ambiguous Trees and Polytomies</li>
+									<li>Plant Evolution</li>
 								</ul>
 							</div>
-							<div class="cb emphasis">
-								<div class="cb-head">Ambiguous Trees — IBO Focus</div>
+							<div class="cb skills">
+								<div class="cb-head">Learning Outcomes</div>
 								<ul class="cb-list">
-									<li>Bootstrap &lt;50: topology unreliable — report as unresolved</li>
-									<li>Long branch attraction: fast-evolving lineages cluster artificially</li>
-									<li>Polytomy = uncertainty, not simultaneous divergence</li>
-									<li>Gene tree ≠ species tree (incomplete lineage sorting)</li>
+									<li>Explain the principles of phylogenetic analysis.</li>
+									<li>Construct phylogenetic trees using Neighbor Joining (NJ), Maximum Likelihood (ML), and Bayesian methods.</li>
+									<li>Interpret rooted and unrooted trees.</li>
+									<li>Explain bootstrap support and model selection.</li>
+									<li>Distinguish orthologs from paralogs using phylogenetic evidence.</li>
+									<li>Relate phylogenetic analysis to plant evolution and the PPO gene family.</li>
 								</ul>
 							</div>
 						</div>
@@ -1091,7 +929,7 @@
 			<div class="module-card" id="mod7">
 				<div class="module-header" onclick="toggleMod(this)">
 					<span class="mod-num">M 07</span>
-					<span class="mod-title">Using ImageJ for Biological Image Analysis</span>
+					<span class="mod-title">Quantitative Biological Image Analysis Using ImageJ/Fiji</span>
 					<div class="mod-pills">
 						<span class="mpill mpill-lec">45 min lecture</span>
 						<span class="mpill mpill-ws">60 min workshop</span>
@@ -1100,33 +938,40 @@
 				</div>
 				<div class="module-body">
 					<div class="module-body-inner">
-						<div class="eval-section" style="border-top:none; padding-top:0;">
+						<div class="eval-section" style="border-top:none; padding-top:0; margin-bottom:1rem;">
 							<div class="eval-header">
 								<span class="eval-badge pre">Materials</span>
-								<span class="eval-title">Open module materials</span>
+								<span class="eval-title">Get Lecture & Workshop Files</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<button class="eval-btn check" type="button" onclick="openMaterials('mod7')">Open Materials</button>
+								<a class="eval-btn check" href="materials/Module7_Lecture.pdf" download style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
 							</div>
 						</div>
-						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+
 						<div class="cg">
 							<div class="cb topics">
-								<div class="cb-head">Key Techniques</div>
+								<div class="cb-head">Topics</div>
 								<ul class="cb-list">
-									<li>Scale calibration: draw line over scale bar → Set Scale</li>
-									<li>Grayscale Conversion: raw 8-bit conversions</li>
-									<li>Threshold Segmentation: isolating cell compartments</li>
-									<li>Corrected Total Cell Fluorescence calculations</li>
+									<li>Introduction to ImageJ/Fiji</li>
+									<li>Biological Applications of Image Analysis</li>
+									<li>Image File Formats</li>
+									<li>Basic Image Analysis Concepts</li>
+									<li>ImageJ Workflow</li>
+									<li>Quantitative Image Analysis</li>
+									<li>Biological Interpretation of Image Data</li>
 								</ul>
 							</div>
 							<div class="cb skills">
-								<div class="cb-head">Key Formulas</div>
+								<div class="cb-head">Learning Outcomes</div>
 								<ul class="cb-list">
-									<li>Corrected Dark Signal = Background Mean - Sample Mean</li>
-									<li>Corrected Bright Signal = Sample Mean - Background Mean</li>
-									<li>Percent Area = (Positive area / Total area) * 100</li>
-									<li>Object Density = Object count / Measured Area</li>
+									<li>Explain the role of digital image analysis in quantitative biological research.</li>
+									<li>Identify suitable image formats for scientific image analysis.</li>
+									<li>Use ImageJ/Fiji to open, calibrate, and prepare biological images for analysis.</li>
+									<li>Select appropriate regions of interest (ROIs) and perform measurements such as area, length, intensity, and object counts.</li>
+									<li>Apply thresholding and particle analysis for quantitative measurements.</li>
+									<li>Perform background correction and calculate corrected image-based measurements.</li>
+									<li>Compute quantitative metrics including corrected intensity, percent area, object density, and average diameter.</li>
+									<li>Interpret image analysis results in the context of biological experiments.</li>
 								</ul>
 							</div>
 						</div>
@@ -1139,7 +984,7 @@
 				<div class="day-num-big">03</div>
 				<div>
 					<div class="day-info-label">Day Three</div>
-					<div class="day-info-title">Expression, Pathways & Synthesis</div>
+					<div class="day-info-title">Expression, Networks & Experimental Reasoning</div>
 					<div class="day-obj-pills">
 						<span class="obj-pill">RNA-seq Analysis</span>
 						<span class="obj-pill">KEGG Metabolic Pathways</span>
@@ -1154,7 +999,7 @@
 			<div class="module-card" id="mod8">
 				<div class="module-header" onclick="toggleMod(this)">
 					<span class="mod-num">M 08</span>
-					<span class="mod-title">Plant Transcriptomics</span>
+					<span class="mod-title">Introduction to Transcriptomics and RNA-Seq Data Analysis</span>
 					<div class="mod-pills">
 						<span class="mpill mpill-lec">60 min lecture</span>
 						<span class="mpill mpill-ws">45 min workshop</span>
@@ -1163,32 +1008,41 @@
 				</div>
 				<div class="module-body">
 					<div class="module-body-inner">
-						<div class="eval-section" style="border-top:none; padding-top:0;">
+						<div class="eval-section" style="border-top:none; padding-top:0; margin-bottom:1rem;">
 							<div class="eval-header">
 								<span class="eval-badge pre">Materials</span>
-								<span class="eval-title">Open module materials</span>
+								<span class="eval-title">Get Lecture & Workshop Files</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<button class="eval-btn check" type="button" onclick="openMaterials('mod8')">Open Materials</button>
+								<a class="eval-btn check" href="materials/Module8_Lecture.pdf" download style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
 							</div>
 						</div>
-						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+
 						<div class="cg">
 							<div class="cb topics">
 								<div class="cb-head">Topics</div>
 								<ul class="cb-list">
-									<li>RNA-seq workflows: alignments and database configurations</li>
-									<li>Normalization methods: TPM, RPKM, FPKM</li>
-									<li>Log₂ Fold Change quantification and threshold filters</li>
-									<li>Volcano plots and multi-gene expression heatmaps</li>
+									<li>Introduction to Transcriptomics</li>
+									<li>RNA-Seq Workflows</li>
+									<li>Gene Expression Quantification</li>
+									<li>Differential Gene Expression Analysis</li>
+									<li>Biological Interpretation of Differential Expression</li>
+									<li>Visualization of Transcriptomic Data</li>
+									<li>Validation of RNA-Seq Results</li>
+									<li>Capstone Activity</li>
 								</ul>
 							</div>
 							<div class="cb skills">
-								<div class="cb-head">Interpreting SRA Data</div>
+								<div class="cb-head">Learning Outcomes</div>
 								<ul class="cb-list">
-									<li>Accessing raw BioProject run collections</li>
-									<li>Analyzing expression responses across stress groups</li>
-									<li>Filtering out background noise using adjusted p-values</li>
+									<li>Explain the principles of transcriptomics and RNA sequencing (RNA-seq).</li>
+									<li>Differentiate between reference-guided and de novo transcriptome analysis workflows.</li>
+									<li>Describe how gene expression is quantified and normalized from RNA-seq data.</li>
+									<li>Interpret fold change, log₂ fold change, p-values, and false discovery rate (FDR).</li>
+									<li>Identify differentially expressed genes (DEGs) and relate them to biological responses.</li>
+									<li>Interpret common transcriptomic visualizations, including volcano plots, Venn diagrams, GO enrichment analyses, and heatmaps.</li>
+									<li>Explain the principles of qRT-PCR and its role in validating RNA-seq results.</li>
+									<li>Integrate transcriptomic findings to explain biological phenotypes and molecular mechanisms.</li>
 								</ul>
 							</div>
 						</div>
@@ -1200,7 +1054,7 @@
 			<div class="module-card" id="mod9">
 				<div class="module-header" onclick="toggleMod(this)">
 					<span class="mod-num">M 09</span>
-					<span class="mod-title">Plant Metabolomic Pathways</span>
+					<span class="mod-title">Biological Pathway Analysis Using KEGG</span>
 					<div class="mod-pills">
 						<span class="mpill mpill-lec">45 min lecture</span>
 						<span class="mpill mpill-ws">30 min workshop</span>
@@ -1209,32 +1063,39 @@
 				</div>
 				<div class="module-body">
 					<div class="module-body-inner">
-						<div class="eval-section" style="border-top:none; padding-top:0;">
+						<div class="eval-section" style="border-top:none; padding-top:0; margin-bottom:1rem;">
 							<div class="eval-header">
 								<span class="eval-badge pre">Materials</span>
-								<span class="eval-title">Open module materials</span>
+								<span class="eval-title">Get Lecture & Workshop Files</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<button class="eval-btn check" type="button" onclick="openMaterials('mod9')">Open Materials</button>
+								<a class="eval-btn check" href="materials/Module9_Lecture.pdf" download style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
 							</div>
 						</div>
-						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
+
 						<div class="cg">
 							<div class="cb topics">
-								<div class="cb-head">Key Pathways</div>
+								<div class="cb-head">Topics</div>
 								<ul class="cb-list">
-									<li>Secondary metabolites and phenotypic profiles</li>
-									<li>PPO-mediated Enzymatic Browning cascades</li>
-									<li>KEGG Reference database architecture</li>
-									<li>Metabolic blockages, feedforward, and feedback loops</li>
+									<li>Introduction to KEGG</li>
+									<li>Components of Biological Pathways</li>
+									<li>Reading KEGG Pathway Diagrams</li>
+									<li>Integrating Multi-Omics Data</li>
+									<li>From Gene to Phenotype</li>
+									<li>Predicting Biological Outcomes</li>
+									<li>Case Study: Pathway-Based Phenotype Interpretation</li>
 								</ul>
 							</div>
 							<div class="cb skills">
-								<div class="cb-head">Analytical Practice</div>
+								<div class="cb-head">Learning Outcomes</div>
 								<ul class="cb-list">
-									<li>Predicting phenotypes from metabolic blockages</li>
-									<li>Analyzing metabolite accumulation after knockouts</li>
-									<li>Tracing pathway cascades from substrate to functional outcome</li>
+									<li>Explain the purpose and organization of the KEGG database.</li>
+									<li>Interpret simplified KEGG pathway diagrams and identify pathway components such as substrates, enzymes, products, and phenotypes.</li>
+									<li>Describe the relationships among genes, proteins, enzymes, metabolites, and biological traits.</li>
+									<li>Integrate gene expression, protein abundance, enzyme activity, metabolite, and phenotype data to interpret biological pathways.</li>
+									<li>Predict the effects of pathway activation, inhibition, or gene mutations on biological outcomes.</li>
+									<li>Explain why gene expression alone does not necessarily predict phenotype.</li>
+									<li>Apply pathway analysis to interpret experimental data and explain observed biological responses.</li>
 								</ul>
 							</div>
 						</div>
@@ -1285,12 +1146,12 @@
 				</div>
 				<div class="phil-quote">"The modern IBO rewards biological reasoning under imperfect data. Comfort with uncertainty is more valuable than memorization."</div>
 				<div class="pillar-grid">
-					<div class="pillar-card" style="border-left-color:var(--green)">
-						<div class="pillar-title" style="color:var(--green)">Reason, Don't Memorize</div>
+					<div class="pillar-card" style="border-left-color:var(--maroon)">
+						<div class="pillar-title" style="color:var(--maroon)">Reason, Don't Memorize</div>
 						<p>Each module trains inference from incomplete data. IBO questions reward students who can justify a probabilistic conclusion, not those who can only recite facts.</p>
 					</div>
-					<div class="pillar-card" style="border-left-color:var(--blue)">
-						<div class="pillar-title" style="color:var(--blue)">Ambiguity Is the Test</div>
+					<div class="pillar-card" style="border-left-color:var(--green)">
+						<div class="pillar-title" style="color:var(--green)">Ambiguity Is the Test</div>
 						<p>Every module includes deliberate noise — conflicting BLAST hits, low bootstrap values, expression data with insufficient replicates. Practicing with messy data is essential.</p>
 					</div>
 					<div class="pillar-card" style="border-left-color:var(--amber)">
@@ -1418,259 +1279,6 @@
 			</div>
 		</template>
 
-		<!-- MATERIALS TEMPLATES -->
-		<template id="template-mod1">
-			<h2 class="materials-title">M01: Plant Genome Fundamentals</h2>
-			<div class="materials-section">
-				<h3>1. Nuclear, Chloroplast, and Mitochondrial Genomes</h3>
-				<p>Plant cells harbor three distinct genomes, showing unique evolutionary histories and architectures:</p>
-				<ul>
-					<li><strong>Nuclear Genome:</strong> Linear chromosomes, highly variable in size due to whole genome duplication (WGD) events and repetitive elements (e.g., retrotransposons).</li>
-					<li><strong>Chloroplast Genome (cpDNA):</strong> Primarily circular, double-stranded DNA spanning 120–170 kb, with a Large Single Copy (LSC) and a Small Single Copy (SSC) region flanked by two Inverted Repeats (IR).</li>
-					<li><strong>Mitochondrial Genome (mtDNA):</strong> Highly rearranged and variable in size, often existing as nested sub-genomic circles.</li>
-				</ul>
-				<h3>2. Endosymbiotic Theory &amp; Gene Transfer</h3>
-				<p>According to Lynn Margulis's endosymbiotic theory, chloroplasts originated from ancestral photosynthetic cyanobacteria engulfed by a eukaryotic host. Over evolutionary time, most ancestral genes transferred to the host nucleus—a process called Endosymbiotic Gene Transfer (EGT).</p>
-				<p>Nuclear-encoded plastid proteins are synthesized in the cytosol and imported post-translationally into the chloroplast stroma, thylakoids, or membranes. This import is guided by N-terminal <strong>transit peptides</strong>, which are recognized by the TOC/TIC envelope translocon channels.</p>
-				<h3>3. Practical Clues</h3>
-				<p>By convention, lowercase italicized names (e.g., <em>rbcL</em>) designate plastid-encoded genes, while uppercase italicized names (e.g., <em>RBCS</em>) denote nuclear-encoded genes. Transit peptides can be predicted computationally using algorithms like TargetP or ChloroP.</p>
-			</div>
-		</template>
-
-		<template id="template-mod2">
-			<h2 class="materials-title">M02: ORFs &amp; Gene Annotation</h2>
-			<div class="materials-section">
-				<h3>1. Six-Frame Translation</h3>
-				<p>Double-stranded DNA contains six potential translational pathways: three on the forward strand and three on the reverse complement. An Open Reading Frame (ORF) represents a continuous run starting with ATG (Start) and terminating at an in-frame stop codon (TAA, TAG, TGA).</p>
-				<h3>2. Splicing Rules</h3>
-				<p>Pre-mRNAs undergo spliceosome-mediated processing to remove introns. Splicing in plants adheres to the conserved **GT-AG rule**:</p>
-				<ul>
-					<li>The 5' splice donor site begins with **GT**.</li>
-					<li>The 3' splice acceptor site ends with **AG**.</li>
-				</ul>
-				<p>Mutations altering these nucleotides often cause intron retention, resulting in frameshifts or premature termination.</p>
-			</div>
-		</template>
-
-		<template id="template-mod3">
-			<h2 class="materials-title">M03: BLAST &amp; Functional Inference</h2>
-			<div class="materials-section">
-				<h3>1. BLAST Statistics</h3>
-				<p>The Basic Local Alignment Search Tool (BLAST) searches database sequences for local similarity matches. To evaluate alignments, use several key metrics:</p>
-				<ul>
-					<li><strong>E-value (Expect value):</strong> The statistical likelihood of finding an alignment by chance. E-values below <code>1e-10</code> represent statistically significant homology. Lower is better.</li>
-					<li><strong>Query Coverage:</strong> The fraction of the query sequence that aligns with the subject. Low coverage indicates matching domains rather than a full-length ortholog.</li>
-					<li><strong>Bit Score:</strong> Alignment score normalized for matrix parameters, independent of database size.</li>
-				</ul>
-				<h3>2. Orthology vs. Paralogy</h3>
-				<ul>
-					<li><strong>Orthologs:</strong> Genes in different species that diverged via speciation; they typically maintain identical biological functions.</li>
-					<li><strong>Paralogs:</strong> Genes that diverged via duplication within a genome; they often acquire new properties (neofunctionalization).</li>
-				</ul>
-			</div>
-		</template>
-
-		<template id="template-mod4">
-			<h2 class="materials-title">M04: Genome Browser Basics</h2>
-			<div class="materials-section">
-				<h3>1. Structure of Genomic Alignments</h3>
-				<p>Genome Browsers align gene transcripts, variations, and coverage tracks onto reference chromosome structures (e.g., <code>Chr1:12040-15300</code>).</p>
-				<h3>2. Visualizing Annotation Tracks</h3>
-				<ul>
-					<li><strong>Gene Models:</strong> Exons are shown as thick boxes, UTRs as thinner blocks, and introns as thin lines.</li>
-					<li><strong>Read Direction:</strong> Arrows along the intron lines show the direction of transcription (5' to 3').</li>
-					<li><strong>RNA-seq Tracks:</strong> Display sequence coverage heights. Exons correspond to high read coverage peaks, while introns appear as clear, unaligned gaps.</li>
-				</ul>
-			</div>
-		</template>
-
-		<template id="template-mod5">
-			<h2 class="materials-title">M05: Multiple Sequence Alignment (MSA)</h2>
-			<div class="materials-section">
-				<h3>1. Algorithms and Alignment Tools</h3>
-				<p>Multiple Sequence Alignments compare three or more sequences to identify conserved domains and residues. Aligners like ClustalW, MUSCLE, and MAFFT calculate insertions/deletions (indels) using scoring systems that penalize opening and extending gaps.</p>
-				<h3>2. Consensus Symbols</h3>
-				<ul>
-					<li><strong>Asterisk (*):</strong> Indicates a site with absolute residue conservation across all aligned sequences.</li>
-					<li><strong>Colon (:):</strong> Indicates conservation between residues with strongly similar chemical properties.</li>
-					<li><strong>Period (.):</strong> Indicates conservation between residues with weakly similar chemical properties.</li>
-				</ul>
-			</div>
-		</template>
-
-		<template id="template-mod6">
-			<h2 class="materials-title">M06: Phylogenetics &amp; Plant Evolution</h2>
-			<div class="materials-section">
-				<h3>1. Tree Reconstruction</h3>
-				<p>Phylogenetic trees depict evolutionary relationships. Rooted trees establish a common ancestor and the direction of evolutionary time, often using an unrelated outgroup. Unrooted trees show relative distance without specifying ancestry direction.</p>
-				<h3>2. Bootstrap Values</h3>
-				<p>Bootstrap analysis uses resampling to measure node reliability. A value represents the percentage of replicate trees that support a given node. Bootstrap values &ge; 70% indicate robust groupings, while values below 50% are highly unreliable.</p>
-				<h3>3. Wheat Subgenomes</h3>
-				<p>Hexaploid bread wheat (<em>Triticum aestivum</em>) possesses three closely related subgenomes (AABBDD), resulting in triplicated homeologous gene sets.</p>
-			</div>
-		</template>
-
-		<template id="template-mod7">
-			<h2 class="materials-title">M07: Using ImageJ for Biological Image Analysis</h2>
-			<div class="materials-section">
-				<h3>1. Grayscale Conversion and Thresholding</h3>
-				<p>Fiji (Fiji Is Just ImageJ) converts qualitative observations (e.g., color intensity) into quantitative measurements. Key steps in the workflow include:</p>
-				<ol>
-					<li><strong>Spatial Scale Calibration:</strong> Draw a straight line over a known physical scale, open <code>Analyze &rarr; Set Scale</code>, and enter the physical distance and units.</li>
-					<li><strong>Grayscale Conversion:</strong> Convert color images to 8-bit grayscale (<code>Image &rarr; Type &rarr; 8-bit</code>) to measure intensity.</li>
-					<li><strong>Thresholding:</strong> Navigate to <code>Image &rarr; Adjust &rarr; Threshold</code> to segment foreground pixels from the background.</li>
-					<li><strong>Measurements:</strong> Define your Region of Interest (ROI) and measure parameters using <code>Analyze &rarr; Measure</code> (hotkey: <code>M</code>).</li>
-				</ol>
-
-				<h3>2. Lossless Formats</h3>
-				<ul>
-					<li><strong>TIFF:</strong> Lossless format; ideal for scientific quantification because it preserves raw pixel values and metadata.</li>
-					<li><strong>PNG:</strong> Lossless format; ideal for web display, but does not preserve metadata.</li>
-					<li><strong>JPEG:</strong> Lossy compression. <strong>Never use JPEG for image quantification</strong> because compression introduces artifacts that distort pixel intensity values.</li>
-				</ul>
-
-				<h3>3. Key Quantitative Equations</h3>
-				<ul>
-					<li><strong>Corrected Dark Signal:</strong> (Used for darker samples, e.g., browning, dark gel bands)
-						<br><code>Corrected Dark Signal = Background Mean Gray Value - Sample Mean Gray Value</code>
-					</li>
-					<li><strong>Corrected Bright Signal:</strong> (Used for brighter samples, e.g., fluorescence, bright staining)
-						<br><code>Corrected Bright Signal = Sample Mean Gray Value - Background Mean Gray Value</code>
-					</li>
-					<li><strong>Corrected Total Cell Fluorescence (CTCF):</strong> (Accounts for varying cell sizes)
-						<br><code>CTCF = Integrated Density - (Area of Selected Cell &times; Mean Background Fluorescence)</code>
-					</li>
-					<li><strong>Percent Area:</strong> (e.g., leaf lesion coverage, cell confluency)
-						<br><code>Percent Area = (Positive Area / Total Area) &times; 100</code>
-					</li>
-					<li><strong>Object Density:</strong> (e.g., stomata per mm²)
-						<br><code>Object Density = Object Count / Measured Area</code>
-					</li>
-				</ul>
-
-				<hr style="margin:1.5rem 0; border:none; border-top:1px solid var(--border);">
-
-				<h3>📝 Self-Evaluation Quiz</h3>
-				<p>Test your understanding of the concepts covered in this module.</p>
-				
-				<div style="background:var(--bg); padding:1rem; border-radius:8px; margin-bottom:1rem;">
-					<p><strong>Question 1:</strong> What is the main purpose of ImageJ in biological image analysis?</p>
-					<ul style="list-style:none; margin-left:0;">
-						<li>A. To make images look artistic</li>
-						<li style="color:var(--green); font-weight:700;">B. To convert visual biological information into measurable data</li>
-						<li>C. To replace all laboratory experiments</li>
-						<li>D. To identify species automatically in all cases</li>
-					</ul>
-				</div>
-
-				<div style="background:var(--bg); padding:1rem; border-radius:8px; margin-bottom:1rem;">
-					<p><strong>Question 2:</strong> A dark-colored assay well has a mean gray value of 120. The blank well has a mean gray value of 230. What is the corrected dark color intensity?</p>
-					<ul style="list-style:none; margin-left:0;">
-						<li style="color:var(--green); font-weight:700;">A. 110 (Calculation: 230 - 120 = 110)</li>
-						<li>B. 120</li>
-						<li>C. 230</li>
-						<li>D. 350</li>
-					</ul>
-				</div>
-
-				<div style="background:var(--bg); padding:1rem; border-radius:8px; margin-bottom:1rem;">
-					<p><strong>Question 3:</strong> Which ImageJ function is most useful for counting cells or colonies after thresholding?</p>
-					<ul style="list-style:none; margin-left:0;">
-						<li>A. Set Scale</li>
-						<li style="color:var(--green); font-weight:700;">B. Analyze Particles</li>
-						<li>C. Save As</li>
-						<li>D. Image Crop only</li>
-					</ul>
-				</div>
-
-				<div style="background:var(--bg); padding:1rem; border-radius:8px; margin-bottom:1rem;">
-					<p><strong>Question 4:</strong> Why is background correction important?</p>
-					<ul style="list-style:none; margin-left:0;">
-						<li>A. It changes the biological sample.</li>
-						<li>B. It removes the need for controls.</li>
-						<li style="color:var(--green); font-weight:700;">C. It reduces error caused by lighting, staining, or camera exposure.</li>
-						<li>D. It makes all images identical.</li>
-					</ul>
-				</div>
-
-				<div style="background:var(--bg); padding:1rem; border-radius:8px;">
-					<p><strong>Question 5:</strong> Why should ImageJ data be interpreted together with biological controls?</p>
-					<p style="color:var(--green); font-weight:700; margin-top:0.3rem;">Answer Key &amp; Explanation:</p>
-					<p>Biological controls establish the baseline of natural variability. Image J measurements yield raw relative values (such as pixel intensities), which must be normalized against experimental controls to confirm physiological significance.</p>
-				</div>
-			</div>
-		</template>
-
-		<template id="template-mod8">
-			<h2 class="materials-title">M08: Plant Transcriptomics</h2>
-			<div class="materials-section">
-				<h3>1. Normalization Frameworks</h3>
-				<p>Raw transcriptomic sequence reads must be normalized to account for differences in sequencing depth and gene length before making comparisons:</p>
-				<ul>
-					<li><strong>TPM (Transcripts Per Million):</strong> Normalizes for gene length first, then sequencing depth. Because the sum of all TPM values is identical across samples, it allows for direct comparisons of relative gene abundance.</li>
-					<li><strong>RPKM / FPKM:</strong> Normalizes for sequencing depth first, then gene length. RPKM/FPKM values are less reliable for comparing expression levels across different samples.</li>
-				</ul>
-				<h3>2. Differential Expression Analysis</h3>
-				<p>A gene is considered differentially expressed (DEG) if it shows a statistically significant change in expression between conditions. Typically, researchers use thresholds of <code>adjusted p-value &lt; 0.05</code> and <code>|log₂ Fold Change| &ge; 1</code> (representing a 2-fold change) to identify robust changes.</p>
-			</div>
-		</template>
-
-		<template id="template-mod9">
-			<h2 class="materials-title">M09: Plant Metabolomic Pathways</h2>
-			<div class="materials-section">
-				<h3>1. Genotype to Phenotype Cascade</h3>
-				<p>Biological systems process information through a structured pathway:</p>
-				<p><code>Gene Expression &rarr; Protein Abundance &rarr; Enzyme Activity &rarr; Metabolite Accumulation &rarr; Biological Function &rarr; Observable Phenotype</code></p>
-				<p>Understanding these connections is essential, as changes in gene expression do not always lead to a proportional change in the final phenotype due to post-transcriptional regulation and enzyme kinetics.</p>
-
-				<h3>2. Case Study: Enzymatic Browning</h3>
-				<p>Enzymatic browning in damaged plant tissues is mediated by <strong>Polyphenol Oxidase (PPO)</strong>. PPO catalyzes the oxidation of phenolic substrates into reactive <em>o</em>-quinones. These quinones polymerize with amino acids to form dark pigments (melanins), producing the browning phenotype.</p>
-
-				<h3>3. Rules of Pathway Analysis</h3>
-				<ul>
-					<li><strong>Upstream/Downstream Effects:</strong> Inhibiting or knocking out an enzyme causes its direct substrate (upstream metabolite) to accumulate, while its direct product (downstream metabolite) is depleted.</li>
-					<li><strong>Pathway Blockages:</strong> The overall rate of a pathway is governed by its rate-limiting enzyme, which has the lowest maximum velocity (Vmax) or is subject to tight feedback regulation.</li>
-				</ul>
-
-				<hr style="margin:1.5rem 0; border:none; border-top:1px solid var(--border);">
-
-				<h3>📝 Self-Evaluation Quiz</h3>
-				<p>Test your understanding of the pathway concepts covered in this module.</p>
-				
-				<div style="background:var(--bg); padding:1rem; border-radius:8px; margin-bottom:1rem;">
-					<p><strong>Question 1:</strong> A metabolic pathway flows as: <code>Substrate X &rarr; (Enzyme A) &rarr; Product Y &rarr; Phenotype Z</code>. If a mutation causes Enzyme A to lose function, what is the most likely result?</p>
-					<ul style="list-style:none; margin-left:0;">
-						<li>A. Product Y increases</li>
-						<li style="color:var(--green); font-weight:700;">B. Product Y decreases (and Substrate X accumulates)</li>
-						<li>C. Substrate X disappears completely</li>
-						<li>D. Phenotype Z always increases</li>
-					</ul>
-				</div>
-
-				<div style="background:var(--bg); padding:1rem; border-radius:8px; margin-bottom:1rem;">
-					<p><strong>Question 2:</strong> Several upstream genes in a pathway are upregulated, but the final product level remains low. Which explanation is most likely?</p>
-					<ul style="list-style:none; margin-left:0;">
-						<li>A. The pathway must be fully active.</li>
-						<li style="color:var(--green); font-weight:700;">B. A downstream enzyme may be inhibited or nonfunctional.</li>
-						<li>C. Gene expression always equals metabolite level.</li>
-						<li>D. The pathway has no biological meaning.</li>
-					</ul>
-				</div>
-
-				<div style="background:var(--bg); padding:1rem; border-radius:8px; margin-bottom:1rem;">
-					<p><strong>Question 3:</strong> Why is it important to know where a gene is located in a pathway?</p>
-					<p style="color:var(--green); font-weight:700; margin-top:0.3rem;">Answer Key &amp; Explanation:</p>
-					<p>Knowing a gene's position allows you to predict how knockouts or overexpression will affect upstream and downstream metabolites, identify potential feedback loops, and design effective validation strategies.</p>
-				</div>
-
-				<div style="background:var(--bg); padding:1rem; border-radius:8px;">
-					<p><strong>Question 4:</strong> How can KEGG help explain a biological phenotype?</p>
-					<p style="color:var(--green); font-weight:700; margin-top:0.3rem;">Answer Key &amp; Explanation:</p>
-					<p>KEGG maps experimental data (such as gene expression or metabolite levels) onto curated biochemical pathways. This helps link molecular changes to physical traits (like browning, stress tolerance, or pigment production).</p>
-				</div>
-			</div>
-		</template>
-
 		<script>
 			// ── All evaluation data ──────────────────────────────────────────────
 			const EVALS = {
@@ -1790,18 +1398,7 @@
 			});
 			});
 
-			// ── Modal Controller (SPA Materials) ─────────────────────────────
-			function openMaterials(id) {
-			const template = document.getElementById('template-' + id);
-			const modal = document.getElementById('materials-modal');
-			const contentContainer = document.getElementById('modal-body-content');
-			if (template && modal && contentContainer) {
-			contentContainer.innerHTML = template.innerHTML;
-			modal.style.display = 'flex';
-			document.body.style.overflow = 'hidden'; 
-			}
-			}
-
+			// ── Modal Controller (Schedule Only) ─────────────────────────────
 			function openSchedule() {
 			const template = document.getElementById('template-schedule');
 			const modal = document.getElementById('materials-modal');
@@ -1836,8 +1433,8 @@
 			{ day:'D1', name:'Break + Pre-eval',          sub:'',      start:'10:30', brk:15 },
 			{ day:'D1', name:'M3 · BLAST & Inference',    sub:'Day 1', start:'10:45', lec:60, ws:45 },
 			{ day:'D1', name:'Lunch',                     sub:'',      start:'12:30', brk:60 },
-			{ day:'D1', name:'M4 · Genome Browser',       sub:'Day 1', start:'13:30', lec:45, ws:45 },
-			{ day:'D2', name:'M5 · MSA',                  sub:'Day 2', start:'08:00', lec:45, ws:30 },
+			{ day:'D1', name:'M4 · Genome Browsers',      sub:'Day 1', start:'13:30', lec:45, ws:45 },
+			{ day:'D2', name:'M5 · Sequence Alignment',   sub:'Day 2', start:'08:00', lec:45, ws:30 },
 			{ day:'D2', name:'M6 · Phylogenetics',         sub:'Day 2', start:'09:15', lec:60, ws:45 },
 			{ day:'D2', name:'Break',                     sub:'',      start:'11:00', brk:15 },
 			{ day:'D2', name:'M7 · Image Analysis',        sub:'Day 2', start:'11:15', lec:45, ws:60 },

@@ -485,9 +485,97 @@
 						.cs-q-item { display:flex; align-items:flex-start; gap:7px; font-size:0.83rem; color:var(--text2); }
 						.cs-q-num { background:var(--green); color:#fff; font-size:0.62rem; font-weight:800; padding:1px 6px; border-radius:4px; flex-shrink:0; margin-top:2px; font-family:'JetBrains Mono',monospace; }
 
+						/* ── Overlays and Modals ── */
+						.modal {
+						display: none;
+						position: fixed;
+						z-index: 1000;
+						left: 0;
+						top: 0;
+						width: 100%;
+						height: 100%;
+						overflow: auto;
+						background-color: rgba(30, 26, 20, 0.45);
+						backdrop-filter: blur(4px);
+						align-items: center;
+						justify-content: center;
+						}
+						.modal-content {
+						background-color: var(--white);
+						margin: auto;
+						padding: 2.5rem;
+						border: 1px solid var(--border);
+						width: 90%;
+						max-width: 820px;
+						border-radius: var(--radius-lg);
+						box-shadow: 0 12px 36px rgba(30,26,20,0.18);
+						position: relative;
+						max-height: 85vh;
+						overflow-y: auto;
+						}
+						.modal-close {
+						color: var(--text3);
+						position: absolute;
+						top: 1.25rem;
+						right: 1.5rem;
+						font-size: 2rem;
+						font-weight: 700;
+						cursor: pointer;
+						transition: color 0.15s;
+						line-height: 1;
+						}
+						.modal-close:hover {
+						color: var(--rose);
+						}
+						
+						/* Materials Document Styles */
+						.materials-title {
+						font-family: 'Source Serif 4', serif;
+						font-size: 1.8rem;
+						color: var(--text);
+						margin-bottom: 1.5rem;
+						border-bottom: 2px solid var(--green-bd);
+						padding-bottom: 0.5rem;
+						}
+						.materials-section {
+						margin-bottom: 1.5rem;
+						}
+						.materials-section h3 {
+						font-family: 'Source Serif 4', serif;
+						font-size: 1.2rem;
+						color: var(--green);
+						margin-top: 1.4rem;
+						margin-bottom: 0.5rem;
+						}
+						.materials-section p {
+						font-size: 0.9rem;
+						color: var(--text2);
+						margin-bottom: 0.75rem;
+						}
+						.materials-section ul, .materials-section ol {
+						margin-left: 1.5rem;
+						margin-bottom: 1rem;
+						font-size: 0.9rem;
+						color: var(--text2);
+						}
+						.materials-section li {
+						margin-bottom: 0.4rem;
+						}
+
+						.sub-sched-title {
+						font-size: 0.95rem;
+						font-weight: 800;
+						color: var(--text);
+						margin-top: 0.8rem;
+						margin-bottom: 0.3rem;
+						text-transform: uppercase;
+						letter-spacing: 0.05em;
+						}
+
 						@media(max-width:860px){
 						.sidebar { display:none; } .main { margin-left:0; padding:0 1.25rem 4rem; }
 						.toc-grid,.eval-grid,.cg,.pillar-grid,.cs-q-grid { grid-template-columns:1fr; }
+						.modal-content { width: 95%; padding: 1.5rem; }
 						}
 						section,div[id^="mod"],div[id="case-study"],div[id="philosophy"] { scroll-margin-top:1rem; }
 					</style>
@@ -539,16 +627,17 @@
 					<span class="nav-dot" style="background:var(--day2)"></span>M6 · Phylogenetics
 				</button>
 				<button class="nav-item" onclick="goToId('mod7')">
-					<span class="nav-dot" style="background:var(--day2)"></span>M7 · Transcriptomics
+					<span class="nav-dot" style="background:var(--day2)"></span>M7 · Image Analysis
 				</button>
 			</div>
 			<div class="nav-group">
 				<div class="nav-group-label" onclick="goToId('day3')" style="cursor:pointer">Day 3 · Expression</div>
 				<button class="nav-item" onclick="goToId('mod8')">
-					<span class="nav-dot" style="background:var(--day3)"></span>M8 · ImageJ
+					<span class="nav-dot" style="background:var(--day3)"></span>M8 · Transcriptomics
 				</button>
 				<button class="nav-item" onclick="goToId('mod9')">
 					<span class="nav-dot" style="background:var(--day3)"></span>M9 · Pathways
+				</button>
 				<button class="nav-item" onclick="goToId('case-study')">
 					<span class="nav-dot" style="background:var(--text3)"></span>Final Case Study
 				</button>
@@ -571,8 +660,8 @@
 				</h1>
 				<p class="hero-desc">This repository contains the official learning materials for the Plant Computational Biology and Bioinformatics training program developed for Filipino high school students preparing for the International Biology Olympiad (IBO) 2026.</p>
 				<p class="hero-desc">The modules were prepared by researchers from the Philippine Genome Center R&amp;D Program for Agriculture, Livestock, Fisheries, and Forestry. They provide an introduction to genomics, bioinformatics, and computational biology through lectures, hands-on activities, and case studies.</p>
-				</div>
 			</section>
+
 			<!-- Disclaimer & Authors -->
 			<section id="disclaimer" style="margin-bottom:1.5rem">
 				<div class="sec-title">Disclaimer &amp; Contributors <span class="sec-badge">Info</span></div>
@@ -602,13 +691,12 @@
 						<div class="toc-col-title">Day 2 · Alignment & Evolution</div>
 						<a class="toc-link" href="#mod5">Module 5 · Multiple Sequence Alignment</a>
 						<a class="toc-link" href="#mod6">Module 6 · Phylogenetics & Evolution</a>
-						<a class="toc-link" href="#mod7">Module 7 · Transcriptomics</a>
+						<a class="toc-link" href="#mod7">Module 7 · Image Analysis (ImageJ)</a>
 					</div>
 					<div class="toc-col d3">
 						<div class="toc-col-title">Day 3 · Expression & Reasoning</div>
-						<a class="toc-link" href="#mod8">Module 8 · ImageJ & Image Analysis</a>
-						<a class="toc-link" href="#mod9">Module 9 · Metabolic Pathways</a>
-						<a class="toc-link" href="#mod10">Module 10 · Experimental Validation</a>
+						<a class="toc-link" href="#mod8">Module 8 · Plant Transcriptomics</a>
+						<a class="toc-link" href="#mod9">Module 9 · Metabolomic Pathways</a>
 						<a class="toc-link" href="#case-study">Final Integrated Case Study</a>
 					</div>
 				</div>
@@ -655,14 +743,13 @@
 				<div class="module-body">
 					<div class="module-body-inner">
 
-						<!-- PRE-EVAL (replaced) -->
-						<div class="eval-section">
+						<div class="eval-section" style="border-top:none; padding-top:0;">
 							<div class="eval-header">
 								<span class="eval-badge pre">Materials</span>
 								<span class="eval-title">Open module materials</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<a class="eval-btn check" href="materials/mod1.html" target="_blank" rel="noopener noreferrer">Open Materials</a>
+								<button class="eval-btn check" type="button" onclick="openMaterials('mod1')">Open Materials</button>
 							</div>
 						</div>
 
@@ -724,13 +811,13 @@
 				</div>
 				<div class="module-body">
 					<div class="module-body-inner">
-						<div class="eval-section">
+						<div class="eval-section" style="border-top:none; padding-top:0;">
 							<div class="eval-header">
 								<span class="eval-badge pre">Materials</span>
 								<span class="eval-title">Open module materials</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<a class="eval-btn check" href="materials/mod2.html" target="_blank" rel="noopener noreferrer">Open Materials</a>
+								<button class="eval-btn check" type="button" onclick="openMaterials('mod2')">Open Materials</button>
 							</div>
 						</div>
 						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
@@ -789,13 +876,13 @@
 				</div>
 				<div class="module-body">
 					<div class="module-body-inner">
-						<div class="eval-section">
+						<div class="eval-section" style="border-top:none; padding-top:0;">
 							<div class="eval-header">
 								<span class="eval-badge pre">Materials</span>
 								<span class="eval-title">Open module materials</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<a class="eval-btn check" href="materials/mod3.html" target="_blank" rel="noopener noreferrer">Open Materials</a>
+								<button class="eval-btn check" type="button" onclick="openMaterials('mod3')">Open Materials</button>
 							</div>
 						</div>
 						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
@@ -825,7 +912,7 @@
 									<li>E &lt; 1e-10: statistically significant</li>
 									<li>E &lt; 1e-30: likely functional homolog</li>
 									<li>E &gt; 0.01: discard — chance hit</li>
-									<li>Always combine E-value + identity + coverage + coverage</li>
+									<li>Always combine E-value + identity + coverage</li>
 								</ul>
 							</div>
 							<div class="cb workshop">
@@ -854,13 +941,13 @@
 				</div>
 				<div class="module-body">
 					<div class="module-body-inner">
-						<div class="eval-section">
+						<div class="eval-section" style="border-top:none; padding-top:0;">
 							<div class="eval-header">
 								<span class="eval-badge pre">Materials</span>
 								<span class="eval-title">Open module materials</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<a class="eval-btn check" href="materials/mod4.html" target="_blank" rel="noopener noreferrer">Open Materials</a>
+								<button class="eval-btn check" type="button" onclick="openMaterials('mod4')">Open Materials</button>
 							</div>
 						</div>
 						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
@@ -917,13 +1004,13 @@
 				</div>
 				<div class="module-body">
 					<div class="module-body-inner">
-						<div class="eval-section">
+						<div class="eval-section" style="border-top:none; padding-top:0;">
 							<div class="eval-header">
 								<span class="eval-badge pre">Materials</span>
 								<span class="eval-title">Open module materials</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<a class="eval-btn check" href="materials/mod5.html" target="_blank" rel="noopener noreferrer">Open Materials</a>
+								<button class="eval-btn check" type="button" onclick="openMaterials('mod5')">Open Materials</button>
 							</div>
 						</div>
 						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
@@ -965,13 +1052,13 @@
 				</div>
 				<div class="module-body">
 					<div class="module-body-inner">
-						<div class="eval-section">
+						<div class="eval-section" style="border-top:none; padding-top:0;">
 							<div class="eval-header">
 								<span class="eval-badge pre">Materials</span>
 								<span class="eval-title">Open module materials</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<a class="eval-btn check" href="materials/mod6.html" target="_blank" rel="noopener noreferrer">Open Materials</a>
+								<button class="eval-btn check" type="button" onclick="openMaterials('mod6')">Open Materials</button>
 							</div>
 						</div>
 						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
@@ -1004,43 +1091,42 @@
 			<div class="module-card" id="mod7">
 				<div class="module-header" onclick="toggleMod(this)">
 					<span class="mod-num">M 07</span>
-					<span class="mod-title">Transcriptomics & Gene Expression</span>
+					<span class="mod-title">Using ImageJ for Biological Image Analysis</span>
 					<div class="mod-pills">
-						<span class="mpill mpill-lec">60 min lecture</span>
-						<span class="mpill mpill-ws">45 min workshop</span>
+						<span class="mpill mpill-lec">45 min lecture</span>
+						<span class="mpill mpill-ws">60 min workshop</span>
 					</div>
 					<span class="caret">▼</span>
 				</div>
 				<div class="module-body">
 					<div class="module-body-inner">
-						<div class="eval-section">
+						<div class="eval-section" style="border-top:none; padding-top:0;">
 							<div class="eval-header">
 								<span class="eval-badge pre">Materials</span>
 								<span class="eval-title">Open module materials</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<a class="eval-btn check" href="materials/mod7.html" target="_blank" rel="noopener noreferrer">Open Materials</a>
+								<button class="eval-btn check" type="button" onclick="openMaterials('mod7')">Open Materials</button>
 							</div>
 						</div>
 						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
 						<div class="cg">
 							<div class="cb topics">
-								<div class="cb-head">Topics</div>
+								<div class="cb-head">Key Techniques</div>
 								<ul class="cb-list">
-									<li>RNA-seq workflow: extract → library → sequence → align → count</li>
-									<li>Normalization: TPM (recommended), RPKM, FPKM</li>
-									<li>Log₂ fold change: log₂(treatment/control)</li>
-									<li>Adjusted p-value (FDR): corrects for multiple testing</li>
-									<li>Heatmap: rows = genes, columns = samples; color = log₂ expression</li>
+									<li>Scale calibration: draw line over scale bar → Set Scale</li>
+									<li>Grayscale Conversion: raw 8-bit conversions</li>
+									<li>Threshold Segmentation: isolating cell compartments</li>
+									<li>Corrected Total Cell Fluorescence calculations</li>
 								</ul>
 							</div>
-							<div class="cb emphasis">
-								<div class="cb-head">Noisy Data Traps</div>
+							<div class="cb skills">
+								<div class="cb-head">Key Formulas</div>
 								<ul class="cb-list">
-									<li>Very low counts (2 → 512): large fold change but high variance</li>
-									<li>Always require adjusted p &lt; 0.05 + |log₂FC| ≥ 1</li>
-									<li>n = 2 replicates: not statistically valid for DE analysis</li>
-									<li>Batch effects can mimic true expression differences</li>
+									<li>Corrected Dark Signal = Background Mean - Sample Mean</li>
+									<li>Corrected Bright Signal = Sample Mean - Background Mean</li>
+									<li>Percent Area = (Positive area / Total area) * 100</li>
+									<li>Object Density = Object count / Measured Area</li>
 								</ul>
 							</div>
 						</div>
@@ -1053,13 +1139,13 @@
 				<div class="day-num-big">03</div>
 				<div>
 					<div class="day-info-label">Day Three</div>
-					<div class="day-info-title">Expression, Networks & Experimental Reasoning</div>
+					<div class="day-info-title">Expression, Pathways & Synthesis</div>
 					<div class="day-obj-pills">
-						<span class="obj-pill">RNA-seq Heatmaps</span>
-						<span class="obj-pill">Fold Change</span>
-						<span class="obj-pill">Metabolic Pathways</span>
-						<span class="obj-pill">CRISPR / RNAi Design</span>
-						<span class="obj-pill">Control Experiments</span>
+						<span class="obj-pill">RNA-seq Analysis</span>
+						<span class="obj-pill">KEGG Metabolic Pathways</span>
+						<span class="obj-pill">Browning Pathways</span>
+						<span class="obj-pill">Phenotype Interpretations</span>
+						<span class="obj-pill">Integrated Crisis Cases</span>
 					</div>
 				</div>
 			</div>
@@ -1068,42 +1154,41 @@
 			<div class="module-card" id="mod8">
 				<div class="module-header" onclick="toggleMod(this)">
 					<span class="mod-num">M 08</span>
-					<span class="mod-title">ImageJ Fundamentals</span>
+					<span class="mod-title">Plant Transcriptomics</span>
 					<div class="mod-pills">
-						<span class="mpill mpill-lec">45 min lecture</span>
-						<span class="mpill mpill-ws">60 min workshop</span>
+						<span class="mpill mpill-lec">60 min lecture</span>
+						<span class="mpill mpill-ws">45 min workshop</span>
 					</div>
 					<span class="caret">▼</span>
 				</div>
 				<div class="module-body">
 					<div class="module-body-inner">
-						<div class="eval-section">
+						<div class="eval-section" style="border-top:none; padding-top:0;">
 							<div class="eval-header">
 								<span class="eval-badge pre">Materials</span>
 								<span class="eval-title">Open module materials</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<a class="eval-btn check" href="materials/mod8.html" target="_blank" rel="noopener noreferrer">Open Materials</a>
+								<button class="eval-btn check" type="button" onclick="openMaterials('mod8')">Open Materials</button>
 							</div>
 						</div>
 						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
 						<div class="cg">
 							<div class="cb topics">
-								<div class="cb-head">Key Techniques</div>
+								<div class="cb-head">Topics</div>
 								<ul class="cb-list">
-									<li>Scale calibration: draw line over scale bar → Analyze → Set Scale</li>
-									<li>Root length: Segmented Line tool along root midline</li>
-									<li>Stomatal density: count in known ROI area (convert to mm²)</li>
-									<li>CTCF = Integrated Density − (Area × Mean Background)</li>
+									<li>RNA-seq workflows: alignments and database configurations</li>
+									<li>Normalization methods: TPM, RPKM, FPKM</li>
+									<li>Log₂ Fold Change quantification and threshold filters</li>
+									<li>Volcano plots and multi-gene expression heatmaps</li>
 								</ul>
 							</div>
 							<div class="cb skills">
-								<div class="cb-head">Calculation Example</div>
+								<div class="cb-head">Interpreting SRA Data</div>
 								<ul class="cb-list">
-									<li>100 px = 50 μm → 1 px = 0.5 μm; 1 px² = 0.25 μm²</li>
-									<li>ROI: 400 × 300 px = 120,000 px² × 0.25 = 30,000 μm² = 0.03 mm²</li>
-									<li>18 stomata in 0.03 mm² = 600 stomata/mm²</li>
-									<li>CTCF: 85,000 − (320 × 45) = 70,600 AU</li>
+									<li>Accessing raw BioProject run collections</li>
+									<li>Analyzing expression responses across stress groups</li>
+									<li>Filtering out background noise using adjusted p-values</li>
 								</ul>
 							</div>
 						</div>
@@ -1115,7 +1200,7 @@
 			<div class="module-card" id="mod9">
 				<div class="module-header" onclick="toggleMod(this)">
 					<span class="mod-num">M 09</span>
-					<span class="mod-title">Plant Metabolic Pathways & Networks</span>
+					<span class="mod-title">Plant Metabolomic Pathways</span>
 					<div class="mod-pills">
 						<span class="mpill mpill-lec">45 min lecture</span>
 						<span class="mpill mpill-ws">30 min workshop</span>
@@ -1124,13 +1209,13 @@
 				</div>
 				<div class="module-body">
 					<div class="module-body-inner">
-						<div class="eval-section">
+						<div class="eval-section" style="border-top:none; padding-top:0;">
 							<div class="eval-header">
 								<span class="eval-badge pre">Materials</span>
 								<span class="eval-title">Open module materials</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<a class="eval-btn check" href="materials/mod9.html" target="_blank" rel="noopener noreferrer">Open Materials</a>
+								<button class="eval-btn check" type="button" onclick="openMaterials('mod9')">Open Materials</button>
 							</div>
 						</div>
 						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
@@ -1138,86 +1223,18 @@
 							<div class="cb topics">
 								<div class="cb-head">Key Pathways</div>
 								<ul class="cb-list">
-									<li>Calvin cycle: RuBisCO, FBPase, PRK as key enzymes</li>
-									<li>Flavonoid pathway: PAL → C4H → CHS → CHI → F3H → DFR → ANS</li>
-									<li>ABA biosynthesis: zeaxanthin → violaxanthin → xanthoxin → ABA</li>
-									<li>Ethylene: SAM → ACC → ethylene (ACC synthase, ACC oxidase)</li>
-									<li>Rate-limiting enzyme = lowest Vmax or most regulated step</li>
+									<li>Secondary metabolites and phenotypic profiles</li>
+									<li>PPO-mediated Enzymatic Browning cascades</li>
+									<li>KEGG Reference database architecture</li>
+									<li>Metabolic blockages, feedforward, and feedback loops</li>
 								</ul>
 							</div>
 							<div class="cb skills">
-								<div class="cb-head">Reasoning Rules</div>
+								<div class="cb-head">Analytical Practice</div>
 								<ul class="cb-list">
-									<li>Enzyme knockout → accumulation UPSTREAM, depletion DOWNSTREAM</li>
-									<li>Feedback inhibition: product inhibits its own synthesis enzyme</li>
-									<li>Bottleneck: slowest step controls flux through entire pathway</li>
-									<li>Redundant pathways: single knockout may have no phenotype</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- ── MODULE 10 ── -->
-			<div class="module-card" id="mod10">
-				<div class="module-header" onclick="toggleMod(this)">
-					<span class="mod-num">M 10</span>
-					<span class="mod-title">Experimental Validation & Biological Reasoning</span>
-					<div class="mod-pills">
-						<span class="mpill mpill-lec">60 min lecture</span>
-						<span class="mpill mpill-ws">45 min workshop</span>
-					</div>
-					<span class="caret">▼</span>
-				</div>
-				<div class="module-body">
-					<div class="module-body-inner">
-						<div class="eval-section">
-							<div class="eval-header">
-								<span class="eval-badge pre">Materials</span>
-								<span class="eval-title">Open module materials</span>
-							</div>
-							<div style="margin-top:0.6rem">
-								<a class="eval-btn check" href="materials/mod10.html" target="_blank" rel="noopener noreferrer">Open Materials</a>
-							</div>
-						</div>
-						<div class="ex-label-row" style="margin-top:1.5rem">Core Content</div>
-						<div class="cg">
-							<div class="cb emphasis">
-								<div class="cb-head">Core Principle</div>
-								<ul class="cb-list">
-									<li>Computational prediction = hypothesis, NOT proof</li>
-									<li>BLAST hit = putative function only</li>
-									<li>Correlation in expression ≠ causal relationship</li>
-									<li>A good negative result is still valid science</li>
-								</ul>
-							</div>
-							<div class="cb topics">
-								<div class="cb-head">Validation Methods</div>
-								<ul class="cb-list">
-									<li>T-DNA insertion: complete knockout (null allele)</li>
-									<li>RNAi: partial, tunable knockdown</li>
-									<li>CRISPR-Cas9: precise knockout or base editing</li>
-									<li>35S::Gene overexpression: gain-of-function test</li>
-									<li>Complementation: confirm causality by rescuing mutant</li>
-								</ul>
-							</div>
-							<div class="cb skills">
-								<div class="cb-head">Control Requirements</div>
-								<ul class="cb-list">
-									<li>Positive control: validates assay sensitivity</li>
-									<li>Negative control: empty vector or mock treatment</li>
-									<li>Off-target control: 2nd independent mutant allele</li>
-									<li>Complementation: mutant + transgene = WT phenotype</li>
-								</ul>
-							</div>
-							<div class="cb workshop">
-								<div class="cb-head">Workshop Design Task</div>
-								<ul class="cb-list">
-									<li>BLAST predicts AT5G12345 = drought tolerance kinase</li>
-									<li>Design a 3-step validation experiment</li>
-									<li>List all required controls with justifications</li>
-									<li>Predict both positive and negative outcomes</li>
+									<li>Predicting phenotypes from metabolic blockages</li>
+									<li>Analyzing metabolite accumulation after knockouts</li>
+									<li>Tracing pathway cascades from substrate to functional outcome</li>
 								</ul>
 							</div>
 						</div>
@@ -1228,6 +1245,7 @@
 			<!-- Final Case Study -->
 			<div id="case-study">
 				<div class="cs-title">Final Integrated Case Study</div>
+				<div class="cs-sub">Synthesis of all modules: The Great Banana Crisis</div>
 				<div class="cs-ds-grid">
 					<div class="cs-ds-item">
 						<div class="cs-ds-icon">🧬</div>
@@ -1337,25 +1355,341 @@
 
 		</main>
 
+		<!-- Dynamic Overlay Modals -->
+		<div id="materials-modal" class="modal">
+			<div class="modal-content">
+				<span class="modal-close" onclick="closeMaterials()">&times;</span>
+				<div id="modal-body-content"></div>
+			</div>
+		</div>
+
+		<!-- SCHEDULE TEMPLATE -->
+		<template id="template-schedule">
+			<h2 class="materials-title">📅 3-Day IBO Training Schedule</h2>
+			<div class="materials-section">
+				<p><strong>Program Focus:</strong> Plant Computational Biology &amp; Bioinformatics (Filipino High School Olympiad Cohort 2026)</p>
+				
+				<h3 style="color:var(--day1);">June 29, 2026 (Day 1: Sequences &amp; Genomes)</h3>
+				<div style="background:var(--bg); border-left:3px solid var(--day1); padding:0.75rem 1rem; border-radius:6px; margin-bottom:1rem;">
+					<div class="sub-sched-title">AM Session (08:00 – 12:00)</div>
+					<ul>
+						<li><strong>Module 1:</strong> Plant Genome Fundamentals</li>
+						<li><strong>Module 2:</strong> ORFs &amp; Gene Annotation</li>
+						<li><strong>Module 3:</strong> BLAST &amp; Functional Inference</li>
+						<li><strong>Module 4:</strong> Genome Browser Basics</li>
+					</ul>
+					<div class="sub-sched-title">PM Session (13:30 – 17:00)</div>
+					<ul>
+						<li><strong>Case Study:</strong> The Great Banana Crisis (Introduction)</li>
+						<li><strong>Exercise 1:</strong> BLAST and how to interpret it</li>
+						<li><strong>Exercise 2:</strong> Investigating the PPO Gene Family using Genome Browsers</li>
+					</ul>
+				</div>
+
+				<h3 style="color:var(--day2);">June 30, 2026 (Day 2: Alignment, Evolution &amp; Image Analysis)</h3>
+				<div style="background:var(--bg); border-left:3px solid var(--day2); padding:0.75rem 1rem; border-radius:6px; margin-bottom:1rem;">
+					<div class="sub-sched-title">AM Session (08:00 – 12:00)</div>
+					<ul>
+						<li><strong>Module 5:</strong> Multiple Sequence Alignment (MSA)</li>
+						<li><strong>Module 6:</strong> Phylogenetics and Plant Evolution</li>
+						<li><strong>Module 7:</strong> Using ImageJ for Quantitative Biological Image Analysis</li>
+					</ul>
+					<div class="sub-sched-title">PM Session (13:30 – 17:00)</div>
+					<ul>
+						<li><strong>Case Study:</strong> The Great Banana Crisis (Phenotyping &amp; Evolution)</li>
+						<li><strong>Exercise 3:</strong> Pairwise and Multiple Sequence Alignment</li>
+						<li><strong>Exercise 4:</strong> Quantifying Banana Peel Browning Across Cultivars and Storage Days</li>
+					</ul>
+				</div>
+
+				<h3 style="color:var(--day3);">July 1, 2026 (Day 3: Expression &amp; Pathways)</h3>
+				<div style="background:var(--bg); border-left:3px solid var(--day3); padding:0.75rem 1rem; border-radius:6px; margin-bottom:1rem;">
+					<div class="sub-sched-title">AM Session (08:00 – 12:00)</div>
+					<ul>
+						<li><strong>Module 8:</strong> Plant Transcriptomics</li>
+						<li><strong>Module 9:</strong> Plant Metabolomic Pathways</li>
+					</ul>
+					<div class="sub-sched-title">PM Session (13:30 – 17:00)</div>
+					<ul>
+						<li><strong>Case Study:</strong> The Great Banana Crisis (Validation &amp; Resolution)</li>
+						<li><strong>Synthesis:</strong> Group Presentation, Discussion, and Q&amp;A Session</li>
+					</ul>
+				</div>
+			</div>
+		</template>
+
+		<!-- MATERIALS TEMPLATES -->
+		<template id="template-mod1">
+			<h2 class="materials-title">M01: Plant Genome Fundamentals</h2>
+			<div class="materials-section">
+				<h3>1. Nuclear, Chloroplast, and Mitochondrial Genomes</h3>
+				<p>Plant cells harbor three distinct genomes, showing unique evolutionary histories and architectures:</p>
+				<ul>
+					<li><strong>Nuclear Genome:</strong> Linear chromosomes, highly variable in size due to whole genome duplication (WGD) events and repetitive elements (e.g., retrotransposons).</li>
+					<li><strong>Chloroplast Genome (cpDNA):</strong> Primarily circular, double-stranded DNA spanning 120–170 kb, with a Large Single Copy (LSC) and a Small Single Copy (SSC) region flanked by two Inverted Repeats (IR).</li>
+					<li><strong>Mitochondrial Genome (mtDNA):</strong> Highly rearranged and variable in size, often existing as nested sub-genomic circles.</li>
+				</ul>
+				<h3>2. Endosymbiotic Theory &amp; Gene Transfer</h3>
+				<p>According to Lynn Margulis's endosymbiotic theory, chloroplasts originated from ancestral photosynthetic cyanobacteria engulfed by a eukaryotic host. Over evolutionary time, most ancestral genes transferred to the host nucleus—a process called Endosymbiotic Gene Transfer (EGT).</p>
+				<p>Nuclear-encoded plastid proteins are synthesized in the cytosol and imported post-translationally into the chloroplast stroma, thylakoids, or membranes. This import is guided by N-terminal <strong>transit peptides</strong>, which are recognized by the TOC/TIC envelope translocon channels.</p>
+				<h3>3. Practical Clues</h3>
+				<p>By convention, lowercase italicized names (e.g., <em>rbcL</em>) designate plastid-encoded genes, while uppercase italicized names (e.g., <em>RBCS</em>) denote nuclear-encoded genes. Transit peptides can be predicted computationally using algorithms like TargetP or ChloroP.</p>
+			</div>
+		</template>
+
+		<template id="template-mod2">
+			<h2 class="materials-title">M02: ORFs &amp; Gene Annotation</h2>
+			<div class="materials-section">
+				<h3>1. Six-Frame Translation</h3>
+				<p>Double-stranded DNA contains six potential translational pathways: three on the forward strand and three on the reverse complement. An Open Reading Frame (ORF) represents a continuous run starting with ATG (Start) and terminating at an in-frame stop codon (TAA, TAG, TGA).</p>
+				<h3>2. Splicing Rules</h3>
+				<p>Pre-mRNAs undergo spliceosome-mediated processing to remove introns. Splicing in plants adheres to the conserved **GT-AG rule**:</p>
+				<ul>
+					<li>The 5' splice donor site begins with **GT**.</li>
+					<li>The 3' splice acceptor site ends with **AG**.</li>
+				</ul>
+				<p>Mutations altering these nucleotides often cause intron retention, resulting in frameshifts or premature termination.</p>
+			</div>
+		</template>
+
+		<template id="template-mod3">
+			<h2 class="materials-title">M03: BLAST &amp; Functional Inference</h2>
+			<div class="materials-section">
+				<h3>1. BLAST Statistics</h3>
+				<p>The Basic Local Alignment Search Tool (BLAST) searches database sequences for local similarity matches. To evaluate alignments, use several key metrics:</p>
+				<ul>
+					<li><strong>E-value (Expect value):</strong> The statistical likelihood of finding an alignment by chance. E-values below <code>1e-10</code> represent statistically significant homology. Lower is better.</li>
+					<li><strong>Query Coverage:</strong> The fraction of the query sequence that aligns with the subject. Low coverage indicates matching domains rather than a full-length ortholog.</li>
+					<li><strong>Bit Score:</strong> Alignment score normalized for matrix parameters, independent of database size.</li>
+				</ul>
+				<h3>2. Orthology vs. Paralogy</h3>
+				<ul>
+					<li><strong>Orthologs:</strong> Genes in different species that diverged via speciation; they typically maintain identical biological functions.</li>
+					<li><strong>Paralogs:</strong> Genes that diverged via duplication within a genome; they often acquire new properties (neofunctionalization).</li>
+				</ul>
+			</div>
+		</template>
+
+		<template id="template-mod4">
+			<h2 class="materials-title">M04: Genome Browser Basics</h2>
+			<div class="materials-section">
+				<h3>1. Structure of Genomic Alignments</h3>
+				<p>Genome Browsers align gene transcripts, variations, and coverage tracks onto reference chromosome structures (e.g., <code>Chr1:12040-15300</code>).</p>
+				<h3>2. Visualizing Annotation Tracks</h3>
+				<ul>
+					<li><strong>Gene Models:</strong> Exons are shown as thick boxes, UTRs as thinner blocks, and introns as thin lines.</li>
+					<li><strong>Read Direction:</strong> Arrows along the intron lines show the direction of transcription (5' to 3').</li>
+					<li><strong>RNA-seq Tracks:</strong> Display sequence coverage heights. Exons correspond to high read coverage peaks, while introns appear as clear, unaligned gaps.</li>
+				</ul>
+			</div>
+		</template>
+
+		<template id="template-mod5">
+			<h2 class="materials-title">M05: Multiple Sequence Alignment (MSA)</h2>
+			<div class="materials-section">
+				<h3>1. Algorithms and Alignment Tools</h3>
+				<p>Multiple Sequence Alignments compare three or more sequences to identify conserved domains and residues. Aligners like ClustalW, MUSCLE, and MAFFT calculate insertions/deletions (indels) using scoring systems that penalize opening and extending gaps.</p>
+				<h3>2. Consensus Symbols</h3>
+				<ul>
+					<li><strong>Asterisk (*):</strong> Indicates a site with absolute residue conservation across all aligned sequences.</li>
+					<li><strong>Colon (:):</strong> Indicates conservation between residues with strongly similar chemical properties.</li>
+					<li><strong>Period (.):</strong> Indicates conservation between residues with weakly similar chemical properties.</li>
+				</ul>
+			</div>
+		</template>
+
+		<template id="template-mod6">
+			<h2 class="materials-title">M06: Phylogenetics &amp; Plant Evolution</h2>
+			<div class="materials-section">
+				<h3>1. Tree Reconstruction</h3>
+				<p>Phylogenetic trees depict evolutionary relationships. Rooted trees establish a common ancestor and the direction of evolutionary time, often using an unrelated outgroup. Unrooted trees show relative distance without specifying ancestry direction.</p>
+				<h3>2. Bootstrap Values</h3>
+				<p>Bootstrap analysis uses resampling to measure node reliability. A value represents the percentage of replicate trees that support a given node. Bootstrap values &ge; 70% indicate robust groupings, while values below 50% are highly unreliable.</p>
+				<h3>3. Wheat Subgenomes</h3>
+				<p>Hexaploid bread wheat (<em>Triticum aestivum</em>) possesses three closely related subgenomes (AABBDD), resulting in triplicated homeologous gene sets.</p>
+			</div>
+		</template>
+
+		<template id="template-mod7">
+			<h2 class="materials-title">M07: Using ImageJ for Biological Image Analysis</h2>
+			<div class="materials-section">
+				<h3>1. Grayscale Conversion and Thresholding</h3>
+				<p>Fiji (Fiji Is Just ImageJ) converts qualitative observations (e.g., color intensity) into quantitative measurements. Key steps in the workflow include:</p>
+				<ol>
+					<li><strong>Spatial Scale Calibration:</strong> Draw a straight line over a known physical scale, open <code>Analyze &rarr; Set Scale</code>, and enter the physical distance and units.</li>
+					<li><strong>Grayscale Conversion:</strong> Convert color images to 8-bit grayscale (<code>Image &rarr; Type &rarr; 8-bit</code>) to measure intensity.</li>
+					<li><strong>Thresholding:</strong> Navigate to <code>Image &rarr; Adjust &rarr; Threshold</code> to segment foreground pixels from the background.</li>
+					<li><strong>Measurements:</strong> Define your Region of Interest (ROI) and measure parameters using <code>Analyze &rarr; Measure</code> (hotkey: <code>M</code>).</li>
+				</ol>
+
+				<h3>2. Lossless Formats</h3>
+				<ul>
+					<li><strong>TIFF:</strong> Lossless format; ideal for scientific quantification because it preserves raw pixel values and metadata.</li>
+					<li><strong>PNG:</strong> Lossless format; ideal for web display, but does not preserve metadata.</li>
+					<li><strong>JPEG:</strong> Lossy compression. <strong>Never use JPEG for image quantification</strong> because compression introduces artifacts that distort pixel intensity values.</li>
+				</ul>
+
+				<h3>3. Key Quantitative Equations</h3>
+				<ul>
+					<li><strong>Corrected Dark Signal:</strong> (Used for darker samples, e.g., browning, dark gel bands)
+						<br><code>Corrected Dark Signal = Background Mean Gray Value - Sample Mean Gray Value</code>
+					</li>
+					<li><strong>Corrected Bright Signal:</strong> (Used for brighter samples, e.g., fluorescence, bright staining)
+						<br><code>Corrected Bright Signal = Sample Mean Gray Value - Background Mean Gray Value</code>
+					</li>
+					<li><strong>Corrected Total Cell Fluorescence (CTCF):</strong> (Accounts for varying cell sizes)
+						<br><code>CTCF = Integrated Density - (Area of Selected Cell &times; Mean Background Fluorescence)</code>
+					</li>
+					<li><strong>Percent Area:</strong> (e.g., leaf lesion coverage, cell confluency)
+						<br><code>Percent Area = (Positive Area / Total Area) &times; 100</code>
+					</li>
+					<li><strong>Object Density:</strong> (e.g., stomata per mm²)
+						<br><code>Object Density = Object Count / Measured Area</code>
+					</li>
+				</ul>
+
+				<hr style="margin:1.5rem 0; border:none; border-top:1px solid var(--border);">
+
+				<h3>📝 Self-Evaluation Quiz</h3>
+				<p>Test your understanding of the concepts covered in this module.</p>
+				
+				<div style="background:var(--bg); padding:1rem; border-radius:8px; margin-bottom:1rem;">
+					<p><strong>Question 1:</strong> What is the main purpose of ImageJ in biological image analysis?</p>
+					<ul style="list-style:none; margin-left:0;">
+						<li>A. To make images look artistic</li>
+						<li style="color:var(--green); font-weight:700;">B. To convert visual biological information into measurable data</li>
+						<li>C. To replace all laboratory experiments</li>
+						<li>D. To identify species automatically in all cases</li>
+					</ul>
+				</div>
+
+				<div style="background:var(--bg); padding:1rem; border-radius:8px; margin-bottom:1rem;">
+					<p><strong>Question 2:</strong> A dark-colored assay well has a mean gray value of 120. The blank well has a mean gray value of 230. What is the corrected dark color intensity?</p>
+					<ul style="list-style:none; margin-left:0;">
+						<li style="color:var(--green); font-weight:700;">A. 110 (Calculation: 230 - 120 = 110)</li>
+						<li>B. 120</li>
+						<li>C. 230</li>
+						<li>D. 350</li>
+					</ul>
+				</div>
+
+				<div style="background:var(--bg); padding:1rem; border-radius:8px; margin-bottom:1rem;">
+					<p><strong>Question 3:</strong> Which ImageJ function is most useful for counting cells or colonies after thresholding?</p>
+					<ul style="list-style:none; margin-left:0;">
+						<li>A. Set Scale</li>
+						<li style="color:var(--green); font-weight:700;">B. Analyze Particles</li>
+						<li>C. Save As</li>
+						<li>D. Image Crop only</li>
+					</ul>
+				</div>
+
+				<div style="background:var(--bg); padding:1rem; border-radius:8px; margin-bottom:1rem;">
+					<p><strong>Question 4:</strong> Why is background correction important?</p>
+					<ul style="list-style:none; margin-left:0;">
+						<li>A. It changes the biological sample.</li>
+						<li>B. It removes the need for controls.</li>
+						<li style="color:var(--green); font-weight:700;">C. It reduces error caused by lighting, staining, or camera exposure.</li>
+						<li>D. It makes all images identical.</li>
+					</ul>
+				</div>
+
+				<div style="background:var(--bg); padding:1rem; border-radius:8px;">
+					<p><strong>Question 5:</strong> Why should ImageJ data be interpreted together with biological controls?</p>
+					<p style="color:var(--green); font-weight:700; margin-top:0.3rem;">Answer Key &amp; Explanation:</p>
+					<p>Biological controls establish the baseline of natural variability. Image J measurements yield raw relative values (such as pixel intensities), which must be normalized against experimental controls to confirm physiological significance.</p>
+				</div>
+			</div>
+		</template>
+
+		<template id="template-mod8">
+			<h2 class="materials-title">M08: Plant Transcriptomics</h2>
+			<div class="materials-section">
+				<h3>1. Normalization Frameworks</h3>
+				<p>Raw transcriptomic sequence reads must be normalized to account for differences in sequencing depth and gene length before making comparisons:</p>
+				<ul>
+					<li><strong>TPM (Transcripts Per Million):</strong> Normalizes for gene length first, then sequencing depth. Because the sum of all TPM values is identical across samples, it allows for direct comparisons of relative gene abundance.</li>
+					<li><strong>RPKM / FPKM:</strong> Normalizes for sequencing depth first, then gene length. RPKM/FPKM values are less reliable for comparing expression levels across different samples.</li>
+				</ul>
+				<h3>2. Differential Expression Analysis</h3>
+				<p>A gene is considered differentially expressed (DEG) if it shows a statistically significant change in expression between conditions. Typically, researchers use thresholds of <code>adjusted p-value &lt; 0.05</code> and <code>|log₂ Fold Change| &ge; 1</code> (representing a 2-fold change) to identify robust changes.</p>
+			</div>
+		</template>
+
+		<template id="template-mod9">
+			<h2 class="materials-title">M09: Plant Metabolomic Pathways</h2>
+			<div class="materials-section">
+				<h3>1. Genotype to Phenotype Cascade</h3>
+				<p>Biological systems process information through a structured pathway:</p>
+				<p><code>Gene Expression &rarr; Protein Abundance &rarr; Enzyme Activity &rarr; Metabolite Accumulation &rarr; Biological Function &rarr; Observable Phenotype</code></p>
+				<p>Understanding these connections is essential, as changes in gene expression do not always lead to a proportional change in the final phenotype due to post-transcriptional regulation and enzyme kinetics.</p>
+
+				<h3>2. Case Study: Enzymatic Browning</h3>
+				<p>Enzymatic browning in damaged plant tissues is mediated by <strong>Polyphenol Oxidase (PPO)</strong>. PPO catalyzes the oxidation of phenolic substrates into reactive <em>o</em>-quinones. These quinones polymerize with amino acids to form dark pigments (melanins), producing the browning phenotype.</p>
+
+				<h3>3. Rules of Pathway Analysis</h3>
+				<ul>
+					<li><strong>Upstream/Downstream Effects:</strong> Inhibiting or knocking out an enzyme causes its direct substrate (upstream metabolite) to accumulate, while its direct product (downstream metabolite) is depleted.</li>
+					<li><strong>Pathway Blockages:</strong> The overall rate of a pathway is governed by its rate-limiting enzyme, which has the lowest maximum velocity (Vmax) or is subject to tight feedback regulation.</li>
+				</ul>
+
+				<hr style="margin:1.5rem 0; border:none; border-top:1px solid var(--border);">
+
+				<h3>📝 Self-Evaluation Quiz</h3>
+				<p>Test your understanding of the pathway concepts covered in this module.</p>
+				
+				<div style="background:var(--bg); padding:1rem; border-radius:8px; margin-bottom:1rem;">
+					<p><strong>Question 1:</strong> A metabolic pathway flows as: <code>Substrate X &rarr; (Enzyme A) &rarr; Product Y &rarr; Phenotype Z</code>. If a mutation causes Enzyme A to lose function, what is the most likely result?</p>
+					<ul style="list-style:none; margin-left:0;">
+						<li>A. Product Y increases</li>
+						<li style="color:var(--green); font-weight:700;">B. Product Y decreases (and Substrate X accumulates)</li>
+						<li>C. Substrate X disappears completely</li>
+						<li>D. Phenotype Z always increases</li>
+					</ul>
+				</div>
+
+				<div style="background:var(--bg); padding:1rem; border-radius:8px; margin-bottom:1rem;">
+					<p><strong>Question 2:</strong> Several upstream genes in a pathway are upregulated, but the final product level remains low. Which explanation is most likely?</p>
+					<ul style="list-style:none; margin-left:0;">
+						<li>A. The pathway must be fully active.</li>
+						<li style="color:var(--green); font-weight:700;">B. A downstream enzyme may be inhibited or nonfunctional.</li>
+						<li>C. Gene expression always equals metabolite level.</li>
+						<li>D. The pathway has no biological meaning.</li>
+					</ul>
+				</div>
+
+				<div style="background:var(--bg); padding:1rem; border-radius:8px; margin-bottom:1rem;">
+					<p><strong>Question 3:</strong> Why is it important to know where a gene is located in a pathway?</p>
+					<p style="color:var(--green); font-weight:700; margin-top:0.3rem;">Answer Key &amp; Explanation:</p>
+					<p>Knowing a gene's position allows you to predict how knockouts or overexpression will affect upstream and downstream metabolites, identify potential feedback loops, and design effective validation strategies.</p>
+				</div>
+
+				<div style="background:var(--bg); padding:1rem; border-radius:8px;">
+					<p><strong>Question 4:</strong> How can KEGG help explain a biological phenotype?</p>
+					<p style="color:var(--green); font-weight:700; margin-top:0.3rem;">Answer Key &amp; Explanation:</p>
+					<p>KEGG maps experimental data (such as gene expression or metabolite levels) onto curated biochemical pathways. This helps link molecular changes to physical traits (like browning, stress tolerance, or pigment production).</p>
+				</div>
+			</div>
+		</template>
+
 		<script>
 			// ── All evaluation data ──────────────────────────────────────────────
 			const EVALS = {
 				// pre/post evaluation entries removed
 			};
 
-// ── Render evaluations ─────────────────────────────────────────────
-function renderEval(id) {
-  const data = EVALS[id];
-  if (!data) return;
-  const container = document.getElementById(id + '-qs');
-  const keyContainer = document.getElementById(id + '-key');
-  if (!container) return;
-  container.innerHTML = '';
-  if (keyContainer) keyContainer.innerHTML = '';
-  data.qs.forEach((q, qi) => {
-    const qDiv = document.createElement('div');
-    qDiv.className = 'q-item';
-    qDiv.innerHTML = `<div class="q-stem">Q${qi+1}. ${q.stem}</div>
+			// ── Render evaluations ─────────────────────────────────────────────
+			function renderEval(id) {
+			const data = EVALS[id];
+			if (!data) return;
+			const container = document.getElementById(id + '-qs');
+			const keyContainer = document.getElementById(id + '-key');
+			if (!container) return;
+			container.innerHTML = '';
+			if (keyContainer) keyContainer.innerHTML = '';
+			data.qs.forEach((q, qi) => {
+			const qDiv = document.createElement('div');
+			qDiv.className = 'q-item';
+			qDiv.innerHTML = `<div class="q-stem">Q${qi+1}. ${q.stem}</div>
 			<ul class="q-options" id="${id}-q${qi}-opts">
 				${q.opts.map((o,oi)=>`<li class="q-opt" data-q="${qi}" data-o="${oi}" onclick="selectOpt(this,'${id}',${qi})">
 					<span class="opt-letter">${String.fromCharCode(65+oi)}</span>${o}
@@ -1433,7 +1767,6 @@ function renderEval(id) {
 			}
 
 			// ── Sidebar / in-page anchor scroll ───────────────────────────────
-			// New name to avoid shadowing native window.scrollTo
 			function goToId(id) {
 			const el = document.getElementById(id);
 			if (!el) return;
@@ -1457,6 +1790,45 @@ function renderEval(id) {
 			});
 			});
 
+			// ── Modal Controller (SPA Materials) ─────────────────────────────
+			function openMaterials(id) {
+			const template = document.getElementById('template-' + id);
+			const modal = document.getElementById('materials-modal');
+			const contentContainer = document.getElementById('modal-body-content');
+			if (template && modal && contentContainer) {
+			contentContainer.innerHTML = template.innerHTML;
+			modal.style.display = 'flex';
+			document.body.style.overflow = 'hidden'; 
+			}
+			}
+
+			function openSchedule() {
+			const template = document.getElementById('template-schedule');
+			const modal = document.getElementById('materials-modal');
+			const contentContainer = document.getElementById('modal-body-content');
+			if (template && modal && contentContainer) {
+			contentContainer.innerHTML = template.innerHTML;
+			modal.style.display = 'flex';
+			document.body.style.overflow = 'hidden'; 
+			}
+			}
+
+			function closeMaterials() {
+			const modal = document.getElementById('materials-modal');
+			if (modal) {
+			modal.style.display = 'none';
+			document.body.style.overflow = 'auto'; 
+			}
+			}
+
+			// Close modal when clicking outside content area
+			window.addEventListener('click', function(event) {
+			const modal = document.getElementById('materials-modal');
+			if (event.target === modal) {
+			closeMaterials();
+			}
+			});
+
 			// ── Gantt ────────────────────────────────────────────────────────
 			const ganttData = [
 			{ day:'D1', name:'M1 · Genome Fundamentals', sub:'Day 1', start:'08:00', lec:45, ws:20 },
@@ -1468,13 +1840,11 @@ function renderEval(id) {
 			{ day:'D2', name:'M5 · MSA',                  sub:'Day 2', start:'08:00', lec:45, ws:30 },
 			{ day:'D2', name:'M6 · Phylogenetics',         sub:'Day 2', start:'09:15', lec:60, ws:45 },
 			{ day:'D2', name:'Break',                     sub:'',      start:'11:00', brk:15 },
-			{ day:'D2', name:'M7 · Transcriptomics',      sub:'Day 2', start:'11:15', lec:45, ws:60 },
-			{ day:'D3', name:'M8 · ImageJ',               sub:'Day 3', start:'08:00', lec:60, ws:45 },
+			{ day:'D2', name:'M7 · Image Analysis',        sub:'Day 2', start:'11:15', lec:45, ws:60 },
+			{ day:'D3', name:'M8 · Transcriptomics',      sub:'Day 3', start:'08:00', lec:60, ws:45 },
 			{ day:'D3', name:'M9 · Pathways',             sub:'Day 3', start:'09:45', lec:45, ws:30 },
 			{ day:'D3', name:'Break',                     sub:'',      start:'11:00', brk:15 },
-			{ day:'D3', name:'M10 · Validation',          sub:'Day 3', start:'11:15', lec:60, ws:45 },
-			{ day:'D3', name:'Lunch',                     sub:'',      start:'13:00', brk:60 },
-			{ day:'D3', name:'Case Study',                sub:'Day 3', start:'14:00', cs:90 },
+			{ day:'D3', name:'Case Study Synthesis',      sub:'Day 3', start:'11:15', cs:90 },
 			];
 			const MAX=120;
 			const tbody=document.getElementById('gantt-body');
@@ -1486,7 +1856,7 @@ function renderEval(id) {
 				<div class="g-seg g-brk" style="width:${r.brk/MAX*100}%">${r.brk}m</div>
 			</div>`;
 			else if(r.cs) bar=`<div class="g-bar">
-				<div class="g-seg" style="width:${r.cs/MAX*100}%;background:var(--purple-bg);color:var(--purple)">${r.cs}m case study</div>
+				<div class="g-seg" style="width:${r.cs/MAX*100}%;background:var(--purple-bg);color:var(--purple)">${r.cs}m Case Study</div>
 			</div>`;
 			else bar=`<div class="g-bar">
 				<div class="g-seg g-lec" style="width:${r.lec/MAX*100}%">${r.lec}m lec</div>${r.ws?`<div class="g-seg g-ws" style="width:${r.ws/MAX*100}%">${r.ws}m ws</div>`:''}

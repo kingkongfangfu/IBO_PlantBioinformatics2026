@@ -304,7 +304,7 @@
 						.key-body { display:none; padding:0.75rem 1rem 1rem; border-top:1px solid var(--border); }
 						.key-body.open { display:block; }
 
-						/* ── Gantt ────────────────────────────────── */
+						/* ── Gantt ────────────────────────────────── 
 						.gantt-wrap {
 						background:var(--white); border:1px solid var(--border);
 						border-radius:var(--radius-lg); padding:1.5rem 1.75rem;
@@ -333,7 +333,7 @@
 						.gantt-legend { display:flex; gap:1.25rem; margin-top:0.9rem; flex-wrap:wrap; }
 						.gl-item { display:flex; align-items:center; gap:5px; font-size:0.7rem; font-weight:700; color:var(--text3); }
 						.gl-dot { width:10px; height:10px; border-radius:3px; }
-
+*/
 						/* ── Philosophy ───────────────────────────── */
 						#philosophy {
 						background:var(--white); border:1px solid var(--border);
@@ -482,10 +482,6 @@
 				<div class="nav-group-label" onclick="goToId('toc')" style="cursor:pointer">Overview</div>
 				<button class="nav-item" onclick="goToId('toc')">
 					<span class="nav-dot" style="background:var(--text3)"></span>Table of Contents
-				</button>
-				<button class="nav-item" onclick="goToId('gantt')">
-					<span class="nav-dot" style="background:var(--text3)"></span>Schedule & Gantt
-				</button>
 				<button class="nav-item" onclick="goToId('philosophy')">
 					<span class="nav-dot" style="background:var(--text3)"></span>Core Philosophy
 				</button>
@@ -592,9 +588,8 @@
 			<!-- Gantt (schedule hidden) -->
 			<section id="gantt">
 				<div class="sec-title">
-					3-Day Schedule <span class="sec-badge">Gantt</span>
+					3-Day Schedule <span class="sec-badge"></span>
 				</div>
-				<p class="sec-desc">Schedule temporarily hidden. Use the button to open the full schedule program.</p>
 				<div style="margin-top:1rem">
 					<button class="eval-btn check" onclick="openSchedule()" type="button">Open Schedule Program</button>
 				</div>

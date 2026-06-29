@@ -304,7 +304,7 @@
 						.key-body { display:none; padding:0.75rem 1rem 1rem; border-top:1px solid var(--border); }
 						.key-body.open { display:block; }
 
-						/* ── Gantt ────────────────────────────────── 
+						/* ── Gantt ────────────────────────────────── */
 						.gantt-wrap {
 						background:var(--white); border:1px solid var(--border);
 						border-radius:var(--radius-lg); padding:1.5rem 1.75rem;
@@ -333,7 +333,7 @@
 						.gantt-legend { display:flex; gap:1.25rem; margin-top:0.9rem; flex-wrap:wrap; }
 						.gl-item { display:flex; align-items:center; gap:5px; font-size:0.7rem; font-weight:700; color:var(--text3); }
 						.gl-dot { width:10px; height:10px; border-radius:3px; }
-*/
+
 						/* ── Philosophy ───────────────────────────── */
 						#philosophy {
 						background:var(--white); border:1px solid var(--border);
@@ -482,6 +482,10 @@
 				<div class="nav-group-label" onclick="goToId('toc')" style="cursor:pointer">Overview</div>
 				<button class="nav-item" onclick="goToId('toc')">
 					<span class="nav-dot" style="background:var(--text3)"></span>Table of Contents
+				</button>
+				<button class="nav-item" onclick="goToId('gantt')">
+					<span class="nav-dot" style="background:var(--text3)"></span>Schedule & Gantt
+				</button>
 				<button class="nav-item" onclick="goToId('philosophy')">
 					<span class="nav-dot" style="background:var(--text3)"></span>Core Philosophy
 				</button>
@@ -588,8 +592,9 @@
 			<!-- Gantt (schedule hidden) -->
 			<section id="gantt">
 				<div class="sec-title">
-					3-Day Schedule <span class="sec-badge"> Info </span>
+					3-Day Schedule <span class="sec-badge">Gantt</span>
 				</div>
+				<p class="sec-desc">Schedule temporarily hidden. Use the button to open the full schedule program.</p>
 				<div style="margin-top:1rem">
 					<button class="eval-btn check" onclick="openSchedule()" type="button">Open Schedule Program</button>
 				</div>
@@ -630,7 +635,7 @@
 								<span class="eval-title">Get Lecture & Workshop Files</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<a class="eval-btn check" href="modules/module1/Module_1_handouts.pdf" download style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
+								<a class="eval-btn check" href="https://drive.google.com/drive/folders/1_434Dl0NH7WdKUBJH2UcamBX6HHsmwSh" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
 							</div>
 						</div>
 
@@ -677,7 +682,7 @@
 								<span class="eval-title">Get Lecture & Workshop Files</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<a class="eval-btn check" href="modules/module2/Module2_Lecture.pdf" download style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
+								<a class="eval-btn check" href="https://drive.google.com/drive/folders/1DYTAmO8Mb8QBW4sfa_X47pdQo1O25heb" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
 							</div>
 						</div>
 
@@ -723,7 +728,7 @@
 								<span class="eval-title">Get Lecture & Workshop Files</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<a class="eval-btn check" href="modules/module3/Module3_Lecture.pdf" download style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
+								<a class="eval-btn check" href="https://drive.google.com/drive/folders/1QOvGyyee1s5LRMtCZ7meAAuCmnf4NrBf" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
 							</div>
 						</div>
 
@@ -769,7 +774,7 @@
 								<span class="eval-title">Get Lecture & Workshop Files</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<a class="eval-btn check" href="modules/module4/Module4_Lecture.pdf" download style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
+								<a class="eval-btn check" href="https://drive.google.com/drive/folders/1lWr3wvYFRSCW5gFCNtb1XXGfd89CZkjT" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
 							</div>
 						</div>
 
@@ -834,7 +839,7 @@
 								<span class="eval-title">Get Lecture & Workshop Files</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<a class="eval-btn check" href="modules/module5/Module5_Lecture.pdf" download style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
+								<a class="eval-btn check" href="https://drive.google.com/drive/folders/1e6-Zxg8bnwfYFRSCW5gFCNtb1XXGfd89CZkjT" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
 							</div>
 						</div>
 
@@ -886,7 +891,7 @@
 								<span class="eval-title">Get Lecture & Workshop Files</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<a class="eval-btn check" href="modules/module6/Module6_Lecture.pdf" download style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
+								<a class="eval-btn check" href="https://drive.google.com/drive/folders/1e6-Zxg8bnwfYFRSCW5gFCNtb1XXGfd89" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
 							</div>
 						</div>
 
@@ -939,7 +944,7 @@
 								<span class="eval-title">Get Lecture & Workshop Files</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<a class="eval-btn check" href="modules/module7/Module7_Lecture.pdf" download style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
+								<a class="eval-btn check" href="https://drive.google.com/drive/folders/1e6-Zxg8bnwfYFRSCW5gFCNtb1XXGfd89" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
 							</div>
 						</div>
 
@@ -1009,7 +1014,7 @@
 								<span class="eval-title">Get Lecture & Workshop Files</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<a class="eval-btn check" href="modules/module8/Module8_Lecture.pdf" download style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
+								<a class="eval-btn check" href="https://drive.google.com/drive/folders/1BmaZ7eY_PU0zyuKXZEkwQJfUfxvk0nEt" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
 							</div>
 						</div>
 
@@ -1064,7 +1069,7 @@
 								<span class="eval-title">Get Lecture & Workshop Files</span>
 							</div>
 							<div style="margin-top:0.6rem">
-								<a class="eval-btn check" href="modules/module9/Module9_Lecture.pdf" download style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
+								<a class="eval-btn check" href="https://drive.google.com/drive/folders/1Skon754WP74Ap1GA3FtveCZvH47oLB9J" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:inline-block; text-align:center;">DOWNLOAD MATERIALS</a>
 							</div>
 						</div>
 
@@ -1128,7 +1133,7 @@
 						<div class="cs-ds-label">Image Analysis</div>
 					</div>
 					<div class="cs-ds-item">
-						<div class="cs-ds-icon">⇄</div>
+						<div class="cs-ds-icon">⌬</div>
 						<div class="cs-ds-label">Pathway Diagram</div>
 					</div>
 				</div>
@@ -1223,6 +1228,7 @@
 		<template id="template-schedule">
 			<h2 class="materials-title">📅 3-Day IBO Training Schedule</h2>
 			<div class="materials-section">
+				<p><strong>Program Focus:</strong> Plant Computational Biology &amp; Bioinformatics (Filipino High School Olympiad Cohort 2026)</p>
 				
 				<h3 style="color:var(--day1);">June 29, 2026 (Day 1: Sequences &amp; Genomes)</h3>
 				<div style="background:var(--bg); border-left:3px solid var(--day1); padding:0.75rem 1rem; border-radius:6px; margin-bottom:1rem;">
